@@ -14,13 +14,13 @@ Esta guia presenta los pasos necesarios para configurar el ambiente de desarroll
 Para compilar y correr las pruebas, ubicarse en el mismo directorio que el archivo `pom.xml` e ingresar:
 
 ```bash
-$ mvn clean test
+mvn clean test
 ```
 
 ### 2. Empaquetado
 
 ```bash
-$ mvn clean package -DskipTests -Ppackage
+mvn clean package -DskipTests -Ppackage
 ```
 
 Esto genera el empaquetado en `target/tp2-0.0.1.jar`.
@@ -28,7 +28,7 @@ Esto genera el empaquetado en `target/tp2-0.0.1.jar`.
 ### 3. Ejecución de la aplicación
 
 ```shell script
-$ mvn clean javafx:run
+mvn clean javafx:run
 ```
 
 La tarea `clean` se encarga de limpiar archivos de compilaciones anteriores. `javafx:run` compila y ejecuta la aplicación.
