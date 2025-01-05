@@ -1,6 +1,6 @@
 # Diagramas UML
 
-**Recomendamos la utilización de PlantUML por las siguientes razones**:
+:mega: Recomendamos la utilización de PlantUML por las siguientes razones :mega:
 
 - Se pueden versionar los distintos diagramas.
 - Existen herramientas que lo interpretan y no requiere la instalación de un software. Ver [aquí](#editor-online).
