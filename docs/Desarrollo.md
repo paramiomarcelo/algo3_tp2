@@ -7,7 +7,6 @@ Este documento presenta una guía para los desarrolladores del proyecto.
 Existen distintas maneras de configurar el ambiente de desarrollo:
 
 - [Nativo](./Nativo.md)
-- [Docker](./Docker.md)
 
 ## Diagramas
 
