@@ -1,6 +1,6 @@
 # Nativo
 
-:dart: Esta guia presenta los pasos necesarios para configurar el ambiente de desarrollo de forma nativa para: (1) ejecutar pruebas de funcionalidad, (2) ejecutar pruebas de mutación, (3) empaquetar y ejecutar la aplicación
+:dart: Esta guia presenta los pasos necesarios para configurar el ambiente de desarrollo de forma nativa para: (1) [ejecutar pruebas de funcionales](#pruebas-funcionales), (2) ejecutar [pruebas de mutación](#pruebas-de-mutación), (3) [empaquetar](#empaquetado) y [ejecutar la aplicación](#ejecución-de-la-aplicación)
 
 ## Pre-requisitos
 
