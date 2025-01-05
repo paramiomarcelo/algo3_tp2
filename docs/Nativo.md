@@ -9,7 +9,7 @@
 
 :high_brightness: [SdkMan](https://sdkman.io/) simplifica la gestión de versiones de Java y las herramientas, como Maven (`mvn`).
 
-### Pruebas funcionales
+## Pruebas funcionales
 
 Para compilar y correr las pruebas, ubicarse en el mismo directorio que el archivo `pom.xml` e ingresar:
 
@@ -17,7 +17,7 @@ Para compilar y correr las pruebas, ubicarse en el mismo directorio que el archi
 mvn clean test
 ```
 
-#### Pruebas de mutación
+## Pruebas de mutación
 
 Para correr las pruebas de mutación.
 
@@ -25,7 +25,7 @@ Para correr las pruebas de mutación.
 mvn test-compile org.pitest:pitest-maven:mutationCoverage 
 ```
 
-### Empaquetado
+## Empaquetado
 
 ```bash
 mvn clean package -DskipTests -Ppackage
@@ -33,7 +33,7 @@ mvn clean package -DskipTests -Ppackage
 
 Esto genera el empaquetado en `target/tp2-0.0.1.jar`.
 
-### Ejecución de la aplicación
+## Ejecución de la aplicación
 
 ```shell script
 mvn clean javafx:run
