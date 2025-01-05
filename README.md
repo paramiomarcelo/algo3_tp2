@@ -4,7 +4,7 @@
 
 Brindarle a los alumnos de [7507/9502 Algoritmos y Programación III][campus_materia] un "proyecto base", en adelante **plantilla**, con las herramientas básicas para confeccionar el TP2 conforme a los criterios de la cátedra.
 
-:information_source: La siguiente sección [TP2 Algoritmos 3: {nombre}](#tp2-algoritmos-3-nombre) está dedicada a los alumnos. Si quieres colaborar actualizando la plantilla, encontrarás información [guía de colaboración](./docs/GuiaColaboracion.md).
+:information_source: La siguiente sección [TP2 Algoritmos 3: {nombre}](#tp2-algoritmos-3-nombre) está dedicada a los alumnos. Si quieres colaborar actualizando la plantilla, encontrarás información [guía de colaboración](/docs/GuiaColaboracion.md).
 
 # TP2 Algoritmos 3: {nombre} 
 
