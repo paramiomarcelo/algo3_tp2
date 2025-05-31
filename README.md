@@ -7,7 +7,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo 12
 
 * **Marcelo Paramio** - [paramiomacelo](https://github.com/paramiomarcelo)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
+* **Lucas Casquero** - [Luquicasq](https://github.com/Luquicasq)
 * **Integrante 3** - [integrante3](https://github.com/integrante3)
 * **Gian Franco Cavalleri** - [gcavalleri](https://github.com/gcavalleri)
 
