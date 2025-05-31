@@ -8,7 +8,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 * **Marcelo Paramio** - [paramiomacelo](https://github.com/paramiomarcelo)
 * **Lucas Casquero** - [Luquicasq](https://github.com/Luquicasq)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Matias Vazquez Morales** - [MatiVazquezMorales](https://github.com/MatiVazquezMorales)
 * **Gian Franco Cavalleri** - [gcavalleri](https://github.com/gcavalleri)
 
 Corrector: **Pablo Rodriguez Massuh**
