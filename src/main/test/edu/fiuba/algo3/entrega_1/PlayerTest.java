@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
     private Game game;
@@ -22,7 +23,7 @@ public class PlayerTest {
     private Deck deck1;
     private Deck deck2;
     private UnitCard unitCard;
-    // Agregamos más cartas para el test de descarte
+
     private UnitCard card1;
     private UnitCard card2;
     private UnitCard card3;
@@ -74,5 +75,74 @@ public class PlayerTest {
 
         assertEquals(initialDiscardPileSize + 2, player1.getDiscardPile().size());
 
+    }
+
+
+    @Test
+    public void VerificarQueUnJugadorPoseaCartasSuficientesParaEmpezarElJuegoEnSuMazo() {
+        List<Card> cards1 = new ArrayList<>();
+
+
+        Deck deck = new Deck(cards1);
+
+        UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, SectionType.MELEE );
+        deck.addCard(guerrero);
+        UnitCard paladin = new UnitCard("paladin", "paladin", 5, SectionType.MELEE);
+        deck.addCard(paladin);
+        UnitCard arquero = new UnitCard("arquero", "arquero", 6, SectionType.RANGED);
+        deck.addCard(arquero);
+        UnitCard francotirador = new UnitCard("francotirador", "francotirador", 7, SectionType.RANGED);
+        deck.addCard(francotirador);
+        UnitCard geralt = new UnitCard("geralt", "geralt", 5, SectionType.MELEE);
+        deck.addCard(geralt);
+        UnitCard ciri = new UnitCard("ciri", "ciri", 6, SectionType.MELEE);
+        deck.addCard(ciri);
+        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, SectionType.MELEE);
+        deck.addCard(dijkstra);
+
+        Player player1 = new Player("matias", deck);
+
+        assertThrows(IllegalArgumentException.class, () -> player1.distributeCards(deck.getCards()),
+                "the number of cards needed is 10 to start the game");
+
+    }
+
+    @Test
+    public void VerificarQueAUnJugadorSeLeReparten10CartasDeSuMazo(){
+
+        List<Card> cards1 = new ArrayList<>();
+        Deck deck = new Deck(cards1);
+
+        UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, SectionType.MELEE);
+        deck.addCard(guerrero);
+        UnitCard paladin = new UnitCard("paladin", "paladin", 5, SectionType.MELEE);
+        deck.addCard(paladin);
+        UnitCard arquero = new UnitCard("arquero", "arquero", 6, SectionType.RANGED);
+        deck.addCard(arquero);
+        UnitCard francotirador = new UnitCard("francotirador", "francotirador", 7, SectionType.RANGED);
+        deck.addCard(francotirador);
+        UnitCard catapulta = new UnitCard("catapulta", "catapulta", 8, SectionType.SIEGE);
+        deck.addCard(catapulta);
+        UnitCard mortero = new UnitCard("mortero", "siege", 9, SectionType.SIEGE);
+        deck.addCard(mortero);
+        UnitCard gladiador = new UnitCard("gladiador", "melee", 12, SectionType.MELEE);
+        deck.addCard(gladiador);
+        UnitCard centurion = new UnitCard("centurion", "melee", 12, SectionType.MELEE);
+        deck.addCard(centurion);
+        UnitCard canion = new UnitCard("canion", "siege", 14, SectionType.SIEGE);
+        deck.addCard(canion);
+        UnitCard ariete = new UnitCard("ariete", "melee", 15, SectionType.MELEE);
+        deck.addCard(ariete);
+        UnitCard geralt = new UnitCard("geralt", "geralt", 5, SectionType.MELEE);
+        deck.addCard(geralt);
+        UnitCard ciri = new UnitCard("ciri", "ciri", 6, SectionType.MELEE);
+        deck.addCard(ciri);
+        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, SectionType.MELEE);
+        deck.addCard(dijkstra);
+
+        Player player1 = new Player("matias", deck);
+        player1.distributeCards(deck.getCards());
+
+        Assertions.assertEquals(10, player1.numberOfCards());
     }
 }

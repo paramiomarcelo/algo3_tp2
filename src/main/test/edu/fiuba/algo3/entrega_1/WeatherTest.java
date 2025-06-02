@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
-import edu.fiuba.algo3.modelo.effect.SnowEffect;
+import edu.fiuba.algo3.modelo.effect.Weather;
 import edu.fiuba.algo3.modelo.enums.SectionType;
 import edu.fiuba.algo3.modelo.player.Player;
 
@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
-public class SnowEffectTest {
+public class WeatherTest {
 
     @Test
     public void snowEffectSetsAllUnitPointsToOneInMeleeRows() {
         UnitCard unitCard1 = new UnitCard("Espadachín", "description", 7, SectionType.MELEE);
         UnitCard unitCard2 = new UnitCard("Lancero", "description", 4, SectionType.MELEE);
 
-        SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new SnowEffect(SectionType.MELEE));
+        SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new Weather(SectionType.MELEE));
 
         Deck deck1 = new Deck(Arrays.asList(unitCard1, snowCard));
         Deck deck2 = new Deck(Arrays.asList(unitCard2));
