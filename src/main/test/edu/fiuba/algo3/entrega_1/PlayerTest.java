@@ -26,7 +26,7 @@ public class PlayerTest {
     @BeforeEach
     public void setUp() {
 
-        UnitCard unitCard = new UnitCard("Arquero", "Unidad a distancia", 5, SectionType.RANGED);
+        unitCard = new UnitCard("Arquero", "Unidad a distancia", 5, SectionType.RANGED);
         List<Card> cards1 = new ArrayList<>();
         cards1.add(unitCard);
         deck1 = new Deck(cards1);
