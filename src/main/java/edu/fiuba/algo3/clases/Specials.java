@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.clases;
 
-public class Specials extends Cards implements Effect {
+public class Specials extends Cards {
 
-    public Specials(String name, String description) {
+    Ability ability;
+    public Specials(String name, String description, Ability ability) {
 
         super(name, description, true);
-
-    }
-    public void effect(Board board, Player player, Unit Self) {
+        this.ability = ability;
 
     }
     public void play(Board board, Player player) {
-
+        ability.effect(board);
     }
+
 }
