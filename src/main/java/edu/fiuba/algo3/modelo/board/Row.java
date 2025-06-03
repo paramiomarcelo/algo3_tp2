@@ -30,5 +30,11 @@ public class Row {
         return totalPoints;
     }
 
+    public void applySnowEffect() {
+        for (UnitCard card : cards) {
+            card.setPoints(1);
+        }
+    }
+
 
 }

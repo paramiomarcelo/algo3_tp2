@@ -32,16 +32,18 @@ public class Game {
         player.addPoints(card.getPoints());
     }
 
-    public void applySpecialEffect(Player player, SpecialCard card) {
-        card.getEffect().apply(this, player); // Usamos getEffect() en lugar de applyEffect
-        player.removeCardFromHand(card);
-    }
-
-    // Métodos adicionales necesarios
     public void setPlayers(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        this.currentPlayer = player1; // El primer jugador comienza
+        this.currentPlayer = player1;
+
+        board.addPlayer(player1);
+        board.addPlayer(player2);
+    }
+
+    public void applySpecialEffect(Player player, SpecialCard card) {
+        card.getEffect().apply(this, player);
+        player.removeCardFromHand(card);
     }
 
     private void switchTurn() {
