@@ -7,6 +7,4 @@ public class Specials extends Cards implements Effect {
         super(name, description);
     }
 
-    public void effect() {
-    }
 }
