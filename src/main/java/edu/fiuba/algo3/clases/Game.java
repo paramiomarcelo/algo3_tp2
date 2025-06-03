@@ -18,8 +18,8 @@ public class Game {
     public void setPlayerRound() {
         this.currentPlayer = currentPlayer == player1? player2 : player1;
     }
-    void playCard(Player player) {
-        player1.playCard(board);
+    void playCard(Player player, int i) {
+        player1.playCard(board, i);
     }
     public Player getCurrentPlayer() {
         return this.currentPlayer;
