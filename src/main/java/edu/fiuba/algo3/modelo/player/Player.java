@@ -30,8 +30,11 @@ public class Player {
         this.points += points;
     }
 
-    public void addToDiscardPile(Card card) {
-        discardPile.add(card);
+    public void discardCard(Card card) {
+        if (hand.contains(card)) {
+            hand.remove(card);
+            discardPile.add(card);
+        }
     }
 
     public List<Card> getHand() {
