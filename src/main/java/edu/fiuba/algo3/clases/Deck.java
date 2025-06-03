@@ -29,3 +29,7 @@ public class Deck {
 
 
 }
+    public List<Cards> getCards(){
+        return new ArrayList<>(cards);
+    }
+}

@@ -10,8 +10,12 @@ public abstract class Cards {
         this.name = name;
         this.description = description;
     }
+
+    public void playUnit(Board board, Player player, Unit card) {
+        board.addCard(player, card);
+    }
+    public void playSpecial(Board board, Cards card) {
+
+    }
+
 }
-
-
-
-
