@@ -28,4 +28,15 @@ public class Deck {
     public Card get(int index) {
         return cards.get(index);
     }
+
+    public Card randomCard(){
+        int position = (int) (Math.random() * cards.size());
+        return cards.get(position);
+    }
+
+    public void ensureAtLeast(int number){
+        if (cards.size() < number){
+            throw new IllegalArgumentException("the number of cards needed is 10 to start the game");
+        }
+    }
 }

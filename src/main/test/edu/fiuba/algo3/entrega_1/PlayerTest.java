@@ -102,7 +102,8 @@ public class PlayerTest {
 
         Player player1 = new Player("matias", deck);
 
-        assertThrows(IllegalArgumentException.class, () -> player1.distributeCards(deck.getCards()),
+
+        assertThrows(IllegalArgumentException.class, () -> player1.distributeCards(deck, 10),
                 "the number of cards needed is 10 to start the game");
 
     }
@@ -141,7 +142,8 @@ public class PlayerTest {
         deck.addCard(dijkstra);
 
         Player player1 = new Player("matias", deck);
-        player1.distributeCards(deck.getCards());
+
+        player1.distributeCards(deck, 10);
 
         Assertions.assertEquals(10, player1.numberOfCards());
     }

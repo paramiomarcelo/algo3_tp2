@@ -25,27 +25,17 @@ public class Player {
     }
 
     public void addCard(Card card){
-        deck.addCard(card);
+        hand.add(card);
     }
 
-    public void distributeCards(List<Card> cards){
-        int cardsToDistribute = Math.min(10, cards.size());
-        if (cardsToDistribute < 10){
-            throw new IllegalArgumentException("the number of cards needed is 10 to start the game");
+    public void distributeCards(Deck deck, int number){
+        deck.ensureAtLeast(number);
+
+        int cardsToDistribute = number;
+
+        for (int i = 0; i < cardsToDistribute; i++){
+            this.addCard(deck.randomCard());
         }
-
-        this.prepareHand();
-
-    }
-
-    public void prepareHand() {
-
-            Random random = new Random();
-            for (int i = 0; i < 10; i++) {
-                int randomIndex = random.nextInt(deck.size());
-                hand.add(deck.get(randomIndex));
-            }
-
     }
 
     public int numberOfCards(){
