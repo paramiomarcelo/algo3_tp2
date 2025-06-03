@@ -35,6 +35,11 @@ public class Player{
             throw new IllegalArgumentException("the index invalid" + i);
         }
         Cards card = deckOfCards.get(i);
+        card.play(board,this);
+        deckOfCards.remove(i);
+        this.puntaje = board.scorePlayer(this);
+
+       /*
         if (!card.isCardSpecial()) {
             card.play(board,this);
             deckOfCards.remove(i);
@@ -44,6 +49,8 @@ public class Player{
             deckOfCards.remove(i);
             this.puntaje = board.scorePlayer(this);
         }
+        */
+
     }
     public int getScore() {
         return this.puntaje;
