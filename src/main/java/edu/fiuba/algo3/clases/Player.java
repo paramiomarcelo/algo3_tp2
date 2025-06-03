@@ -10,6 +10,7 @@ public class Player{
     private List<Cards> deckOfCards;
     private int life;
 
+
     public Player(String name){
         this.name = name;
         this.life = 0;

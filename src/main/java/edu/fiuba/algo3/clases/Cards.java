@@ -5,17 +5,18 @@ public abstract class Cards {
 
     private String name;
     private String description;
+    boolean cardSpecial;
 
-    protected Cards(String name, String description) {
+    protected Cards(String name, String description, boolean cardSpecial) {
         this.name = name;
         this.description = description;
+        this.cardSpecial = cardSpecial;
     }
-
-    public void playUnit(Board board, Player player, Unit card) {
-        board.addCard(player, card);
+    public String getName() {
+        return this.name;
     }
-    public void playSpecial(Board board, Cards card) {
-
+    public boolean isCardSpecial() {
+        return this.cardSpecial;
     }
 
 }
