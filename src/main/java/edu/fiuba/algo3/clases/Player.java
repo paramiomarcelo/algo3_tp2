@@ -20,11 +20,13 @@ public class Player{
         deckOfCards.add(card);
     }
 
-    public void distributeCards(Deck deck){
-        int cardsToDistribute = deck.size();
+    public void distributeCards(Deck deck, int number){
+        deck.ensureAtLeast(number);
+
+        int cardsToDistribute = number;
 
         for (int i = 0; i < cardsToDistribute; i++){
-            this.addCard(deck.getRandomCard());
+            this.addCard(deck.randomCard());
         }
     }
 

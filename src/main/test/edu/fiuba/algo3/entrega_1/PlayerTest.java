@@ -29,7 +29,7 @@ public class PlayerTest {
         Specials earth = new ScorcheadEarth("earth", "improvement");
         deck.addCard(earth);
 
-        assertThrows(IllegalArgumentException.class, () -> player.distributeCards(deck),
+        assertThrows(IllegalArgumentException.class, () -> player.distributeCards(deck, 10),
                 "the number of cards needed is 10 to start the game");
 
     }
@@ -67,7 +67,7 @@ public class PlayerTest {
         Specials earth = new ScorcheadEarth("earth", "improvement");
         deck.addCard(earth);
 
-        player.distributeCards(deck);
+        player.distributeCards(deck, 10);
 
 
         assertEquals(10, player.numberOfCards());
