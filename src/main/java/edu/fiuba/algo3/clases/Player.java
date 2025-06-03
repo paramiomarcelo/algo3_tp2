@@ -8,6 +8,7 @@ public class Player{
     private int life;
     private int puntaje;
 
+
     public Player(String name){
         this.name = name;
         this.life = 0;
@@ -15,6 +16,9 @@ public class Player{
     }
     public void addCard(Cards card){
         deckOfCards.add(card);
+    }
+    public int getCardHand() {
+        return this.deckOfCards.size();
     }
     public void distributeCards(List<Cards> cards){
         int cardsToDistribute = Math.min(10, cards.size());
@@ -25,19 +29,20 @@ public class Player{
             addCard(cards.get(i));
         }
     }
-    public int numberOfCards(){
-        return deckOfCards.size();
-    }
-    public void playCard(Board board) {
-        Cards card = deckOfCards.get(1);
-        if (card instanceof Unit) {
-            card.playUnit(board,this, (Unit) card);
-            deckOfCards.remove(1);
+    public void playCard(Board board, int i) {
+
+        if(i < 0 || i > deckOfCards.size()) {
+            throw new IllegalArgumentException("the index invalid" + i);
+        }
+        Cards card = deckOfCards.get(i);
+        if (!card.isCardSpecial()) {
+            card.play(board,this);
+            deckOfCards.remove(i);
             this.puntaje = board.scorePlayer(this);
-        }else if(card instanceof Specials) {
-            card.playSpecial(board,card);
         }else {
-            throw new IllegalArgumentException("type Cards error");
+            card.play(board,this);
+            deckOfCards.remove(i);
+            this.puntaje = board.scorePlayer(this);
         }
     }
     public int getScore() {
