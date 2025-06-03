@@ -50,7 +50,7 @@ public class TestCase03 {
 
     }
     @Test
-    void TestCase06CartasUnidasduplicanValor() {
+    void TestCase06CartasUnidasduplicanValorConCartaSpecialSinSumarPuntos() {
 
         Game game = new Game();
         Deck mazo = new Deck();
@@ -68,10 +68,12 @@ public class TestCase03 {
         mazo.addCard(Roach);
         Unit Vesemir = new Unit("Catapult", 6, melee, "viejo fuerte");
         mazo.addCard(Vesemir);
-        Unit Arachas = new Unit("Arachas", 4, melee, "");
         Unit Cockatrice = new Unit("Cockatrice", 4, melee, "Un cocodrilo que busca su gemelo", new TightBond());
         mazo.addCard(Cockatrice);
-        mazo.addCard(Cockatrice);
+        //mazo.addCard(Cockatrice);
+        //Unit Arachas = new Unit("Arachas", 4, melee, "");
+        Specials Rain = new Specials("Rain", "lluviesita", new Weather());
+        mazo.addCard(Rain);
 
         game.setPlayerRound();
         Player player = game.getCurrentPlayer();
@@ -82,10 +84,10 @@ public class TestCase03 {
             player.playCard(game.getBoard(), 0);
         }
 
-        Assert.assertEquals(player.getScore(), 89);
+        Assert.assertEquals(player.getScore(), 77);
     }
     @Test
-    void TestCase06addTrheeCatapultAndTheEffectActivate() {
+    void TestCase06agregarCartasAlTableroParaActivarEfectoCartaUnida() {
         Player player1 = new Player("Player1");
         Player player2 = new Player("Player2");
         Board board = new Board(player1, player2);

@@ -28,7 +28,26 @@ public class Player{
 
         for (int i = 0; i < cardsToDistribute; i++){
             this.addCard(deck.randomCard());
+        if(i < 0 || i > deckOfCards.size()) {
+            throw new IllegalArgumentException("the index invalid" + i);
         }
+        Cards card = deckOfCards.get(i);
+        card.play(board,this);
+        deckOfCards.remove(i);
+        this.puntaje = board.scorePlayer(this);
+
+       /*
+        if (!card.isCardSpecial()) {
+            card.play(board,this);
+            deckOfCards.remove(i);
+            this.puntaje = board.scorePlayer(this);
+        }else {
+            card.play(board,this);
+            deckOfCards.remove(i);
+            this.puntaje = board.scorePlayer(this);
+        }
+        */
+
     }
 
     public int numberOfCards(){
