@@ -20,14 +20,11 @@ public class Player{
         deckOfCards.add(card);
     }
 
-    public void distributeCards(List<Cards> cards){
-        int cardsToDistribute = Math.min(10, cards.size());
-        if (cardsToDistribute < 10){
-            throw new IllegalArgumentException("the number of cards needed is 10 to start the game");
-        }
+    public void distributeCards(Deck deck){
+        int cardsToDistribute = deck.size();
 
         for (int i = 0; i < cardsToDistribute; i++){
-            addCard(cards.get(i));
+            this.addCard(deck.getRandomCard());
         }
     }
 

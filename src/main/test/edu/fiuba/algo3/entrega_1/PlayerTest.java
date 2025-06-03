@@ -10,65 +10,66 @@ public class PlayerTest {
     @Test
     public void VerificarQueUnJugadorPoseaCartasSuficientesParaEmpezarElJuegoEnSuMazo() {
 
-        Player jugador = new Player("matias");
+        Player player = new Player("matias");
 
-        Deck mazo = new Deck();
+        Deck deck = new Deck();
 
-        Unit guerrero = new Unit("guerrero", 10, "melee", "guerrero");
-        mazo.addCard(guerrero);
+        Unit warrior = new Unit("warrior", 10, "melee", "warrior");
+        deck.addCard(warrior);
         Unit paladin = new Unit("paladin", 5, "melee", "paladin");
-        mazo.addCard(paladin);
-        Unit arquero = new Unit("arquero", 6, "range", "arquero");
-        mazo.addCard(arquero);
-        Unit francotirador = new Unit("francotirador", 7, "range", "francotirador");
-        mazo.addCard(francotirador);
-        Specials clima = new Weather("nieve", "congela");
-        mazo.addCard(clima);
-        Specials moral = new MoraleBoost("boost", "mejora");
-        mazo.addCard(moral);
-        Specials earth = new ScorcheadEarth("earth", "mejora");
-        mazo.addCard(earth);
+        deck.addCard(paladin);
+        Unit archer = new Unit("archer", 6, "range", "archer");
+        deck.addCard(archer);
+        Unit sniper = new Unit("sniper", 7, "range", "sniper");
+        deck.addCard(sniper);
+        Specials weather = new Weather("snow", "frozen");
+        deck.addCard(weather);
+        Specials morale = new MoraleBoost("boost", "improvement");
+        deck.addCard(morale);
+        Specials earth = new ScorcheadEarth("earth", "improvement");
+        deck.addCard(earth);
 
-        assertThrows(IllegalArgumentException.class, () -> jugador.distributeCards(mazo.getCards()),
+        assertThrows(IllegalArgumentException.class, () -> player.distributeCards(deck),
                 "the number of cards needed is 10 to start the game");
 
     }
 
     @Test
     public void VerificarQueAUnJugadorSeLeReparten10CartasDeSuMazo(){
-        Player jugador = new Player("matias");
+        Player player = new Player("matias");
 
-        Deck mazo = new Deck();
+        Deck deck = new Deck();
 
-        Unit guerrero = new Unit("guerrero", 10, "melee", "guerrero");
-        mazo.addCard(guerrero);
+        Unit warrior = new Unit("warrior", 10, "melee", "warrior");
+        deck.addCard(warrior);
         Unit paladin = new Unit("paladin", 5, "melee", "paladin");
-        mazo.addCard(paladin);
-        Unit arquero = new Unit("arquero", 6, "range", "arquero");
-        mazo.addCard(arquero);
-        Unit francotirador = new Unit("francotirador", 7, "range", "francotirador");
-        mazo.addCard(francotirador);
+        deck.addCard(paladin);
+        Unit archer = new Unit("archer", 6, "range", "archer");
+        deck.addCard(archer);
+        Unit sniper = new Unit("sniper", 7, "range", "sniper");
+        deck.addCard(sniper);
         Unit catapulta = new Unit("catapulta", 8, "siege", "catapulta");
-        mazo.addCard(catapulta);
-        Unit mortero = new Unit("mortero", 9, "siege", "mortero");
-        mazo.addCard(mortero);
-        Unit gladiador = new Unit("gladiador", 12, "melee", "gladiador");
-        mazo.addCard(gladiador);
+        deck.addCard(catapulta);
+        Unit mortar = new Unit("mortar", 9, "siege", "mortar");
+        deck.addCard(mortar);
+        Unit gladiator = new Unit("gladiator", 12, "melee", "gladiator");
+        deck.addCard(gladiator);
         Unit centurion = new Unit("centurion", 13, "melee", "centurion");
-        mazo.addCard(centurion);
-        Unit canion = new Unit("canion", 14, "siege", "canion");
-        mazo.addCard(canion);
-        Unit ariete = new Unit("ariete", 15, "melee", "ariete");
-        mazo.addCard(ariete);
-        Specials clima = new Weather("nieve", "congela");
-        mazo.addCard(clima);
-        Specials moral = new MoraleBoost("boost", "mejora");
-        mazo.addCard(moral);
-        Specials earth = new ScorcheadEarth("earth", "mejora");
-        mazo.addCard(earth);
+        deck.addCard(centurion);
+        Unit cannon = new Unit("cannon", 14, "siege", "cannon");
+        deck.addCard(cannon);
+        Unit battleRam = new Unit("battleRam", 15, "melee", "battleRam");
+        deck.addCard(battleRam);
+        Specials weather = new Weather("snow", "frozen");
+        deck.addCard(weather);
+        Specials morale = new MoraleBoost("boost", "improvement");
+        deck.addCard(morale);
+        Specials earth = new ScorcheadEarth("earth", "improvement");
+        deck.addCard(earth);
 
-        jugador.distributeCards(mazo.getCards());
+        player.distributeCards(deck);
 
-        assertEquals(10, jugador.numberOfCards());
+
+        assertEquals(10, player.numberOfCards());
     }
 }
