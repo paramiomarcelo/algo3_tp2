@@ -20,6 +20,9 @@ public class Board {
     public void addCard(Player player, Unit card) {
         playerRounds.get(player).get(card.getSection()).addCard(card);
     }
+    public Map<Section, Row> getRows(Player player) {
+        return playerRounds.get(player);
+    }
     public int scorePlayer(Player player) {
         int counter = 0;
         for (Map.Entry<Section, Row> entry : playerRounds.get(player).entrySet()) {
@@ -29,4 +32,5 @@ public class Board {
         }
         return counter;
     }
+
 }
