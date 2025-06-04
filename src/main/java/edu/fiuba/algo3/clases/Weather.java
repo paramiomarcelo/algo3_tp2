@@ -6,8 +6,4 @@ public class Weather implements Ability {
     public void effect(Board board){
 
     }
-
-    @Override
-    public void effect() {
-    }
 }
