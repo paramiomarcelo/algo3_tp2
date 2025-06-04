@@ -7,11 +7,13 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 public class UnitCard extends AbstractCard implements ScorableCard {
     private Integer points;
+    private Integer basePoints;
     private final SectionType rowType;
 
     public UnitCard(String name, String description, Integer points, SectionType rowType) {
         super(name, description);
         this.points = points;
+        this.basePoints = points;
         this.rowType = rowType;
     }
 
@@ -22,6 +24,10 @@ public class UnitCard extends AbstractCard implements ScorableCard {
     @Override
     public Integer getPoints() {
         return points;
+    }
+
+    public Integer getBasePoints() {
+        return basePoints;
     }
 
     @Override

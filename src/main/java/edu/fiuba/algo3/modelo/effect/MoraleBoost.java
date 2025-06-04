@@ -8,7 +8,7 @@ public class MoraleBoost implements SpecialEffect {
 
 
     @Override
-    public void apply(Game game, Player player) {
+    public void effect(Game game, Player player) {
         System.out.println("Morale Boost applied to player: ");
     }
 

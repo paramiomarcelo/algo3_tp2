@@ -42,7 +42,7 @@ public class Game {
     }
 
     public void applySpecialEffect(Player player, SpecialCard card) {
-        card.getEffect().apply(this, player);
+        card.getEffect().effect(this, player);
         player.removeCardFromHand(card);
     }
 

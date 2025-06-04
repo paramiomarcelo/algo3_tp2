@@ -30,9 +30,15 @@ public class Row {
         return totalPoints;
     }
 
-    public void applySnowEffect() {
+    public void applyEffect() {
         for (UnitCard card : cards) {
             card.setPoints(1);
+        }
+    }
+
+    public void applyClearWeatherEffect() {
+        for (UnitCard card : cards) {
+            card.setPoints(card.getBasePoints());
         }
     }
 
