@@ -39,5 +39,13 @@ public class Board {
         return sections.get(player).get(sectionType);
     }
 
+    public int getScoreRow(Player player) {
+        int score = 0;
+        Map<SectionType, Row> rows = sections.get(player);
+        for (Row row : rows.values()) {
+            score += row.calculatePoints();
+        }
+        return score;
+    }
 }
 

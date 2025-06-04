@@ -35,6 +35,15 @@ public class Row {
             card.setPoints(1);
         }
     }
+    public List<UnitCard> getCardsBondedAbility(UnitCard card) {
+        List<UnitCard> bondedCards = new ArrayList<>();
+        for (UnitCard c : cards) {
+            if (c.getName().equals(card.getName())){
+                bondedCards.add(c);
+            }
+        }
+        return bondedCards;
+    }
 
     public void applyClearWeatherEffect() {
         for (UnitCard card : cards) {

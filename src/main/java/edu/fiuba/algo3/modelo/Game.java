@@ -29,6 +29,9 @@ public class Game {
 
     public void placeUnitCard(Player player, UnitCard card, SectionType row) {
         board.addCard(player, card, row);
+        if (card.hasAbility()) {
+            card.apply(this,player);
+        }
         player.addPoints(card.getPoints());
     }
 
@@ -56,5 +59,8 @@ public class Game {
 
     public Board getBoard() {
         return board;
+    }
+    public void changeTurnForTest() {
+        this.switchTurn();
     }
 }

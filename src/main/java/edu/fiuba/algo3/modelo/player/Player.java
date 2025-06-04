@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.player;
 
 import edu.fiuba.algo3.clases.Cards;
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.Card;
 import edu.fiuba.algo3.modelo.deck.Deck;
@@ -69,4 +70,7 @@ public class Player {
         return points;
     }
 
+    public int totalPointsRound(Board board) {
+        return board.getScoreRow(this);
+    }
 }

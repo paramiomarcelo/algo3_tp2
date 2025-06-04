@@ -8,6 +8,6 @@ public abstract class AbstractCard implements Card {
         this.name = name;
         this.description = description;
     }
-
+    public String getName() { return name;}
 
 }
