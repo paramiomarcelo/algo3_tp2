@@ -24,8 +24,6 @@ public class Bonded implements Ability {
             for (UnitCard c : cardsBonded) {
                 c.setPoints(c.getBasePoints() * 2);
             }
-        }else {
-            card.setPoints(card.getBasePoints());
         }
     }
 

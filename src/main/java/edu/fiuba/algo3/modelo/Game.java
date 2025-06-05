@@ -60,7 +60,4 @@ public class Game {
     public Board getBoard() {
         return board;
     }
-    public void changeTurnForTest() {
-        this.switchTurn();
-    }
 }
