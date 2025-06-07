@@ -22,6 +22,7 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         this.points = basePoints;
         this.abilities = new ArrayList<>();
     }
+
     public UnitCard(String name, String description, Integer basePoints, SectionType rowType, List<Ability> abilities) {
         super(name, description);
         this.basePoints = basePoints;
@@ -34,7 +35,6 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         this.points = points;
     }
 
-    @Override
     public Integer getPoints() {
         return points;
     }
@@ -43,19 +43,10 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         return basePoints;
     }
 
-    @Override
-    public void play(Game game, Player player) {
-        game.placeUnitCard(player, this, this.rowType);
-    }
-
     public void apply(Game game, Player player) {
         for (Ability a : abilities) {
             a.effect(game, player, this);
         }
     }
-    public boolean hasAbility() { return (!this.abilities.isEmpty()); }
 
-    public Integer getBasePoints() {
-        return basePoints;
-    }
 }

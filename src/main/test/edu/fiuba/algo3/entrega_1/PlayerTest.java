@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Game;
-import edu.fiuba.algo3.modelo.card.Card;
+import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.enums.SectionType;
@@ -36,7 +36,7 @@ public class PlayerTest {
         card3 = new UnitCard("Ballesta", "Unidad a distancia", 3, SectionType.RANGED);
 
 
-        List<Card> cards1 = new ArrayList<>();
+        List<AbstractCard> cards1 = new ArrayList<>();
         cards1.add(unitCard);
         cards1.add(card1);
         cards1.add(card2);
@@ -61,7 +61,7 @@ public class PlayerTest {
     @Test
     public void testPlayerGetsPointsAfterPlayingCard() {
         Integer initialPoints = player1.getPoints();
-        game.playCard(player1, unitCard);
+        player1.playCard(unitCard,"ranged");
         Assertions.assertEquals(initialPoints.intValue() + unitCard.getPoints().intValue(), player1.getPoints().intValue());
     }
 
@@ -80,7 +80,7 @@ public class PlayerTest {
 
     @Test
     public void VerificarQueUnJugadorPoseaCartasSuficientesParaEmpezarElJuegoEnSuMazo() {
-        List<Card> cards1 = new ArrayList<>();
+        List<AbstractCard> cards1 = new ArrayList<>();
 
 
         Deck deck = new Deck(cards1);
@@ -111,7 +111,7 @@ public class PlayerTest {
     @Test
     public void VerificarQueAUnJugadorSeLeReparten10CartasDeSuMazo(){
 
-        List<Card> cards1 = new ArrayList<>();
+        List<AbstractCard> cards1 = new ArrayList<>();
         Deck deck = new Deck(cards1);
 
         UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, SectionType.MELEE);
@@ -141,10 +141,43 @@ public class PlayerTest {
         UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, SectionType.MELEE);
         deck.addCard(dijkstra);
 
-        Player player1 = new Player("matias", deck);
+    Player player1 = new Player("matias", deck);
 
         player1.distributeCards(deck, 10);
 
         Assertions.assertEquals(10, player1.numberOfCards());
-    }
+}
+
+
+//    @Test
+//    public void playCardInIncorrectSection (){
+//    UnitCard unitCard1 = new UnitCard("Espadachín", "description", 7, SectionType.MELEE);
+//    UnitCard unitCard2 = new UnitCard("Lanzero", "description", 4, SectionType.MELEE);
+//    UnitCard unitCard3 = new UnitCard("Arquero", "description", 4, SectionType.RANGED);
+//    UnitCard unitCard4 = new UnitCard("Ballestero", "description", 4, SectionType.RANGED);
+//    UnitCard unitCard5 = new UnitCard("Catapulta", "description", 4, SectionType.SIEGE);
+//    UnitCard unitCard6 = new UnitCard("Trebuchet", "description", 4, SectionType.SIEGE);
+//
+//    SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new SnowEffect());
+//    SpecialCard fogCard = new SpecialCard("Niebla", "descrition", new FogEffect());
+//    SpecialCard torrentialRainCard = new SpecialCard("Lluvia torrencial", "descrition", new TorrentialRainEffect());
+//    SpecialCard stormCard = new SpecialCard("Tormenta", "descrition", new StormEffect());
+//    SpecialCard clearWeatherEffectsCard = new SpecialCard("Despejar Clima", "descrition", new ClearWeatherEffect());
+//
+//    Deck deck1 = new Deck(Arrays.asList(unitCard1, unitCard3, unitCard5, snowCard, fogCard, torrentialRainCard, stormCard, clearWeatherEffectsCard));
+//    Deck deck2 = new Deck(Arrays.asList(unitCard2, unitCard4, unitCard6, snowCard, clearWeatherEffectsCard));
+//
+//    Player player1 = new Player("Jugador 1", deck1);
+//    Player player2 = new Player("Jugador 2", deck2);
+//
+//    Game game = new Game();
+//
+//    game.setPlayers(player1,player2);
+//
+//
+//        assertThrows(IllegalArgumentException.class, () -> player1.playCard(unitCard2,"ranged"),
+//                "Cannot play this card in ranged section");
+//
+//
+//    }
 }

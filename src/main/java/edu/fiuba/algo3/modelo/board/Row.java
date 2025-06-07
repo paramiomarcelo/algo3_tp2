@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo.board;
 
 
-import edu.fiuba.algo3.modelo.card.Card;
-import edu.fiuba.algo3.modelo.card.ScorableCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 
 

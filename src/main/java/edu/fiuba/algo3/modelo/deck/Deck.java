@@ -1,19 +1,18 @@
 package edu.fiuba.algo3.modelo.deck;
 
 import edu.fiuba.algo3.modelo.card.AbstractCard;
-import edu.fiuba.algo3.modelo.card.Card;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Deck {
-    private List<Card> cards;
-    public Deck(List<Card> cards) {
+    private List<AbstractCard> cards;
+    public Deck(List<AbstractCard> cards) {
 
         this.cards = new ArrayList<>(cards);
     }
 
-    public void addCard(Card card) {
+    public void addCard(AbstractCard card) {
         cards.add(card);
     }
 
@@ -21,15 +20,15 @@ public class Deck {
         return cards.size();
     }
 
-    public List<Card> getCards() {
+    public List<AbstractCard> getCards() {
         return cards;
     }
 
-    public Card get(int index) {
+    public AbstractCard get(int index) {
         return cards.get(index);
     }
 
-    public Card randomCard(){
+    public AbstractCard randomCard(){
         int position = (int) (Math.random() * cards.size());
         return cards.get(position);
     }

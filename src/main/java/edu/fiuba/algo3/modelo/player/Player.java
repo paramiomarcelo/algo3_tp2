@@ -1,20 +1,18 @@
 package edu.fiuba.algo3.modelo.player;
 
-import edu.fiuba.algo3.clases.Cards;
 import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
-import edu.fiuba.algo3.modelo.card.Card;
+import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Player {
     private String name;
     private Deck deck;
-    private List<Card> hand;
-    private List<Card> discardPile;
+    private List<AbstractCard> hand;
+    private List<AbstractCard> discardPile;
     private Integer points;
 
     public Player(String name, Deck deck) {
@@ -25,7 +23,7 @@ public class Player {
         this.points = 0;
     }
 
-    public void addCard(Card card){
+    public void addCard(AbstractCard card){
         hand.add(card);
     }
 
@@ -39,11 +37,18 @@ public class Player {
         }
     }
 
+    public void playCard(UnitCard card, String section){
+        removeCardFromHand(card);
+        Board board = Board.getInstance();
+        board.addCard(this,card,section);
+        points = board.getScoreRow(this);
+    }
+
     public int numberOfCards(){
         return hand.size();
     }
 
-    public void removeCardFromHand(Card card) {
+    public void removeCardFromHand(AbstractCard card) {
         hand.remove(card);
     }
 
@@ -51,18 +56,18 @@ public class Player {
         this.points += points;
     }
 
-    public void discardCard(Card card) {
+    public void discardCard(AbstractCard card) {
         if (hand.contains(card)) {
             hand.remove(card);
             discardPile.add(card);
         }
     }
 
-    public List<Card> getHand() {
+    public List<AbstractCard> getHand() {
         return hand;
     }
 
-    public List<Card> getDiscardPile() {
+    public List<AbstractCard> getDiscardPile() {
         return discardPile;
     }
 

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.card;
 
-public abstract class AbstractCard implements Card {
+public abstract class AbstractCard {
     protected String name;
     protected String description;
 

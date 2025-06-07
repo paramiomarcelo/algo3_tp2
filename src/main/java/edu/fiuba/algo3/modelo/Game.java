@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.board.Board;
-import edu.fiuba.algo3.modelo.card.Card;
+import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.enums.SectionType;
@@ -14,26 +14,10 @@ public class Game {
     private Player currentPlayer;
 
     public Game() {
-        this.board = new Board();
+        this.board = Board.getInstance();
     }
 
-    public void playCard(Player player, Card card) {
-        if (player != currentPlayer) {
-            throw new IllegalStateException("No es tu turno");
-        }
 
-        card.play(this, player);
-        player.removeCardFromHand(card);
-        this.switchTurn();
-    }
-
-    public void placeUnitCard(Player player, UnitCard card, SectionType row) {
-        board.addCard(player, card, row);
-        if (card.hasAbility()) {
-            card.apply(this,player);
-        }
-        player.addPoints(card.getPoints());
-    }
 
     public void setPlayers(Player player1, Player player2) {
         this.player1 = player1;
@@ -44,10 +28,7 @@ public class Game {
         board.addPlayer(player2);
     }
 
-    public void applySpecialEffect(Player player, SpecialCard card) {
-        card.getEffect().effect(this, player);
-        player.removeCardFromHand(card);
-    }
+
 
     private void switchTurn() {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;

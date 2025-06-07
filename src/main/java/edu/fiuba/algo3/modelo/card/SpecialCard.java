@@ -13,13 +13,8 @@ public class SpecialCard extends AbstractCard {
         this.effect = effect;
     }
 
-    @Override
-    public void play(Game game, Player player) {
-        game.applySpecialEffect(player, this);
-    }
-
-    public SpecialEffect getEffect() {
-        return effect;
+    public void applyEffect(Game game, Player player) {
+        effect.effect(game,player);
     }
 
 }
