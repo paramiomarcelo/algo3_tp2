@@ -12,10 +12,10 @@ import java.util.List;
 public class UnitCard extends AbstractCard implements ScorableCard {
     private Integer points;
     private Integer basePoints;
-    private final SectionType rowType;
+    private final String rowType;
     private final List<Ability> abilities;
 
-    public UnitCard(String name, String description, Integer points, SectionType rowType) {
+    public UnitCard(String name, String description, Integer points, String rowType) {
         super(name, description);
         this.rowType = rowType;
         this.basePoints = points;
@@ -23,7 +23,7 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         this.abilities = new ArrayList<>();
     }
 
-    public UnitCard(String name, String description, Integer basePoints, SectionType rowType, List<Ability> abilities) {
+    public UnitCard(String name, String description, Integer basePoints, String rowType, List<Ability> abilities) {
         super(name, description);
         this.basePoints = basePoints;
         this.points = basePoints;
@@ -43,10 +43,13 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         return basePoints;
     }
 
-    public void apply(Game game, Player player) {
+    public void apply(Player player) {
         for (Ability a : abilities) {
-            a.effect(game, player, this);
+            a.effect(player, this);
         }
+    }
+    public String getRowType() {
+        return rowType;
     }
 
 }

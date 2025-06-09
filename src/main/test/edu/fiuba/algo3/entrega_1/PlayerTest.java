@@ -30,10 +30,10 @@ public class PlayerTest {
 
     @BeforeEach
     public void setUp() {
-        unitCard = new UnitCard("Arquero", "Unidad a distancia", 5, SectionType.RANGED);
-        card1 = new UnitCard("Catapulta", "Unidad de asedio", 4, SectionType.SIEGE);
-        card2 = new UnitCard("Espadachín", "Unidad cuerpo a cuerpo", 6, SectionType.MELEE);
-        card3 = new UnitCard("Ballesta", "Unidad a distancia", 3, SectionType.RANGED);
+        unitCard = new UnitCard("Arquero", "Unidad a distancia", 5, "ranged");
+        card1 = new UnitCard("Catapulta", "Unidad de asedio", 4, "siege");
+        card2 = new UnitCard("Espadachín", "Unidad cuerpo a cuerpo", 6, "melee");
+        card3 = new UnitCard("Ballesta", "Unidad a distancia", 3, "ranged");
 
 
         List<AbstractCard> cards1 = new ArrayList<>();
@@ -85,20 +85,31 @@ public class PlayerTest {
 
         Deck deck = new Deck(cards1);
 
-        UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, SectionType.MELEE );
+        UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, "melee");
         deck.addCard(guerrero);
-        UnitCard paladin = new UnitCard("paladin", "paladin", 5, SectionType.MELEE);
+        UnitCard paladin = new UnitCard("paladin", "paladin", 5, "melee");
         deck.addCard(paladin);
-        UnitCard arquero = new UnitCard("arquero", "arquero", 6, SectionType.RANGED);
+        UnitCard arquero = new UnitCard("arquero", "arquero", 6, "ranged");
         deck.addCard(arquero);
-        UnitCard francotirador = new UnitCard("francotirador", "francotirador", 7, SectionType.RANGED);
+        UnitCard francotirador = new UnitCard("francotirador", "francotirador", 7, "ranged");
         deck.addCard(francotirador);
-        UnitCard geralt = new UnitCard("geralt", "geralt", 5, SectionType.MELEE);
+        UnitCard catapulta = new UnitCard("catapulta", "catapulta", 8, "siege");
+        deck.addCard(catapulta);
+        UnitCard mortero = new UnitCard("mortero", "siege", 9, "siege");
+        deck.addCard(mortero);
+        UnitCard gladiador = new UnitCard("gladiador", "melee", 12, "melee");
+        deck.addCard(gladiador);
+        UnitCard centurion = new UnitCard("centurion", "melee", 12, "melee");
+        deck.addCard(centurion);
+        UnitCard canion = new UnitCard("canion", "siege", 14, "melee");
+        deck.addCard(canion);
+        UnitCard ariete = new UnitCard("ariete", "melee", 15, "melee");
+        deck.addCard(ariete);
+        UnitCard geralt = new UnitCard("geralt", "geralt", 5, "melee");
         deck.addCard(geralt);
-        UnitCard ciri = new UnitCard("ciri", "ciri", 6, SectionType.MELEE);
+        UnitCard ciri = new UnitCard("ciri", "ciri", 6, "melee");
         deck.addCard(ciri);
-        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, SectionType.MELEE);
-        deck.addCard(dijkstra);
+        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, "melee");
 
         Player player1 = new Player("matias", deck);
 
@@ -114,31 +125,31 @@ public class PlayerTest {
         List<AbstractCard> cards1 = new ArrayList<>();
         Deck deck = new Deck(cards1);
 
-        UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, SectionType.MELEE);
+        UnitCard guerrero = new UnitCard("guerrero", "guerrero", 10, "melee");
         deck.addCard(guerrero);
-        UnitCard paladin = new UnitCard("paladin", "paladin", 5, SectionType.MELEE);
+        UnitCard paladin = new UnitCard("paladin", "paladin", 5, "melee");
         deck.addCard(paladin);
-        UnitCard arquero = new UnitCard("arquero", "arquero", 6, SectionType.RANGED);
+        UnitCard arquero = new UnitCard("arquero", "arquero", 6, "ranged");
         deck.addCard(arquero);
-        UnitCard francotirador = new UnitCard("francotirador", "francotirador", 7, SectionType.RANGED);
+        UnitCard francotirador = new UnitCard("francotirador", "francotirador", 7, "ranged");
         deck.addCard(francotirador);
-        UnitCard catapulta = new UnitCard("catapulta", "catapulta", 8, SectionType.SIEGE);
+        UnitCard catapulta = new UnitCard("catapulta", "catapulta", 8, "siege");
         deck.addCard(catapulta);
-        UnitCard mortero = new UnitCard("mortero", "siege", 9, SectionType.SIEGE);
+        UnitCard mortero = new UnitCard("mortero", "siege", 9, "siege");
         deck.addCard(mortero);
-        UnitCard gladiador = new UnitCard("gladiador", "melee", 12, SectionType.MELEE);
+        UnitCard gladiador = new UnitCard("gladiador", "melee", 12, "melee");
         deck.addCard(gladiador);
-        UnitCard centurion = new UnitCard("centurion", "melee", 12, SectionType.MELEE);
+        UnitCard centurion = new UnitCard("centurion", "melee", 12, "melee");
         deck.addCard(centurion);
-        UnitCard canion = new UnitCard("canion", "siege", 14, SectionType.SIEGE);
+        UnitCard canion = new UnitCard("canion", "siege", 14, "melee");
         deck.addCard(canion);
-        UnitCard ariete = new UnitCard("ariete", "melee", 15, SectionType.MELEE);
+        UnitCard ariete = new UnitCard("ariete", "melee", 15, "melee");
         deck.addCard(ariete);
-        UnitCard geralt = new UnitCard("geralt", "geralt", 5, SectionType.MELEE);
+        UnitCard geralt = new UnitCard("geralt", "geralt", 5, "melee");
         deck.addCard(geralt);
-        UnitCard ciri = new UnitCard("ciri", "ciri", 6, SectionType.MELEE);
+        UnitCard ciri = new UnitCard("ciri", "ciri", 6, "melee");
         deck.addCard(ciri);
-        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, SectionType.MELEE);
+        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, "melee");
         deck.addCard(dijkstra);
 
     Player player1 = new Player("matias", deck);

@@ -41,4 +41,10 @@ public class Game {
     public Board getBoard() {
         return board;
     }
+
+    public void roundCompleted(){
+        player1.addDiscardPile();
+        player2.addDiscardPile();
+        setPlayers(player1, player2);
+    }
 }

@@ -4,20 +4,21 @@ import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Melee implements Section{
-    private ArrayList<UnitCard> cards = new ArrayList<>();
+public class Melee extends Section {
 
-    public void addCard(UnitCard card){
-        cards.add(card);
-    }
+    public Melee(){ super("Melee"); }
 
-    public int calculatePoints(){
-        int score = 0;
-        for(UnitCard card: cards) {
-            score += card.getPoints();
-        }
-        return score;
-    }
+    public void addCard(UnitCard card){ super.addCard(card); }
+
+    public int calculatePoints(){ return super.calculatePoints(); }
+
+    public boolean compararCosa(String seccion){ return super.compararCosa(seccion); }
+
+    public ArrayList<UnitCard> getCards() { return super.getCards(); }
+
+    public List<UnitCard> cardsBondedAbility(UnitCard card) { return super.cardsBondedAbility(card); }
+
 
 }

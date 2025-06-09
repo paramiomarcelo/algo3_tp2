@@ -12,8 +12,11 @@ public class Player {
     private String name;
     private Deck deck;
     private List<AbstractCard> hand;
-    private List<AbstractCard> discardPile;
+    private List<UnitCard> discardPile;
     private Integer points;
+
+    private List<UnitCard> unitsDiscarded;
+    private Integer indexSelectCards;
 
     public Player(String name, Deck deck) {
         this.name = name;
@@ -59,7 +62,7 @@ public class Player {
     public void discardCard(AbstractCard card) {
         if (hand.contains(card)) {
             hand.remove(card);
-            discardPile.add(card);
+            //discardPile.add(card);
         }
     }
 
@@ -67,8 +70,11 @@ public class Player {
         return hand;
     }
 
-    public List<AbstractCard> getDiscardPile() {
+    public List<UnitCard> getDiscardPile() {
         return discardPile;
+    }
+    public void addDiscardPile() {
+        this.discardPile = Board.getInstance().clearBoardRound(this);
     }
 
     public Integer getPoints() {
@@ -78,4 +84,12 @@ public class Player {
     public int totalPointsRound(Board board) {
         return board.getScoreRow(this);
     }
+
+    public void selectCard(Integer index) {
+        indexSelectCards = index;
+    }
+    public Integer indexSelectCards() {
+        return indexSelectCards;
+    }
+
 }

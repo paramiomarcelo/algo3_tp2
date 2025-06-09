@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.board;
 
 
-import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Melee;
@@ -30,6 +29,7 @@ public class Board  {
 
     public void addCard(Player player, UnitCard card, String section) {
         sections.get(player).get(section).addCard(card);
+        card.apply(player);
     }
 
     public List<Player> getPlayers() {
@@ -58,6 +58,16 @@ public class Board  {
             score += row.calculatePoints();
         }
         return score;
+    }
+
+    public List<UnitCard> clearBoardRound(Player player) {
+        List<UnitCard> cards = new ArrayList<>();
+        Map<String, Section> rows = sections.get(player);
+        for (Section row : rows.values()) {
+            cards.addAll(row.getCards());
+        }
+        rows.clear();
+        return cards;
     }
 }
 
