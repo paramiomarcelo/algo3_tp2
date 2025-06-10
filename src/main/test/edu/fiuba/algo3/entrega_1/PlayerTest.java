@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
-import edu.fiuba.algo3.modelo.enums.SectionType;
 import edu.fiuba.algo3.modelo.player.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
@@ -52,16 +51,16 @@ public class PlayerTest {
         game.setPlayers(player1, player2);
 
 
-        player1.getHand().add(unitCard);
-        player1.getHand().add(card1);
-        player1.getHand().add(card2);
-        player1.getHand().add(card3);
+        player1.addCard(unitCard);
+        player1.addCard(card1);
+        player1.addCard(card2);
+        player1.addCard(card3);
     }
 
     @Test
     public void testPlayerGetsPointsAfterPlayingCard() {
         Integer initialPoints = player1.getPoints();
-        player1.playCard(unitCard,"ranged");
+        player1.playCard(unitCard);
         Assertions.assertEquals(initialPoints.intValue() + unitCard.getPoints().intValue(), player1.getPoints().intValue());
     }
 
@@ -101,20 +100,12 @@ public class PlayerTest {
         deck.addCard(gladiador);
         UnitCard centurion = new UnitCard("centurion", "melee", 12, "melee");
         deck.addCard(centurion);
-        UnitCard canion = new UnitCard("canion", "siege", 14, "melee");
-        deck.addCard(canion);
-        UnitCard ariete = new UnitCard("ariete", "melee", 15, "melee");
-        deck.addCard(ariete);
-        UnitCard geralt = new UnitCard("geralt", "geralt", 5, "melee");
-        deck.addCard(geralt);
-        UnitCard ciri = new UnitCard("ciri", "ciri", 6, "melee");
-        deck.addCard(ciri);
-        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, "melee");
+
 
         Player player1 = new Player("matias", deck);
 
 
-        assertThrows(IllegalArgumentException.class, () -> player1.distributeCards(deck, 10),
+        assertThrows(IllegalArgumentException.class, () -> player1.distributeCards(10),
                 "the number of cards needed is 10 to start the game");
 
     }
@@ -152,12 +143,12 @@ public class PlayerTest {
         UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", 7, "melee");
         deck.addCard(dijkstra);
 
-    Player player1 = new Player("matias", deck);
+        Player player1 = new Player("matias", deck);
 
-        player1.distributeCards(deck, 10);
+        player1.distributeCards(10);
 
         Assertions.assertEquals(10, player1.numberOfCards());
-}
+    }
 
 
 //    @Test

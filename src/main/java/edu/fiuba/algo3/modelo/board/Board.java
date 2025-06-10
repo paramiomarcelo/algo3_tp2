@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.board;
 
 
+import edu.fiuba.algo3.modelo.ability.Spies;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Melee;
@@ -27,9 +28,17 @@ public class Board  {
         return board;
     }
 
-    public void addCard(Player player, UnitCard card, String section) {
-        sections.get(player).get(section).addCard(card);
+    public void addCard(Player player, UnitCard card) {
         card.apply(player);
+
+        Player applyPlayer = player;
+        if (card.getAbility() instanceof Spies) {
+            applyPlayer = this.getPlayers().stream().filter(p -> !p.equals(player)).findFirst().orElseThrow(() -> new RuntimeException("Need 2 players"));
+            applyPlayer.addPoints(card.getBasePoints());
+        }
+
+        sections.get(applyPlayer).get(card.getRowType()).addCard(card);
+
     }
 
     public List<Player> getPlayers() {

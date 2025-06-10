@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.board.Board;
-import edu.fiuba.algo3.modelo.card.AbstractCard;
-import edu.fiuba.algo3.modelo.card.SpecialCard;
-import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.enums.SectionType;
 import edu.fiuba.algo3.modelo.player.Player;
 
@@ -43,8 +40,8 @@ public class Game {
     }
 
     public void roundCompleted(){
-        player1.addDiscardPile();
-        player2.addDiscardPile();
+        player1.clearRound();
+        player2.clearRound();
         setPlayers(player1, player2);
     }
 }

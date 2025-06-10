@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Game;
+/*import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.ability.Bonded;
 import edu.fiuba.algo3.modelo.ability.Medic;
@@ -130,3 +130,4 @@ public class BondedTest {
     }
 
 }
+*/

@@ -30,20 +30,18 @@ public class Player {
         hand.add(card);
     }
 
-    public void distributeCards(Deck deck, int number){
-        deck.ensureAtLeast(number);
+    public void distributeCards(int number){
+        this.deck.ensureAtLeast(number);
 
-        int cardsToDistribute = number;
-
-        for (int i = 0; i < cardsToDistribute; i++){
-            this.addCard(deck.randomCard());
+        for (int i = 0; i < number; i++){
+            this.addCard(this.deck.randomCard());
         }
     }
 
-    public void playCard(UnitCard card, String section){
+    public void playCard(UnitCard card){
         removeCardFromHand(card);
         Board board = Board.getInstance();
-        board.addCard(this,card,section);
+        board.addCard(this,card);
         points = board.getScoreRow(this);
     }
 
@@ -59,10 +57,10 @@ public class Player {
         this.points += points;
     }
 
-    public void discardCard(AbstractCard card) {
+    public void discardCard(UnitCard card) {
         if (hand.contains(card)) {
             hand.remove(card);
-            //discardPile.add(card);
+            this.discardPile.add(card);
         }
     }
 
@@ -73,8 +71,12 @@ public class Player {
     public List<UnitCard> getDiscardPile() {
         return discardPile;
     }
-    public void addDiscardPile() {
-        this.discardPile = Board.getInstance().clearBoardRound(this);
+    public void clearRound() {
+        List<UnitCard> cards = Board.getInstance().clearBoardRound(this);
+
+        for  (UnitCard card : cards) {
+            this.discardPile.add(card);
+        }
     }
 
     public Integer getPoints() {
