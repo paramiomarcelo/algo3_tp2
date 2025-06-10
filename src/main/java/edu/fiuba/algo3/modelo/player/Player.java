@@ -5,8 +5,6 @@ import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
-import edu.fiuba.algo3.modelo.effect.MoraleBoost;
-import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +52,6 @@ public class Player {
     }
 
 
-    public int numberOfCards(){
-        return hand.size();
     public boolean hasNumberOfCards(int number){
         return number == hand.size();
     }

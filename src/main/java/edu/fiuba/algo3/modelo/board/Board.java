@@ -28,6 +28,10 @@ public class Board  {
         return board;
     }
 
+    public List<Player> getPlayers() {
+        return new ArrayList<>( sections.keySet() );
+    }
+
     public void addCard(Player player, UnitCard card) {
         Player applyPlayer = card.apply(player);
         sections.get(applyPlayer).get(card.getRowType()).addCard(card);
