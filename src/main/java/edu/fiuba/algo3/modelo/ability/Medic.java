@@ -15,4 +15,5 @@ import java.util.List;
         board.addCard(player, revivir.get(player.indexSelectCards()),revivir.get(player.indexSelectCards()).getRowType());
     }
 }
-*/
+
+ */
