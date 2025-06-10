@@ -41,4 +41,37 @@ public abstract class Section {
         }
         return bondedCards;
     }
+
+    public void applyWeatherEffect() {
+        for (UnitCard card : cards) {
+            card.setPoints(1);
+        }
+    }
+
+
+    public void applyClearWeatherEffect() {
+        for (UnitCard card : cards) {
+            card.setPoints(card.getBasePoints());
+        }
+    }
+
+    public void boostMorale() {
+        for (UnitCard card : cards) {
+            card.setPoints(card.getPoints() * 2);
+        }
+    }
+
+    public UnitCard maxPointCard() {
+        UnitCard maxCard = null;
+        for (UnitCard card : this.cards) {
+            if (maxCard == null || card.getPoints() > maxCard.getPoints()) {
+                maxCard = card;
+            }
+        }
+        return maxCard;
+    }
+
+    public void removeCard(UnitCard card) {
+        this.cards.remove(card);
+    }
 }

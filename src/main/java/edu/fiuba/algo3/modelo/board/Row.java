@@ -43,11 +43,17 @@ public class Row {
         return bondedCards;
     }
 
-    public void applyClearWeatherEffect() {
-        for (UnitCard card : cards) {
-            card.setPoints(card.getBasePoints());
+    public UnitCard maxPointCard() {
+        UnitCard maxCard = null;
+        for (UnitCard card : this.cards) {
+            if (maxCard == null || card.getPoints() > maxCard.getPoints()) {
+                maxCard = card;
+            }
         }
+        return maxCard;
     }
+
+
 
 
 }

@@ -78,5 +78,12 @@ public class Board  {
         rows.clear();
         return cards;
     }
+
+    public void removeCard(Player player, UnitCard card) {
+        for (String section : List.of("melee", "ranged", "siege")) {
+            Section row = getRow(player, section);
+            row.removeCard(card);
+        }
+    }
 }
 

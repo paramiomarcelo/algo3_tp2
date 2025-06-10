@@ -2,8 +2,11 @@ package edu.fiuba.algo3.modelo.player;
 
 import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
+import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
+import edu.fiuba.algo3.modelo.effect.MoraleBoost;
+import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,12 @@ public class Player {
         board.addCard(this,card);
         points = board.getScoreRow(this);
     }
+
+    public void playCard(SpecialCard card) {
+        removeCardFromHand(card);
+        card.getEffect().apply();
+    }
+
 
     public int numberOfCards(){
         return hand.size();

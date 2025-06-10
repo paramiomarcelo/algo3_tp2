@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 import edu.fiuba.algo3.modelo.player.Player;
 
 public class SpecialCard extends AbstractCard {
-
     private final SpecialEffect effect;
 
     public SpecialCard(String name, String description, SpecialEffect effect) {
@@ -13,8 +12,7 @@ public class SpecialCard extends AbstractCard {
         this.effect = effect;
     }
 
-    public void applyEffect(Game game, Player player) {
-        effect.effect(game,player);
+    public SpecialEffect getEffect() {
+        return effect;
     }
-
 }

@@ -7,17 +7,17 @@ import edu.fiuba.algo3.modelo.enums.SectionType;
 import edu.fiuba.algo3.modelo.player.Player;
 import java.util.List;
 
-//public class Weather implements SpecialEffect {
-//    protected List<String> affectedSections;
-//
-//    @Override
-//    public void effect(Game game, Player player) {
-//        Board board = game.getBoard();
-//        for (Player p : board.getPlayers()) {
-//            for (String section : affectedSections) {
-//                Row row = board.getRow(p, section);
-//                row.applyEffect();
-//            }
-//        }
-//    }
-//}
+
+public abstract class Weather extends GlobalEffect {
+    protected abstract List<String> affectedSections();
+
+    @Override
+    public void apply() {
+        Board board = Board.getInstance();
+        for (Player player : board.getPlayers()) {
+            for (String section : affectedSections()) {
+                board.getRow(player, section).applyWeatherEffect();
+            }
+        }
+    }
+}
