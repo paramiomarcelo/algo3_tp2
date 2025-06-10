@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 import java.util.ArrayList;
@@ -92,12 +93,12 @@ public class SpiesTest {
 
         @Test
         public void espiaTest(){
-            int cantidadCartasInicial = player1.numberOfCards();
+            int cantidadCartasInicial = 10;
             int puntajeOponenteInicial = player2.getPoints();
 
             player1.playCard(card1);
 
-            assertEquals(cantidadCartasInicial + 1, player1.numberOfCards());
+            assertTrue(player1.hasNumberOfCards(cantidadCartasInicial + 1));
             assertEquals((puntajeOponenteInicial + card1.getBasePoints()), player2.getPoints());
         }
 

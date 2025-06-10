@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.card;
 
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.ability.Ability;
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.player.Player;
 
 import java.util.ArrayList;
@@ -41,9 +42,13 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         return basePoints;
     }
 
-    public void apply(Player player) {
-        if (this.ability != null) {this.ability.effect(player, this);}
+    public Player apply(Player player) {
+        if (this.ability != null) {
+            return this.ability.effect(player, this);
+        }
+        return player;
     }
+
     public String getRowType() {
         return rowType;
     }

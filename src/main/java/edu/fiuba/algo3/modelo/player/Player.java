@@ -56,6 +56,8 @@ public class Player {
 
     public int numberOfCards(){
         return hand.size();
+    public boolean hasNumberOfCards(int number){
+        return number == hand.size();
     }
 
     public void removeCardFromHand(AbstractCard card) {
@@ -80,9 +82,9 @@ public class Player {
     public List<UnitCard> getDiscardPile() {
         return discardPile;
     }
+
     public void clearRound() {
         List<UnitCard> cards = Board.getInstance().clearBoardRound(this);
-
         for  (UnitCard card : cards) {
             this.discardPile.add(card);
         }

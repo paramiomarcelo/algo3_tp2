@@ -12,8 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
     private Game game;
@@ -147,7 +146,7 @@ public class PlayerTest {
 
         player1.distributeCards(10);
 
-        Assertions.assertEquals(10, player1.numberOfCards());
+        assertTrue(player1.hasNumberOfCards(10));
     }
 
 

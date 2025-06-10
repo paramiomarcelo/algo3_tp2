@@ -29,20 +29,12 @@ public class Board  {
     }
 
     public void addCard(Player player, UnitCard card) {
-        card.apply(player);
-
-        Player applyPlayer = player;
-        if (card.getAbility() instanceof Spies) {
-            applyPlayer = this.getPlayers().stream().filter(p -> !p.equals(player)).findFirst().orElseThrow(() -> new RuntimeException("Need 2 players"));
-            applyPlayer.addPoints(card.getBasePoints());
-        }
-
+        Player applyPlayer = card.apply(player);
         sections.get(applyPlayer).get(card.getRowType()).addCard(card);
-
     }
 
-    public List<Player> getPlayers() {
-        return new ArrayList<>(sections.keySet());
+    public Player otherPlayer(Player player) {
+        return sections.keySet().stream().filter(p -> !p.equals(player)).findFirst().orElseThrow(() -> new IllegalStateException("Se esperaban 2 jugadores en el tablero"));
     }
 
     public void addPlayer(Player player) {
@@ -51,7 +43,6 @@ public class Board  {
         playerSections.put("melee", new Melee());
         playerSections.put("ranged", new Ranged());
         playerSections.put("siege", new Siege());
-
 
         sections.put(player, playerSections);
     }

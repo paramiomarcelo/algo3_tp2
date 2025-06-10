@@ -10,7 +10,7 @@ import java.util.List;
 public class Bonded implements Ability {
 
     @Override
-    public void effect(Player player, UnitCard card) {
+    public Player effect(Player player, UnitCard card) {
         Board board = Board.getInstance();
 
         Section section = board.getRow(player, card.getRowType());
@@ -21,7 +21,8 @@ public class Bonded implements Ability {
                 c.setPoints(c.getBasePoints() * 2);
             }
         }
-    }
 
+        return player;
+    }
 
 }
