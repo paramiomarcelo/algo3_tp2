@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo.card;
 
 public abstract class AbstractCard {
     protected String name;
-    protected String description;
 
-    public AbstractCard(String name, String description) {
+
+    public AbstractCard(String name) {
         this.name = name;
-        this.description = description;
+
     }
     public String getName() { return name;}
 

@@ -1,0 +1,160 @@
+@startuml
+
+Game *-- "2" Player
+Deck *-- AbstractCard
+Board *-- AbstractCard
+Player *-- Deck
+Game *-- Board
+CardUnit o-- Ability
+SpecialCard ..|> SpecialEffect
+Board  o--  Section
+
+class Game {
+    - player1: Player
+    - player2: Player
+    - board: Board
+    - currentPlayer: Player
+    + Game()
+    + setPlayers(player1: Player, player2: Player): void
+    + getCurrentPlayer(): Player
+    + getBoard(): Board
+    + roundCompleted(): void
+}
+
+class Player {
+    - name: String
+    - deck: Deck
+    - hand: List<AbstractCard>
+    - discardPile: List<UnitCard>
+    - points: Integer
+    - unitsDiscarded: List<UnitCard>
+    - indexSelectCards: Integer
+    + Player(name: String, deck: Deck)
+    + addCard(card: AbstractCard): void
+    + distributeCards(number: int): void
+    + playCard(card: UnitCard): void
+    + playCard(card: SpecialCard): void
+    + hasNumberOfCards(number: int): boolean
+    + removeCardFromHand(card: AbstractCard): void
+    + addPoints(points: Integer): void
+    + discardCard(card: UnitCard): void
+    + getHand(): List<AbstractCard>
+    + getDiscardPile(): List<UnitCard>
+    + clearRound(): void
+    + getPoints(): Integer
+}
+
+class Board {
+    - sections: Map<Player, Map<String, Section>>
+    - board: Board (static)
+    + Board()
+    + getInstance(): Board
+    + addPlayer(player: Player): void
+    + addCard(player: Player, card: UnitCard): void
+    + otherPlayer(player: Player): Player
+    + getRow(player: Player, sectionType: String): Section
+    + getScoreRow(player: Player): int
+    + clearBoardRound(player: Player): List<UnitCard>
+    + removeCard(player: Player, card: UnitCard): void
+    + getPlayers(): List<Player>
+}
+
+class Deck {
+    - cards: List<AbstractCard>
+    + Deck(cards: List<AbstractCard>)
+    + addCard(card: AbstractCard): void
+    + size(): int
+    + getCards(): List<AbstractCard>
+    + get(index: int): AbstractCard
+    + randomCard(): AbstractCard
+    + ensureAtLeast(number: int): void
+}
+
+abstract class AbstractCard {
+    - name: String
+    - description: String
+    + AbstractCard(name: String, description: String)
+    + getName(): String
+}
+
+class CardUnit extends AbstractCard {
+    - points: Integer
+    - basePoints: Integer
+    - rowType: String
+    - ability: Ability
+    + CardUnit(name: String, description: String, points: Integer, rowType: String)
+    + CardUnit(name: String, description: String, basePoints: Integer, rowType: String, ability: Ability)
+    + setPoints(points: Integer): void
+    + getPoints(): Integer
+    + getBasePoints(): Integer
+    + apply(player: Player): Player
+    + getRowType(): String
+    + getAbility(): Ability
+}
+
+interface SpecialEffect {
+    + apply(): void
+}
+
+class SpecialCard extends AbstractCard {
+    - effect: SpecialEffect
+    + SpecialCard(name: String, description: String, effect: SpecialEffect)
+    + getEffect(): SpecialEffect
+}
+
+interface Ability {
+    + effect(player: Player, card: UnitCard): Player
+}
+
+class Agile implements Ability {
+    - allowedSections: List<String>
+    + Agile(allowedSections: List<String>)
+    + effect(player: Player, card: UnitCard): Player
+    + canBePlayedIn(section: String): boolean
+    + getAllowedSections(): List<String>
+}
+
+abstract class Section {
+    - sectionName: String
+    - cards: ArrayList<UnitCard>
+    + Section(name: String)
+    + addCard(card: UnitCard): void
+    + calculatePoints(): int
+    + compararCosa(seccion: String): boolean
+    + getCards(): ArrayList<UnitCard>
+    + cardsBondedAbility(card: UnitCard): List<UnitCard>
+    + applyEffect(): void
+    + applyClearWeatherEffect(): void
+    + boostMorale(): void
+    + maxPointCard(): UnitCard
+    + removeCard(card: UnitCard): void
+}
+
+class Melee extends Section {
+    + Melee()
+    + addCard(card: UnitCard): void
+    + calculatePoints(): int
+    + compararCosa(seccion: String): boolean
+    + getCards(): ArrayList<UnitCard>
+    + cardsBondedAbility(card: UnitCard): List<UnitCard>
+}
+
+class Ranged extends Section {
+    + Ranged()
+    + addCard(card: UnitCard): void
+    + calculatePoints(): int
+    + compararCosa(seccion: String): boolean
+    + getCards(): ArrayList<UnitCard>
+    + cardsBondedAbility(card: UnitCard): List<UnitCard>
+}
+
+class Siege extends Section {
+    + Siege()
+    + addCard(card: UnitCard): void
+    + calculatePoints(): int
+    + compararCosa(seccion: String): boolean
+    + getCards(): ArrayList<UnitCard>
+    + cardsBondedAbility(card: UnitCard): List<UnitCard>
+}
+
+@enduml 

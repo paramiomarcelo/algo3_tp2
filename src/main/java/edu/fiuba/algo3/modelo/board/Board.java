@@ -18,14 +18,17 @@ import java.util.Map;
 
 public class Board  {
     private Map<Player, Map<String, Section>> sections;
-    private static Board board = new Board();
+    private static Board instance;
 
     private Board() {
         this.sections = new HashMap<>();
     }
 
     public static Board getInstance() {
-        return board;
+        if (instance == null) {
+            instance = new Board();
+        }
+        return instance;
     }
 
     public List<Player> getPlayers() {

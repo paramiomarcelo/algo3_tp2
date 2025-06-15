@@ -6,9 +6,11 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 public class SpecialCard extends AbstractCard {
     private final SpecialEffect effect;
+    private String description;
 
     public SpecialCard(String name, String description, SpecialEffect effect) {
-        super(name, description);
+        super(name);
+        this.description = description;
         this.effect = effect;
     }
 

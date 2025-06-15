@@ -6,37 +6,22 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 import java.util.ArrayList;
 
-public class UnitCard extends AbstractCard implements ScorableCard {
-    private Integer points;
-    private Integer basePoints;
+public class UnitCard extends AbstractCard {
     private final String rowType;
     private Ability ability;
+    private Point points;
 
-    public UnitCard(String name, String description, Integer points, String rowType) {
-        super(name, description);
+    public UnitCard(String name, Point points, String rowType) {
+        super(name);
         this.rowType = rowType;
-        this.basePoints = points;
-        this.points = basePoints;
-    }
-
-    public UnitCard(String name, String description, Integer basePoints, String rowType, Ability abilities) {
-        super(name, description);
-        this.basePoints = basePoints;
-        this.points = basePoints;
-        this.rowType = rowType;
-        this.ability = abilities;
-    }
-
-    public void setPoints(Integer points) {
         this.points = points;
     }
 
-    public Integer getPoints() {
-        return points;
-    }
-
-    public Integer getBasePoints() {
-        return basePoints;
+    public UnitCard(String name, Point points, String rowType, Ability ability) {
+        super(name);
+        this.points = points;
+        this.rowType = rowType;
+        this.ability = ability;
     }
 
     public Player apply(Player player) {
