@@ -9,8 +9,11 @@ public class Spies implements Ability {
     public Player effect(Player player, UnitCard card) {
         player.distributeCards(2);
         Board board = Board.getInstance();
-        Player applyPlayer = board.otherPlayer(player);
-        applyPlayer.addPoints(card.getBasePoints());
-        return applyPlayer;
+        board.counterSide(player).getRow(card.getRowType()).getCards().add(card);
+        board.getSide(player).getRow(card.getRowType()).getCards().remove(card);
+//        Player applyPlayer = board.counterSide(player);
+//        applyPlayer.addPoints(card.getBasePoints());
+//        return applyPlayer;
+        return player;
     }
 }

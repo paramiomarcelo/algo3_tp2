@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.ability.Spies;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
+import edu.fiuba.algo3.modelo.card.Melee;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.player.Player;
@@ -45,23 +46,23 @@ public class SpiesTest {
             List<AbstractCard> cards1 = new ArrayList<>();
 
             //carta con modificador espia
-            card1 = new UnitCard("guerrero", "guerrero", 10, "melee");
+            card1 = new Melee("guerrero", "guerrero", 10, "melee");
             spy = new Spies();
             card1.addAbility(spy);
 
             //demas cartas para que funcione
-            card2 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card3 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card4 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card5 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card6 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card7 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card8 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card9 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card10 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card11 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card12 = new UnitCard("guerrero", "guerrero", 10, "melee");
-            card13 = new UnitCard("guerrero", "guerrero", 10, "melee");
+            card2 = new Melee("guerrero", "guerrero", 10, "melee");
+            card3 = new Melee("guerrero", "guerrero", 10, "melee");
+            card4 = new Melee("guerrero", "guerrero", 10, "melee");
+            card5 = new Melee("guerrero", "guerrero", 10, "melee");
+            card6 = new Melee("guerrero", "guerrero", 10, "melee");
+            card7 = new Melee("guerrero", "guerrero", 10, "melee");
+            card8 = new Melee("guerrero", "guerrero", 10, "melee");
+            card9 = new Melee("guerrero", "guerrero", 10, "melee");
+            card10 = new Melee("guerrero", "guerrero", 10, "melee");
+            card11 = new Melee("guerrero", "guerrero", 10, "melee");
+            card12 = new Melee("guerrero", "guerrero", 10, "melee");
+            card13 = new Melee("guerrero", "guerrero", 10, "melee");
 
 
 
@@ -97,6 +98,7 @@ public class SpiesTest {
             int puntajeOponenteInicial = player2.getPoints();
 
             player1.playCard(card1);
+            game.actualScoreRound();
 
             assertTrue(player1.hasNumberOfCards(cantidadCartasInicial + 1));
             assertEquals((puntajeOponenteInicial + card1.getBasePoints()), player2.getPoints());

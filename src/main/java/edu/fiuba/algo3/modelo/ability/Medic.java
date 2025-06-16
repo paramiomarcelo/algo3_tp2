@@ -6,13 +6,13 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 import java.util.List;
 
-/*public class Medic implements Ability{
+public class Medic implements Ability{
 
     @Override
-    public void effect(Player player, UnitCard card) {
+    public Player effect(Player player, UnitCard card) {
         List<UnitCard> revivir = player.getDiscardPile();
         Board board = Board.getInstance();
-        board.addCard(player, revivir.get(player.indexSelectCards()),revivir.get(player.indexSelectCards()).getRowType());
+        board.addCard(player, revivir.get(0));
+        return player;
     }
 }
-*/

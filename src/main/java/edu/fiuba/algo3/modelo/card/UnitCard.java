@@ -2,11 +2,12 @@ package edu.fiuba.algo3.modelo.card;
 
 
 import edu.fiuba.algo3.modelo.ability.Ability;
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.player.Player;
 
 import java.util.ArrayList;
 
-public class UnitCard extends AbstractCard implements ScorableCard {
+public abstract class UnitCard extends AbstractCard {
     private Integer points;
     private Integer basePoints;
     private final String rowType;
@@ -27,8 +28,15 @@ public class UnitCard extends AbstractCard implements ScorableCard {
         this.ability = abilities;
     }
 
+    public void play(Player p, Board b) {
+        super.play(p, b);
+    }
+
     public void setPoints(Integer points) {
         this.points = points;
+    }
+    public String getRowType() {
+        return rowType;
     }
 
     public Integer getPoints() {
@@ -44,10 +52,6 @@ public class UnitCard extends AbstractCard implements ScorableCard {
             return this.ability.effect(player, this);
         }
         return player;
-    }
-
-    public String getRowType() {
-        return rowType;
     }
 
     public void addAbility(Ability ability) {

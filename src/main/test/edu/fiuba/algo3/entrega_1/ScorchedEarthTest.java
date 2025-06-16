@@ -2,22 +2,25 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.board.Board;
+import edu.fiuba.algo3.modelo.card.Melee;
+import edu.fiuba.algo3.modelo.card.Ranged;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.effect.ScorchedEarth;
 import edu.fiuba.algo3.modelo.player.Player;
 
+import edu.fiuba.algo3.modelo.visitors.CounterRow;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
 public class ScorchedEarthTest {
-    UnitCard unitCard1 = new UnitCard("Espadachín", "description", 3, "melee");
-    UnitCard unitCard2 = new UnitCard("Lanzero", "description", 10, "melee");
-    UnitCard unitCard3 = new UnitCard("Ballestero", "description", 7, "ranged");
-    UnitCard unitCard4 = new UnitCard("Arquero", "description", 5, "ranged");
+    UnitCard unitCard1 = new Melee("Espadachín", "description", 3, "melee");
+    UnitCard unitCard2 = new Melee("Lanzero", "description", 10, "melee");
+    UnitCard unitCard3 = new Ranged("Ballestero", "description", 7, "ranged");
+    UnitCard unitCard4 = new Ranged("Arquero", "description", 5, "ranged");
 
     SpecialCard scorchedEarthCard = new SpecialCard(
             "Tierra arrasada",
@@ -44,18 +47,20 @@ public class ScorchedEarthTest {
         player2.playCard(unitCard2);
         player2.playCard(unitCard4);
 
-        assertEquals(3, board.getRow(player1, "melee").calculatePoints());
-        assertEquals(7, board.getRow(player1, "ranged").calculatePoints());
+        CounterRow counterRow = new CounterRow();
 
-        assertEquals(10, board.getRow(player2, "melee").calculatePoints());
-        assertEquals(5, board.getRow(player2, "ranged").calculatePoints());
+        assertEquals(3, counterRow.visit(board.getSide(player1).getRowMelee()));
+        assertEquals(7, counterRow.visit(board.getSide(player1).getRanged()));
+
+        assertEquals(10, counterRow.visit(board.getSide(player2).getRowMelee()));
+        assertEquals(5, counterRow.visit(board.getSide(player2).getRanged()));
 
         player1.playCard(scorchedEarthCard);
 
-        assertEquals(3, board.getRow(player1, "melee").calculatePoints());
-        assertEquals(0, board.getRow(player1, "ranged").calculatePoints());
+        assertEquals(3, counterRow.visit(board.getSide(player1).getRowMelee()));
+        assertEquals(0, counterRow.visit(board.getSide(player1).getRanged()));
 
-        assertEquals(0, board.getRow(player2, "melee").calculatePoints());
-        assertEquals(5, board.getRow(player2, "ranged").calculatePoints());
+        assertEquals(0, counterRow.visit(board.getSide(player2).getRowMelee()));
+        assertEquals(5, counterRow.visit(board.getSide(player2).getRanged()));
     }
 }

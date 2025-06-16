@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.board;
 
 
 import edu.fiuba.algo3.modelo.card.UnitCard;
+import edu.fiuba.algo3.modelo.visitors.Visitor;
 
 
 import java.util.ArrayList;
@@ -16,44 +17,14 @@ public class Row {
         this.cards = new ArrayList<>();
     }
 
-    public void addCard(UnitCard card) {
-        cards.add(card);
-    }
-
-    public int calculatePoints() {
-        int totalPoints = 0;
-        for (UnitCard card : cards) {
-            totalPoints += card.getPoints();
-        }
-        return totalPoints;
-    }
-
     public void applyEffect() {
         for (UnitCard card : cards) {
             card.setPoints(1);
         }
     }
-    public List<UnitCard> getCardsBondedAbility(UnitCard card) {
-        List<UnitCard> bondedCards = new ArrayList<>();
-        for (UnitCard c : cards) {
-            if (c.getName().equals(card.getName())){
-                bondedCards.add(c);
-            }
-        }
-        return bondedCards;
-    }
 
-    public UnitCard maxPointCard() {
-        UnitCard maxCard = null;
-        for (UnitCard card : this.cards) {
-            if (maxCard == null || card.getPoints() > maxCard.getPoints()) {
-                maxCard = card;
-            }
-        }
-        return maxCard;
-    }
+    public List<UnitCard> getCards() {return cards;}
 
-
-
+    public int visit(Visitor visitor) {return visitor.visit(this);}
 
 }

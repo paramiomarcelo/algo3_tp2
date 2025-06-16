@@ -2,12 +2,12 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.board.Board;
-import edu.fiuba.algo3.modelo.card.SpecialCard;
-import edu.fiuba.algo3.modelo.card.UnitCard;
+import edu.fiuba.algo3.modelo.card.*;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.effect.weatherEffects.*;
 import edu.fiuba.algo3.modelo.player.Player;
 
+import edu.fiuba.algo3.modelo.visitors.CounterRow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WeatherTest {
 
-    UnitCard unitCard1 = new UnitCard("Espadachín", "description", 7, "melee");
-    UnitCard unitCard2 = new UnitCard("Lanzero", "description", 4, "melee");
-    UnitCard unitCard3 = new UnitCard("Arquero", "description", 4, "ranged");
-    UnitCard unitCard4 = new UnitCard("Ballestero", "description", 4, "ranged");
-    UnitCard unitCard5 = new UnitCard("Catapulta", "description", 4, "siege");
-    UnitCard unitCard6 = new UnitCard("Trebuchet", "description", 4, "siege");
+    UnitCard unitCard1 = new Melee("Espadachín", "description", 7, "melee");
+    UnitCard unitCard2 = new Melee("Lanzero", "description", 4, "melee");
+    UnitCard unitCard3 = new Ranged("Arquero", "description", 4, "ranged");
+    UnitCard unitCard4 = new Ranged("Ballestero", "description", 4, "ranged");
+    UnitCard unitCard5 = new Siege("Catapulta", "description", 4, "siege");
+    UnitCard unitCard6 = new Siege("Trebuchet", "description", 4, "siege");
 
     SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new SnowEffect());
     SpecialCard fogCard = new SpecialCard("Niebla", "descrition", new FogEffect());
@@ -38,6 +38,7 @@ public class WeatherTest {
 
     Game game = new Game();
     Board board = Board.getInstance();
+    CounterRow counterRow = new CounterRow();
 
     @BeforeEach
     public void setBoard() {
@@ -50,8 +51,8 @@ public class WeatherTest {
         player2.playCard(unitCard2);
         player1.playCard(snowCard);
 
-        assertEquals(1, board.getRow(player1, "melee").calculatePoints());
-        assertEquals(1, board.getRow(player2, "melee").calculatePoints());
+        assertEquals(1, counterRow.visit(board.getSide(player2).getRowMelee()));
+        assertEquals(1, counterRow.visit(board.getSide(player2).getRowMelee()));
     }
 
     @Test
@@ -60,8 +61,8 @@ public class WeatherTest {
         player2.playCard(unitCard4);
         player1.playCard(fogCard);
 
-        assertEquals(1, board.getRow(player1, "ranged").calculatePoints());
-        assertEquals(1, board.getRow(player2, "ranged").calculatePoints());
+        assertEquals(1, counterRow.visit(board.getSide(player1).getRanged()));
+        assertEquals(1, counterRow.visit(board.getSide(player2).getRanged()));
     }
 
     @Test
@@ -72,10 +73,10 @@ public class WeatherTest {
         player2.playCard(unitCard6);
         player1.playCard(stormCard);
 
-        assertEquals(1, board.getRow(player1, "siege").calculatePoints());
-        assertEquals(1, board.getRow(player2, "siege").calculatePoints());
-        assertEquals(1, board.getRow(player1, "ranged").calculatePoints());
-        assertEquals(1, board.getRow(player2, "ranged").calculatePoints());
+        assertEquals(1, counterRow.visit(board.getSide(player1).getRowSiege()));
+        assertEquals(1, counterRow.visit(board.getSide(player2).getRowSiege()));
+        assertEquals(1, counterRow.visit(board.getSide(player1).getRanged()));
+        assertEquals(1, counterRow.visit(board.getSide(player2).getRanged()));
     }
 
     @Test
@@ -84,8 +85,8 @@ public class WeatherTest {
         player2.playCard(unitCard6);
         player1.playCard(torrentialRainCard);
 
-        assertEquals(1, board.getRow(player1, "siege").calculatePoints());
-        assertEquals(1, board.getRow(player2, "siege").calculatePoints());
+        assertEquals(1, counterRow.visit(board.getSide(player1).getRowSiege()));
+        assertEquals(1, counterRow.visit(board.getSide(player2).getRowSiege()));
     }
 
     @Test
@@ -99,8 +100,9 @@ public class WeatherTest {
 
         player2.playCard(clearWeatherEffectsCard);
 
-        assertEquals(unitCard1.getBasePoints(), board.getRow(player1, "melee").calculatePoints());
-        assertEquals(unitCard4.getBasePoints(), board.getRow(player2, "ranged").calculatePoints());
-        assertEquals(unitCard5.getBasePoints(), board.getRow(player1, "siege").calculatePoints());
+
+        assertEquals(unitCard1.getBasePoints(), counterRow.visit(board.getSide(player1).getRowMelee()));
+        assertEquals(unitCard4.getBasePoints(), counterRow.visit(board.getSide(player2).getRanged()));
+        assertEquals(unitCard5.getBasePoints(), counterRow.visit(board.getSide(player1).getRowSiege()));
     }
 }

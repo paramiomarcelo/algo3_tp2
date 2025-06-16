@@ -1,84 +1,55 @@
 package edu.fiuba.algo3.modelo.board;
 
 
-import edu.fiuba.algo3.modelo.ability.Spies;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
-import edu.fiuba.algo3.modelo.section.Melee;
-import edu.fiuba.algo3.modelo.section.Ranged;
-import edu.fiuba.algo3.modelo.section.Section;
-import edu.fiuba.algo3.modelo.section.Siege;
+import edu.fiuba.algo3.modelo.board.Section;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
+public class Board {
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Board  {
-    private Map<Player, Map<String, Section>> sections;
     private static Board board = new Board();
+    private Section side1;
+    private Section side2;
 
     private Board() {
-        this.sections = new HashMap<>();
     }
 
     public static Board getInstance() {
         return board;
     }
 
-    public List<Player> getPlayers() {
-        return new ArrayList<>( sections.keySet() );
+    public Section getSide(Player p) {
+        return p.name().equals(side1.getName()) ? side1 : side2;
     }
 
-    public void addCard(Player player, UnitCard card) {
-        Player applyPlayer = card.apply(player);
-        sections.get(applyPlayer).get(card.getRowType()).addCard(card);
+    public Section counterSide(Player p) {
+        return p.name().equals(side1.getName()) ? side2 : side1;
     }
 
-    public Player otherPlayer(Player player) {
-        return sections.keySet().stream().filter(p -> !p.equals(player)).findFirst().orElseThrow(() -> new IllegalStateException("Se esperaban 2 jugadores en el tablero"));
+    public Section getSide1() {
+        return side1;
     }
 
-    public void addPlayer(Player player) {
-        Map<String, Section> playerSections = new HashMap<>();
-
-        playerSections.put("melee", new Melee());
-        playerSections.put("ranged", new Ranged());
-        playerSections.put("siege", new Siege());
-
-        sections.put(player, playerSections);
+    public Section getSide2() {
+        return side2;
     }
 
-    public Section getRow(Player player, String sectionType) {
-        return sections.get(player).get(sectionType);
+    public void initSectionPlayer(Player p1, Player p2) {
+        side1 = new Section(p1.name());
+        side2 = new Section(p2.name());
     }
 
-    public int getScoreRow(Player player) {
-        int score = 0;
-        Map<String, Section> rows = sections.get(player);
-        for (Section row : rows.values()) {
-            score += row.calculatePoints();
-        }
-        return score;
+    public void addCard(Player player, UnitCard c) {
+        c.play(player, this);
+        c.apply(player);
     }
 
     public List<UnitCard> clearBoardRound(Player player) {
-        List<UnitCard> cards = new ArrayList<>();
-        Map<String, Section> rows = sections.get(player);
-        for (Section row : rows.values()) {
-            cards.addAll(row.getCards());
-        }
-        rows.clear();
-        return cards;
-    }
-
-    public void removeCard(Player player, UnitCard card) {
-        for (String section : List.of("melee", "ranged", "siege")) {
-            Section row = getRow(player, section);
-            row.removeCard(card);
-        }
+        Section section = getSide(player);
+        return section.discardRound();
     }
 }
 

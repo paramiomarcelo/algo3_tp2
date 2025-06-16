@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.card;
 
+import edu.fiuba.algo3.modelo.board.Board;
+import edu.fiuba.algo3.modelo.player.Player;
+
 public abstract class AbstractCard {
     protected String name;
     protected String description;
@@ -9,5 +12,5 @@ public abstract class AbstractCard {
         this.description = description;
     }
     public String getName() { return name;}
-
+    public void play(Player p, Board b) {}
 }

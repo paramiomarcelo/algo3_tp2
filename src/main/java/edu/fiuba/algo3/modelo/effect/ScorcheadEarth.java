@@ -8,4 +8,9 @@
 //    public void effect(Game game, Player player) {
 //        System.out.println("Applying Scorchead Earth effect to player: ");
 //    }
+//
+//    @Override
+//    public void apply() {
+//
+//    }
 //}
