@@ -38,9 +38,9 @@ public class Game {
         return board;
     }
 
-//    public void roundCompleted(){
-//        player1.clearRound();
-//        player2.clearRound();
-//        setPlayers(player1, player2);
-//    }
+    public void roundCompleted(){
+        player1.clearRound();
+        player2.clearRound();
+        setPlayers(player1, player2);
+    }
 }

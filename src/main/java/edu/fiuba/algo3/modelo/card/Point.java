@@ -12,4 +12,8 @@ public class Point {
     public void incrementPoints(){
         this.currentPoints = currentPoints*2;
     }
+
+    public int getPoints(){
+        return this.currentPoints;
+    }
 }

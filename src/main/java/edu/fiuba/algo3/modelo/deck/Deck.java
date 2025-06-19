@@ -9,7 +9,6 @@ public class Deck {
     private List<AbstractCard> cards;
 
     public Deck(List<AbstractCard> cards) {
-
         this.cards = new ArrayList<>(cards);
     }
 
@@ -19,10 +18,6 @@ public class Deck {
 
     public int size() {
         return cards.size();
-    }
-
-    public List<AbstractCard> getCards() {
-        return cards;
     }
 
     public AbstractCard get(int index) {

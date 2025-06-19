@@ -1,27 +1,25 @@
 package edu.fiuba.algo3.modelo.effect;
 
-
-import edu.fiuba.algo3.modelo.board.Board;
-import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
+import edu.fiuba.algo3.modelo.section.Section;
 
 
-public class MoraleBoost extends SpecialCard  {
+public class MoraleBoost extends SpecialEffect  {
 
-    public MoraleBoost(String name, String description) {
-        super(name,description);
+    public MoraleBoost(Section section, Player player) {
+        super(section, player);
     }
-
-
-    public void applyEffect(UnitCard unitCard) {
-        unitCard.duplicatePoints();
-    }
-
 
     @Override
-    public void play(Player player) {
-        Board board = Board.getInstance();
-        board.receiveEffect(this,player);
+    public void apply(UnitCard card) {
+        card.duplicatePoints();
     }
+
+    @Override
+    public Section getSection() {
+        return this.section;
+    }
+
 }
+

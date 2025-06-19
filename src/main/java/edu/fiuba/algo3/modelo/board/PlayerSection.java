@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.modelo.board;
 
 import edu.fiuba.algo3.modelo.card.UnitCard;
-import edu.fiuba.algo3.modelo.effect.MoraleBoost;
+import edu.fiuba.algo3.modelo.effect.SpecialEffect;
+import edu.fiuba.algo3.modelo.section.Section;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerSection {
     private final Row melee = new Row();
@@ -24,8 +28,25 @@ public class PlayerSection {
         siege.add(card);
     }
 
-    public void applyEffect(MoraleBoost moraleBoost) {
-        melee.applyEffect(moraleBoost);
+    public void applyEffect(SpecialEffect effect) {
+        Section section = effect.getSection();
+        section.apply(effect, this);
     }
-    
+
+    public void applyEffectMelee(SpecialEffect effect) {
+        melee.applyEffect(effect);
+    }
+
+    public int getPoints(){
+        return (melee.getPoints() + ranged.getPoints() + siege.getPoints());
+    }
+
+    public List<UnitCard> clearBoardRound(){
+        List<UnitCard> cards = new ArrayList<>();
+        cards.addAll(melee.clearBoardRound());
+        cards.addAll(ranged.clearBoardRound());
+        cards.addAll(siege.clearBoardRound());
+        return cards;
+    }
+
 }

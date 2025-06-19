@@ -13,8 +13,7 @@ public class Player {
     private String name;
     private Deck deck;
     private List<AbstractCard> hand;
-    private List<UnitCard> discardPile;
-    private Integer score;
+    private List<AbstractCard> discardPile;
 
     private List<UnitCard> unitsDiscarded;
     private Integer indexSelectCards;
@@ -24,7 +23,6 @@ public class Player {
         this.deck = deck;
         this.hand = new ArrayList<>();
         this.discardPile = new ArrayList<>();
-        this.score = 0;
     }
 
     public void addCard(AbstractCard card){
@@ -40,7 +38,9 @@ public class Player {
     }
 
     public void playCard(AbstractCard card) {
-        card.play(this);
+        removeCardFromHand(card);
+        Board board = Board.getInstance();
+        card.play(this, board);
     }
 
 
@@ -59,8 +59,20 @@ public class Player {
         }
     }
 
+    public void clearRound(){
+        List<UnitCard> cards = Board.getInstance().clearBoardRound(this);
+        for (UnitCard card : cards){
+            this.discardPile.add(card);
+        }
+    }
 
+    public List<AbstractCard> getDiscardPile() {
+        return discardPile;
+    }
 
-
+    public int getPoints(){
+        Board board = Board.getInstance();
+        return board.getPoints(this);
+    }
 
 }
