@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.board.Board;
-import edu.fiuba.algo3.modelo.enums.SectionType;
 import edu.fiuba.algo3.modelo.player.Player;
 
 public class Game {
@@ -39,9 +38,9 @@ public class Game {
         return board;
     }
 
-    public void roundCompleted(){
-        player1.clearRound();
-        player2.clearRound();
-        setPlayers(player1, player2);
-    }
+//    public void roundCompleted(){
+//        player1.clearRound();
+//        player2.clearRound();
+//        setPlayers(player1, player2);
+//    }
 }

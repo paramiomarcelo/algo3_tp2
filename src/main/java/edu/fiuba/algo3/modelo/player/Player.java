@@ -14,7 +14,7 @@ public class Player {
     private Deck deck;
     private List<AbstractCard> hand;
     private List<UnitCard> discardPile;
-    private Integer points;
+    private Integer score;
 
     private List<UnitCard> unitsDiscarded;
     private Integer indexSelectCards;
@@ -24,7 +24,7 @@ public class Player {
         this.deck = deck;
         this.hand = new ArrayList<>();
         this.discardPile = new ArrayList<>();
-        this.points = 0;
+        this.score = 0;
     }
 
     public void addCard(AbstractCard card){
@@ -39,16 +39,8 @@ public class Player {
         }
     }
 
-    public void playCard(UnitCard card){
-        removeCardFromHand(card);
-        Board board = Board.getInstance();
-        board.addCard(this,card);
-        points = board.getScoreRow(this);
-    }
-
-    public void playCard(SpecialCard card) {
-        removeCardFromHand(card);
-        card.getEffect().apply();
+    public void playCard(AbstractCard card) {
+        card.play(this);
     }
 
 
@@ -60,10 +52,6 @@ public class Player {
         hand.remove(card);
     }
 
-    public void addPoints(Integer points) {
-        this.points += points;
-    }
-
     public void discardCard(UnitCard card) {
         if (hand.contains(card)) {
             hand.remove(card);
@@ -71,34 +59,8 @@ public class Player {
         }
     }
 
-    public List<AbstractCard> getHand() {
-        return hand;
-    }
 
-    public List<UnitCard> getDiscardPile() {
-        return discardPile;
-    }
 
-    public void clearRound() {
-        List<UnitCard> cards = Board.getInstance().clearBoardRound(this);
-        for  (UnitCard card : cards) {
-            this.discardPile.add(card);
-        }
-    }
 
-    public Integer getPoints() {
-        return points;
-    }
-
-    public int totalPointsRound(Board board) {
-        return board.getScoreRow(this);
-    }
-
-    public void selectCard(Integer index) {
-        indexSelectCards = index;
-    }
-    public Integer indexSelectCards() {
-        return indexSelectCards;
-    }
 
 }

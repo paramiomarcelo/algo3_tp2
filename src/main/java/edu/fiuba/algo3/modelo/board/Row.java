@@ -2,57 +2,30 @@ package edu.fiuba.algo3.modelo.board;
 
 
 import edu.fiuba.algo3.modelo.card.UnitCard;
+import edu.fiuba.algo3.modelo.effect.MoraleBoost;
 
 
 import java.util.ArrayList;
 
 import java.util.List;
 
-public class Row {
-    private List<UnitCard> cards;
+public class Row  {
 
+    private final List<UnitCard> cards;
 
     public Row() {
         this.cards = new ArrayList<>();
     }
 
-    public void addCard(UnitCard card) {
-        cards.add(card);
+    public void add(UnitCard card) {
+        this.cards.add(card);
     }
 
-    public int calculatePoints() {
-        int totalPoints = 0;
-        for (UnitCard card : cards) {
-            totalPoints += card.getPoints();
-        }
-        return totalPoints;
-    }
-
-    public void applyEffect() {
-        for (UnitCard card : cards) {
-            card.setPoints(1);
+    public void applyEffect(MoraleBoost moraleBoost){
+        for(UnitCard card:cards){
+            moraleBoost.applyEffect(card);
         }
     }
-    public List<UnitCard> getCardsBondedAbility(UnitCard card) {
-        List<UnitCard> bondedCards = new ArrayList<>();
-        for (UnitCard c : cards) {
-            if (c.getName().equals(card.getName())){
-                bondedCards.add(c);
-            }
-        }
-        return bondedCards;
-    }
-
-    public UnitCard maxPointCard() {
-        UnitCard maxCard = null;
-        for (UnitCard card : this.cards) {
-            if (maxCard == null || card.getPoints() > maxCard.getPoints()) {
-                maxCard = card;
-            }
-        }
-        return maxCard;
-    }
-
 
 
 

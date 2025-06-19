@@ -1,28 +1,20 @@
 package edu.fiuba.algo3.modelo.board;
 
 
-import edu.fiuba.algo3.modelo.ability.Spies;
-import edu.fiuba.algo3.modelo.card.UnitCard;
-import edu.fiuba.algo3.modelo.player.Player;
-import edu.fiuba.algo3.modelo.section.Melee;
-import edu.fiuba.algo3.modelo.section.Ranged;
-import edu.fiuba.algo3.modelo.section.Section;
-import edu.fiuba.algo3.modelo.section.Siege;
-
-import java.util.List;
-import java.util.ArrayList;
-
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Board  {
-    private Map<Player, Map<String, Section>> sections;
-    private static Board instance;
+import edu.fiuba.algo3.modelo.card.UnitCard;
+import edu.fiuba.algo3.modelo.effect.MoraleBoost;
+import edu.fiuba.algo3.modelo.effect.ScorchedEarth;
+import edu.fiuba.algo3.modelo.player.Player;
 
-    private Board() {
-        this.sections = new HashMap<>();
-    }
+
+
+public class Board  {
+    private final Map<Player, PlayerSection> playerSections;
+    private static Board instance;
 
     public static Board getInstance() {
         if (instance == null) {
@@ -31,57 +23,45 @@ public class Board  {
         return instance;
     }
 
-    public List<Player> getPlayers() {
-        return new ArrayList<>( sections.keySet() );
-    }
-
-    public void addCard(Player player, UnitCard card) {
-        Player applyPlayer = card.apply(player);
-        sections.get(applyPlayer).get(card.getRowType()).addCard(card);
-    }
-
-    public Player otherPlayer(Player player) {
-        return sections.keySet().stream().filter(p -> !p.equals(player)).findFirst().orElseThrow(() -> new IllegalStateException("Se esperaban 2 jugadores en el tablero"));
+    private Board() {
+        playerSections = new HashMap<>();
     }
 
     public void addPlayer(Player player) {
-        Map<String, Section> playerSections = new HashMap<>();
-
-        playerSections.put("melee", new Melee());
-        playerSections.put("ranged", new Ranged());
-        playerSections.put("siege", new Siege());
-
-        sections.put(player, playerSections);
+        playerSections.put(player, new PlayerSection());
     }
 
-    public Section getRow(Player player, String sectionType) {
-        return sections.get(player).get(sectionType);
+
+    public void addCard(Player player, UnitCard card) {
+        playerSections.get(player).addCard(card);
     }
 
-    public int getScoreRow(Player player) {
-        int score = 0;
-        Map<String, Section> rows = sections.get(player);
-        for (Section row : rows.values()) {
-            score += row.calculatePoints();
-        }
-        return score;
+    public void receiveEffect(MoraleBoost moraleBoost, Player player) {
+        PlayerSection playerSection = playerSections.get(player);
+        playerSection.applyEffect(moraleBoost);
     }
 
-    public List<UnitCard> clearBoardRound(Player player) {
-        List<UnitCard> cards = new ArrayList<>();
-        Map<String, Section> rows = sections.get(player);
-        for (Section row : rows.values()) {
-            cards.addAll(row.getCards());
-        }
-        rows.clear();
-        return cards;
-    }
 
-    public void removeCard(Player player, UnitCard card) {
-        for (String section : List.of("melee", "ranged", "siege")) {
-            Section row = getRow(player, section);
-            row.removeCard(card);
-        }
-    }
+    
+
+//    public int getScoreRow(Player player) {
+//        int score = 0;
+//        Map<String, Section> rows = sections.get(player);
+//        for (Section row : rows.values()) {
+//            score += row.calculatePoints();
+//        }
+//        return score;
+//    }
+
+//    public List<UnitCard> clearBoardRound(Player player) {
+//        List<UnitCard> cards = new ArrayList<>();
+//        Map<String, Section> rows = sections.get(player);
+//        for (Section row : rows.values()) {
+//            cards.addAll(row.getCards());
+//        }
+//        rows.clear();
+//        return cards;
+//    }
+
 }
 
