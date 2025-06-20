@@ -37,7 +37,7 @@ public class Board  {
 
 
     public void addCard(Player player, UnitCard card) {
-        playerSections.get(player).addCard(card);
+        card.play(playerSections.get(player));
     }
 
     public void receiveEffect(SpecialEffect effect, Player player) {
