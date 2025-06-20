@@ -25,17 +25,17 @@ public class UnitCard extends AbstractCard {
         this.section = section;
         this.ability = ability;
     }
+    public UnitCard(String name, Point points) {
+        super(name);
+        this.points = points;
+        this.section = null;
+    }
 
     public void addCard(UnitCard card,PlayerSection playerSection) {
         section.addCardToSection(card, playerSection);
     }
 
-
-    @Override
-    public void play(Player player) {
-        Board board = Board.getInstance();
-        board.addCard(player, this);
-    }
+    public void play(PlayerSection playerSection) {}
 
     public void duplicatePoints() {
         points.incrementPoints();

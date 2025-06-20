@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.card;
 
+import edu.fiuba.algo3.modelo.board.PlayerSection;
 import edu.fiuba.algo3.modelo.player.Player;
 
 public abstract class AbstractCard {
@@ -10,6 +11,6 @@ public abstract class AbstractCard {
         this.name = name;
     }
 
-    public abstract void play(Player player);
+    public abstract void play(PlayerSection player);
 
 }

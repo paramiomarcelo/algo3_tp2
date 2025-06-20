@@ -1,14 +1,17 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.Point;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.effect.MoraleBoost;
 import edu.fiuba.algo3.modelo.player.Player;
-import edu.fiuba.algo3.modelo.section.Melee;
-import edu.fiuba.algo3.modelo.section.Siege;
+import edu.fiuba.algo3.modelo.card.Melee;
+import edu.fiuba.algo3.modelo.card.Siege;
+import edu.fiuba.algo3.modelo.card.Ranged;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,10 +35,10 @@ public class PlayerTest {
     private MoraleBoost moraleBoost = new MoraleBoost("moraleBoost", "frula");
     @BeforeEach
     public void setUp() {
-        unitCard = new UnitCard("Arquero", new Point(5), new Melee());
-        card1 = new UnitCard("Catapulta", new Point(4), new Siege());
-        card2 = new UnitCard("Espadachín", new Point(6), new Melee());
-        card3 = new UnitCard("Ballesta", new Point(3), new Siege());
+        unitCard = new Melee("Arquero", new Point(5));
+        card1 = new Siege("Catapulta", new Point(4));
+        card2 = new Melee("Espadachín", new Point(6));
+        card3 = new Ranged("Ballesta", new Point(3));
 
 
         List<AbstractCard> cards1 = new ArrayList<>();
@@ -63,8 +66,11 @@ public class PlayerTest {
 
     @Test
     public void testPlayerCanPlayCard() {
-        player1.playCard(unitCard);
+        Board.getInstance();
+        player1.playCard(card1);
         player1.playCard(card2);
+        player1.playCard(card3);
+        player1.playCard(unitCard);
         player1.playCard(moraleBoost);
         //assertEquals(initialHandSize - 1, player1.getHand().size());
     }

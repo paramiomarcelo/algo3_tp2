@@ -39,8 +39,11 @@ public class Player {
         }
     }
 
-    public void playCard(AbstractCard card) {
-        card.play(this);
+    public void playCard(UnitCard card) {
+        Board.getInstance().addCard(this, card);
+    }
+    public void playCard(SpecialCard card) {
+        card.aplly(this);
     }
 
 
