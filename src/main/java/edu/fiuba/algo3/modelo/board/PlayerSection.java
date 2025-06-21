@@ -75,7 +75,7 @@ public class PlayerSection {
     }
 
     public void removeCard(UnitCard card){
-        Section section = card.getSection();
+        Section section = card.getRow();
         section.removeCard(this, card);
     }
 

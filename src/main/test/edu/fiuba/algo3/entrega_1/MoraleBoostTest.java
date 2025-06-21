@@ -11,6 +11,9 @@ import edu.fiuba.algo3.modelo.effect.MoraleBoost;
 import edu.fiuba.algo3.modelo.player.Player;
 
 import edu.fiuba.algo3.modelo.section.Melee;
+import edu.fiuba.algo3.modelo.section.Ranged;
+import edu.fiuba.algo3.modelo.section.Section;
+import edu.fiuba.algo3.modelo.section.Siege;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,8 +23,13 @@ import java.util.List;
 
 public class MoraleBoostTest {
 
-    UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(7), new Melee());
-    UnitCard unitCard2 = new UnitCard("Lanzero", "description", new Point(4), new Melee());
+    List<Section> sectionMelee = new ArrayList<>();
+    {
+        sectionMelee.add(new Melee());
+    }
+
+    UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(7), sectionMelee);
+    UnitCard unitCard2 = new UnitCard("Lanzero", "description", new Point(4), sectionMelee);
 
     List<AbstractCard> card1 = new ArrayList<>();
     List<AbstractCard> card2 = new ArrayList<>();

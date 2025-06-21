@@ -7,19 +7,22 @@ import edu.fiuba.algo3.modelo.board.PlayerSection;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class UnitCard extends AbstractCard {
-    private final Section section;
+    private final List<Section> section;
     private Ability ability;
     private Point points;
 
-    public UnitCard(String name, String description, Point points, Section section, Ability ability) {
+    public UnitCard(String name, String description, Point points, List<Section> section, Ability ability) {
         super(name, description);
         this.points = points;
         this.section = section;
         this.ability = ability;
     }
 
-    public UnitCard(String name, String description, Point points, Section section) {
+    public UnitCard(String name, String description, Point points, List<Section> section) {
         super(name, description);
         this.points = points;
         this.section = section;
@@ -27,6 +30,7 @@ public class UnitCard extends AbstractCard {
     }
 
     public void addCard(UnitCard card,PlayerSection playerSection) {
+        Section section = this.section.get(0);
         section.addCardToSection(card, playerSection);
     }
 
@@ -34,7 +38,6 @@ public class UnitCard extends AbstractCard {
     @Override
     public void play(Player player, Board board) {
         Player targetPlayer = ability.effect(player, this, board);;
-
         board.addCard(targetPlayer, this);
     }
 
@@ -43,15 +46,20 @@ public class UnitCard extends AbstractCard {
     }
 
     public Section getRow(){
-        return section;
+        return this.section.get(0);
     }
 
     public void duplicatePoints() {
         points.duplicatedPoints();
     }
 
-    public Section getSection() {
-        return section;
+    public List<Section> getSection() {
+        return this.section;
+    }
+
+    public void chooseSection(int index) {
+        Section aux = this.section.remove(index);
+        this.section.add(0, aux);
     }
 
     public void modifyPoints(int points) {

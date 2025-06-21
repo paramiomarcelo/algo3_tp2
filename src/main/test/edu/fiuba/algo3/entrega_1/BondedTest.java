@@ -9,7 +9,9 @@ import edu.fiuba.algo3.modelo.card.Point;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.player.Player;
+import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
+import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,14 +33,24 @@ public class BondedTest {
     private UnitCard card2;
     private UnitCard card3;
 
+    List<Section> sectionMelee = new ArrayList<>();
+    List<Section> sectionRanged = new ArrayList<>();
+    List<Section> sectionSiege = new ArrayList<>();
+
+    {
+        sectionMelee.add(new Melee());
+        sectionRanged.add(new Ranged());
+        sectionSiege.add(new Siege());
+    }
+
     @BeforeEach
     void setUp() {
         Ability bonded = new Bonded();
         Ability medic = new Medic();
-        card0 = new UnitCard("Cow", "Vaca", new Point(1), new Ranged());
-        card1 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), new Siege(), bonded);
-        card3 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), new Siege(), bonded);
-        card2 = new UnitCard("Medic", "medico",new Point(5),new Siege(), medic);
+        card0 = new UnitCard("Cow", "Vaca", new Point(1), sectionRanged);
+        card1 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), sectionSiege, bonded);
+        card3 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), sectionSiege, bonded);
+        card2 = new UnitCard("Medic", "medico",new Point(5), sectionSiege, medic);
 
         cards = new ArrayList<>();
         cards.add(card0);

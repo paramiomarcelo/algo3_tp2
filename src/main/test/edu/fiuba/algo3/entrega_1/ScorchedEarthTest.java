@@ -11,16 +11,28 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
+import edu.fiuba.algo3.modelo.section.Section;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ScorchedEarthTest {
-    UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(3), new Melee());
-    UnitCard unitCard2 = new UnitCard("Lanzero", "description", new Point(10), new Melee());
-    UnitCard unitCard3 = new UnitCard("Ballestero", "description", new Point(7), new Ranged());
-    UnitCard unitCard4 = new UnitCard("Arquero", "description", new Point(5), new Ranged());
+
+    List<Section> sectionMelee = new ArrayList<>();
+    List<Section> sectionRanged = new ArrayList<>();
+
+    {
+        sectionMelee.add(new Melee());
+        sectionRanged.add(new Ranged());
+    }
+
+    UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(3), sectionMelee);
+    UnitCard unitCard2 = new UnitCard("Lanzero", "description", new Point(10), sectionMelee);
+    UnitCard unitCard3 = new UnitCard("Ballestero", "description", new Point(7), sectionRanged);
+    UnitCard unitCard4 = new UnitCard("Arquero", "description", new Point(5), sectionRanged);
 
     SpecialCard scorchedEarthCard = new SpecialCard(
             "Tierra arrasada",

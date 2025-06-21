@@ -11,22 +11,35 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
+import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class WeatherTest {
 
-    UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(7), new Melee());
-    UnitCard unitCard2 = new UnitCard("Lanzero", "description", new Point(4), new Melee());
-    UnitCard unitCard3 = new UnitCard("Arquero", "description", new Point(4), new Ranged());
-    UnitCard unitCard4 = new UnitCard("Ballestero", "description", new Point(4), new Ranged());
-    UnitCard unitCard5 = new UnitCard("Catapulta", "description", new Point(4), new Siege());
-    UnitCard unitCard6 = new UnitCard("Trebuchet", "description", new Point(4), new Siege());
+    List<Section> sectionMelee = new ArrayList<>();
+    List<Section> sectionRanged = new ArrayList<>();
+    List<Section> sectionSiege = new ArrayList<>();
+
+    {
+        sectionMelee.add(new Melee());
+        sectionRanged.add(new Ranged());
+        sectionSiege.add(new Siege());
+    }
+
+    UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(7), sectionMelee);
+    UnitCard unitCard2 = new UnitCard("Lanzero", "description", new Point(4), sectionMelee);
+    UnitCard unitCard3 = new UnitCard("Arquero", "description", new Point(4), sectionRanged);
+    UnitCard unitCard4 = new UnitCard("Ballestero", "description", new Point(4), sectionRanged);
+    UnitCard unitCard5 = new UnitCard("Catapulta", "description", new Point(4), sectionSiege);
+    UnitCard unitCard6 = new UnitCard("Trebuchet", "description", new Point(4), sectionSiege);
 
     SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new SnowEffect(new Melee()));
     SpecialCard fogCard = new SpecialCard("Niebla", "descrition", new FogEffect(new Siege()));

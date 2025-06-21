@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.effect.WeatherEffect.*;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
+import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,10 +38,17 @@ public class PlayerTest {
     private MoraleBoost moraleBoost = new MoraleBoost(new Melee());
     @BeforeEach
     public void setUp() {
-        unitCard = new UnitCard("Arquero", "Unidad a distancia", new Point(5), new Melee());
-        card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), new Siege());
-        card2 = new UnitCard("Espadachín", "unidad cuerpo a cuerpo",new Point(6), new Melee());
-        card3 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), new Siege());
+
+        List<Section> sectionMelee = new ArrayList<>();
+        sectionMelee.add(new Melee());
+
+        List<Section> sectionSiege = new ArrayList<>();
+        sectionSiege.add(new Melee());
+
+        unitCard = new UnitCard("Arquero", "Unidad a distancia", new Point(5), sectionMelee);
+        card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), sectionSiege);
+        card2 = new UnitCard("Espadachín", "unidad cuerpo a cuerpo",new Point(6), sectionMelee);
+        card3 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), sectionSiege);
         card4 = new SpecialCard("ejemplo", "ej", moraleBoost);
 
         List<AbstractCard> cards1 = new ArrayList<>();
@@ -97,24 +105,32 @@ public class PlayerTest {
     public void VerificarQueUnJugadorPoseaCartasSuficientesParaEmpezarElJuegoEnSuMazo() {
         List<AbstractCard> cards1 = new ArrayList<>();
 
+        List<Section> sectionMelee = new ArrayList<>();
+        sectionMelee.add(new Melee());
+
+        List<Section> sectionSiege = new ArrayList<>();
+        sectionSiege.add(new Melee());
+
+        List<Section> sectionRanged = new ArrayList<>();
+        sectionRanged.add(new Melee());
 
         Deck deck = new Deck(cards1);
 
-        UnitCard guerrero = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
+        UnitCard guerrero = new UnitCard("guerrero", "guerrero", new Point(10), sectionMelee);
         deck.addCard(guerrero);
-        UnitCard paladin = new UnitCard("paladin", "paladin", new Point(5), new Melee());
+        UnitCard paladin = new UnitCard("paladin", "paladin", new Point(5), sectionMelee);
         deck.addCard(paladin);
-        UnitCard arquero = new UnitCard("arquero", "arquero", new Point(6), new Ranged());
+        UnitCard arquero = new UnitCard("arquero", "arquero", new Point(6), sectionRanged);
         deck.addCard(arquero);
-        UnitCard francotirador = new UnitCard("francotirador", "francotirador", new Point(7), new Ranged());
+        UnitCard francotirador = new UnitCard("francotirador", "francotirador", new Point(7), sectionRanged);
         deck.addCard(francotirador);
-        UnitCard catapulta = new UnitCard("catapulta", "catapulta", new Point(8), new Siege());
+        UnitCard catapulta = new UnitCard("catapulta", "catapulta", new Point(8), sectionSiege);
         deck.addCard(catapulta);
-        UnitCard mortero = new UnitCard("mortero", "siege", new Point(9), new Siege());
+        UnitCard mortero = new UnitCard("mortero", "siege", new Point(9), sectionSiege);
         deck.addCard(mortero);
-        UnitCard gladiador = new UnitCard("gladiador", "melee", new Point(12), new Melee());
+        UnitCard gladiador = new UnitCard("gladiador", "melee", new Point(12), sectionMelee);
         deck.addCard(gladiador);
-        UnitCard centurion = new UnitCard("centurion", "melee", new Point(12), new Melee());
+        UnitCard centurion = new UnitCard("centurion", "melee", new Point(12), sectionMelee);
         deck.addCard(centurion);
 
 
@@ -132,31 +148,40 @@ public class PlayerTest {
         List<AbstractCard> cards1 = new ArrayList<>();
         Deck deck = new Deck(cards1);
 
-        UnitCard guerrero = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
+        List<Section> sectionMelee = new ArrayList<>();
+        sectionMelee.add(new Melee());
+
+        List<Section> sectionSiege = new ArrayList<>();
+        sectionSiege.add(new Melee());
+
+        List<Section> sectionRanged = new ArrayList<>();
+        sectionRanged.add(new Melee());
+
+        UnitCard guerrero = new UnitCard("guerrero", "guerrero", new Point(10), sectionMelee);
         deck.addCard(guerrero);
-        UnitCard paladin = new UnitCard("paladin", "paladin", new Point(5), new Melee());
+        UnitCard paladin = new UnitCard("paladin", "paladin", new Point(5), sectionMelee);
         deck.addCard(paladin);
-        UnitCard arquero = new UnitCard("arquero", "arquero", new Point(6), new Ranged());
+        UnitCard arquero = new UnitCard("arquero", "arquero", new Point(6), sectionRanged);
         deck.addCard(arquero);
-        UnitCard francotirador = new UnitCard("francotirador", "francotirador", new Point(7), new Ranged());
+        UnitCard francotirador = new UnitCard("francotirador", "francotirador", new Point(7), sectionRanged);
         deck.addCard(francotirador);
-        UnitCard catapulta = new UnitCard("catapulta", "catapulta", new Point(8), new Siege());
+        UnitCard catapulta = new UnitCard("catapulta", "catapulta", new Point(8), sectionSiege);
         deck.addCard(catapulta);
-        UnitCard mortero = new UnitCard("mortero", "siege", new Point(9), new Siege());
+        UnitCard mortero = new UnitCard("mortero", "siege", new Point(9), sectionSiege);
         deck.addCard(mortero);
-        UnitCard gladiador = new UnitCard("gladiador", "melee", new Point(12), new Melee());
+        UnitCard gladiador = new UnitCard("gladiador", "melee", new Point(12), sectionMelee);
         deck.addCard(gladiador);
-        UnitCard centurion = new UnitCard("centurion", "melee", new Point(12), new Melee());
+        UnitCard centurion = new UnitCard("centurion", "melee", new Point(12), sectionMelee);
         deck.addCard(centurion);
-        UnitCard canion = new UnitCard("canion", "siege", new Point(14), new Melee());
+        UnitCard canion = new UnitCard("canion", "siege", new Point(14), sectionMelee);
         deck.addCard(canion);
-        UnitCard ariete = new UnitCard("ariete", "melee", new Point(15), new Melee());
+        UnitCard ariete = new UnitCard("ariete", "melee", new Point(15), sectionMelee);
         deck.addCard(ariete);
-        UnitCard geralt = new UnitCard("geralt", "geralt", new Point(5), new Melee());
+        UnitCard geralt = new UnitCard("geralt", "geralt", new Point(5), sectionMelee);
         deck.addCard(geralt);
-        UnitCard ciri = new UnitCard("ciri", "ciri", new Point(6), new Melee());
+        UnitCard ciri = new UnitCard("ciri", "ciri", new Point(6), sectionMelee);
         deck.addCard(ciri);
-        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", new Point(7), new Melee());
+        UnitCard dijkstra = new UnitCard("dijkstra", "dijkstra", new Point(7), sectionMelee);
         deck.addCard(dijkstra);
 
         Player player1 = new Player("matias", deck);

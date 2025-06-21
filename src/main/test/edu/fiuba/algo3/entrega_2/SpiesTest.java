@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Melee;
+import edu.fiuba.algo3.modelo.section.Section;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,25 +46,27 @@ public class SpiesTest {
         public void setUp() {
 
             List<AbstractCard> cards1 = new ArrayList<>();
+            List<Section> section = new ArrayList<>();
+            section.add(new Melee());
 
             spy = new Spies();
 
 
-            card1 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee(), spy);
+            card1 = new UnitCard("guerrero", "guerrero", new Point(10), section, spy);
 
 
-            card2 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card3 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card4 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card5 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card6 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card7 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card8 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card9 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card10 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card11 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card12 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
-            card13 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
+            card2 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card3 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card4 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card5 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card6 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card7 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card8 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card9 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card10 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card11 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card12 = new UnitCard("guerrero", "guerrero", new Point(10), section);
+            card13 = new UnitCard("guerrero", "guerrero", new Point(10), section);
 
 
 
