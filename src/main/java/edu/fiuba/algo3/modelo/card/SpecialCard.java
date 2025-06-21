@@ -13,8 +13,8 @@ public class SpecialCard extends AbstractCard {
     }
 
     @Override
-    public void play(Player player, Board board){
-        board.receiveEffect(effect, player);
+    public void play(Player player){
+        Board.getInstance().receiveEffect(effect, player);
     }
 
 }

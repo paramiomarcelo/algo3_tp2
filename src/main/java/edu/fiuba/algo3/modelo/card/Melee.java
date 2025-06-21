@@ -9,15 +9,19 @@ import edu.fiuba.algo3.modelo.section.Section;
 import java.util.List;
 
 public class Melee extends UnitCard{
-    public Melee(String name, Point points, Section section, List<Ability> ability) {
-        super(name, points, section, ability);
+    public Melee(String name,String description, Point points, Ability ability) {
+        super(name, description, points, ability);
     }
-    public Melee(String name, Point points) {
-        super(name, points);
+    public Melee(String name, String description, Point points) {
+        super(name, description,points);
     }
 
     @Override
-    public void play(PlayerSection playerSection) {
+    public void addCard( PlayerSection playerSection) {
         playerSection.addCardToMelee(this);
+    }
+    @Override
+    public void play(Player player) {
+        super.play(player);
     }
 }

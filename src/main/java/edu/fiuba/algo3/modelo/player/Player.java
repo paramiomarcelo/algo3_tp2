@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.player;
 
+import edu.fiuba.algo3.clases.Unit;
 import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
@@ -13,7 +14,8 @@ public class Player {
     private String name;
     private Deck deck;
     private List<AbstractCard> hand;
-    private List<AbstractCard> discardPile;
+    private List<UnitCard> discardPile;
+    private Score score;
 
     private List<UnitCard> unitsDiscarded;
     private Integer indexSelectCards;
@@ -23,6 +25,7 @@ public class Player {
         this.deck = deck;
         this.hand = new ArrayList<>();
         this.discardPile = new ArrayList<>();
+        this.score = new Score();
     }
 
     public void addCard(AbstractCard card){
@@ -37,10 +40,14 @@ public class Player {
         }
     }
 
-    public void playCard(AbstractCard card) {
+    public void playCard(UnitCard card) {
         removeCardFromHand(card);
         Board board = Board.getInstance();
-        card.play(this, board);
+        card.play(this);
+    }
+    public void playCard(SpecialCard card) {
+        removeCardFromHand(card);
+        card.play(this);
     }
 
 
@@ -66,7 +73,7 @@ public class Player {
         }
     }
 
-    public List<AbstractCard> getDiscardPile() {
+    public List<UnitCard> getDiscardPile() {
         return discardPile;
     }
 
@@ -75,4 +82,7 @@ public class Player {
         return board.getPoints(this);
     }
 
+    public Score getScore() {
+        return score;
+    }
 }

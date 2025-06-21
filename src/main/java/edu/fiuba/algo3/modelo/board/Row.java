@@ -29,6 +29,7 @@ public class Row  {
         }
     }
 
+
     public int getPoints(){
         if (cards.isEmpty()){
             return 0;
@@ -43,11 +44,30 @@ public class Row  {
 
     public List<UnitCard> clearBoardRound(){
         List<UnitCard> cardsAux = new ArrayList<>();
-        for (UnitCard card: cards){
-            cardsAux.add(card);
-            cards.remove(card);
-        }
+        cardsAux.addAll(cards);
+        cards.clear();
         return cardsAux;
     }
 
+    public List<UnitCard> getCards() {
+        return cards;
+    }
+
+    public List<UnitCard> compareCards(UnitCard card){
+        List<UnitCard> cardsAux = new ArrayList<>();
+        for (UnitCard cardAux: cards){
+            if(cardAux.getName().equals(card.getName())){
+                cardsAux.add(cardAux);
+            }
+        }
+        return cardsAux;
+    }
+    public boolean serchRow(UnitCard card){
+        for (UnitCard cardAux: cards){
+            if(cardAux.getName().equals(card.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
 }

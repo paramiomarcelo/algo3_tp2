@@ -5,6 +5,9 @@ import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 
 public class Spies implements Ability {
+    public Player effect(Player player, UnitCard unitCard) {
+        return null;
+    }
 //    @Override
 //    public Player effect(Player player, UnitCard card) {
 //        player.distributeCards(2);

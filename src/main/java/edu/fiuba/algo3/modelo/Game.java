@@ -24,6 +24,10 @@ public class Game {
         board.addPlayer(player2);
     }
 
+    public void actualScore() {
+        board.actualScore(player1);
+        board.actualScore(player2);
+    }
 
 
     private void switchTurn() {
@@ -41,6 +45,6 @@ public class Game {
     public void roundCompleted(){
         player1.clearRound();
         player2.clearRound();
-        setPlayers(player1, player2);
+       // setPlayers(player1, player2);
     }
 }

@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.board;
 
+import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.effect.SpecialEffect;
+import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
 import java.util.ArrayList;
@@ -12,9 +14,6 @@ public class PlayerSection {
     private final Row ranged = new Row();
     private final Row siege = new Row();
 
-    public void addCard(UnitCard card) {
-        card.addCard(card, this);
-    }
 
     public void addCardToMelee(UnitCard card) {
         melee.add(card);
@@ -41,6 +40,12 @@ public class PlayerSection {
         return (melee.getPoints() + ranged.getPoints() + siege.getPoints());
     }
 
+    public void modifierScore(Player player) {
+        player.getScore().setScoreMelee(melee.getPoints());
+        player.getScore().setScoreRanged(ranged.getPoints());
+        player.getScore().setScoreSiege(siege.getPoints());
+    }
+
     public List<UnitCard> clearBoardRound(){
         List<UnitCard> cards = new ArrayList<>();
         cards.addAll(melee.clearBoardRound());
@@ -48,5 +53,36 @@ public class PlayerSection {
         cards.addAll(siege.clearBoardRound());
         return cards;
     }
+    public void searchPairs(UnitCard card) {
+        List<UnitCard> cards = new ArrayList<>();
+        cards.addAll(melee.compareCards(card));
+        cards.addAll(ranged.compareCards(card));
+        cards.addAll(siege.compareCards(card));
+
+        if(cards.size() >= 2 ) {
+            for (UnitCard c : cards) {
+                c.duplicatePoints();
+            }
+        }
+    }
+    public List<Row> rows(){
+        List<Row> rows = new ArrayList<>();
+        rows.add(melee);
+        rows.add(ranged);
+        rows.add(siege);
+        return rows;
+    }
+    public void sumBase(UnitCard card) {
+        List<Row> row = rows();
+        boolean found = false;
+        for (Row r : row) {
+            if (r.serchRow(card)){
+                for (UnitCard c : r.getCards()){
+                    c.setPoints().incrementoUno();
+                }
+            }
+        }
+    }
+
 
 }

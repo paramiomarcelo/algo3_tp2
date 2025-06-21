@@ -5,45 +5,38 @@ import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.board.PlayerSection;
 import edu.fiuba.algo3.modelo.player.Player;
-import edu.fiuba.algo3.modelo.section.Section;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class UnitCard extends AbstractCard {
-    private final Section section;
-    private List<Ability> ability;
+public abstract class UnitCard extends AbstractCard {
+    private Ability ability;
     private Point points;
 
-    public UnitCard(String name, String description, Point points, Section section, List<Ability> ability) {
+    public UnitCard(String name, String description, Point points, Ability ability) {
         super(name, description);
         this.points = points;
-        this.section = section;
         this.ability = ability;
     }
 
-    public UnitCard(String name, String description, Point points, Section section) {
+    public UnitCard(String name, String description, Point points) {
         super(name, description);
         this.points = points;
-        this.section = section;
-        this.ability = new ArrayList<>();
+        this.ability = null;
     }
-
-    public void addCard(UnitCard card,PlayerSection playerSection) {
-        section.addCardToSection(card, playerSection);
-    }
-
+    public abstract void addCard(PlayerSection playerSection);
+    //        section.addCardToSection(card, playerSection);
 
     @Override
-    public void play(Player player, Board board) {
-        board.addCard(player, this);
+    public void play(Player player) {
+        Board.getInstance().addCard(player, this);
+
     }
 
-    public Player apply(Player player){
+    public Player apply(Player player, UnitCard unitCard) {
+        Player pepe = player;
         if (this.ability != null){
+            ability.effect(player, this);
 
         }
-        return player;
+        return pepe;
     }
 
     public int getPoints(){
@@ -53,8 +46,10 @@ public class UnitCard extends AbstractCard {
     public void duplicatePoints() {
         points.incrementPoints();
     }
-
-    public Section getSection() {
-        return section;
+    public void sumaUNo(){
+        points.incrementoUno();
+    }
+    public Point setPoints() {
+        return points;
     }
 }

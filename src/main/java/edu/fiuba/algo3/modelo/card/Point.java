@@ -10,9 +10,12 @@ public class Point {
     }
 
     public void incrementPoints(){
-        this.currentPoints = currentPoints*2;
+        this.currentPoints = basePoints*2;
     }
 
+    public void incrementoUno(){
+        this.currentPoints = currentPoints+1;
+    }
     public int getPoints(){
         return this.currentPoints;
     }

@@ -8,10 +8,15 @@ import java.util.List;
 
 public class Medic implements Ability{
 
-//    @Override
-//    public void effect(Player player, UnitCard card) {
-//        List<UnitCard> revivir = player.getDiscardPile();
-//        Board board = Board.getInstance();
-//        board.addCard(player, revivir.get(player.indexSelectCards()),revivir.get(player.indexSelectCards()).getRowType());
-//    }
+
+    @Override
+    public Player effect(Player player, UnitCard card) {
+
+        List<UnitCard> revivir = player.getDiscardPile();
+        Board board = Board.getInstance();
+        board.addCard(player, revivir.get(1));
+
+    return player;
+    }
+
 }

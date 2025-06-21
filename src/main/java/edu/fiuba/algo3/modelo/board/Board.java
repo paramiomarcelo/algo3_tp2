@@ -2,21 +2,17 @@ package edu.fiuba.algo3.modelo.board;
 
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.fiuba.algo3.modelo.card.SpecialCard;
+import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.card.UnitCard;
-import edu.fiuba.algo3.modelo.effect.MoraleBoost;
-import edu.fiuba.algo3.modelo.effect.ScorchedEarth;
 import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 import edu.fiuba.algo3.modelo.player.Player;
-import edu.fiuba.algo3.modelo.section.Section;
 
 
-public class Board  {
+public class Board {
     private final Map<Player, PlayerSection> playerSections;
     private static Board instance;
 
@@ -37,7 +33,8 @@ public class Board  {
 
 
     public void addCard(Player player, UnitCard card) {
-        card.play(playerSections.get(player));
+        card.addCard(playerSections.get(player));
+        card.apply(player, card);
     }
 
     public void receiveEffect(SpecialEffect effect, Player player) {
@@ -54,6 +51,19 @@ public class Board  {
         PlayerSection playerSection = playerSections.get(player);
         return playerSection.clearBoardRound();
     }
+
+    public void actualScore(Player player) {
+        PlayerSection playerSection = playerSections.get(player);
+        playerSection.modifierScore(player);
+    }
+
+    public void effectModifierBonded(Player player, UnitCard card) {
+        playerSections.get(player).searchPairs(card);
+    }
+    public void effectModifierSum(Player player, UnitCard card) {
+        playerSections.get(player).sumBase(card);
+    }
+
 
 }
 

@@ -13,6 +13,6 @@ public abstract class AbstractCard {
     }
     public String getName() { return name;}
 
-    public abstract void play(Player player, Board board);
+    public abstract void play(Player player);
 
 }

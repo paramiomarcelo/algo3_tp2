@@ -1,19 +1,15 @@
 package edu.fiuba.algo3.modelo.section;
 
 import edu.fiuba.algo3.modelo.board.PlayerSection;
-import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Melee extends Section {
+public class SiegeAffect extends Section {
     @Override
-    public String getType() { return "melee"; }
+    public String getType() { return "siege"; }
     @Override
     public void addCardToSection(UnitCard card, PlayerSection playerSection) {
-        playerSection.addCardToMelee(card);
+        playerSection.addCardToSiege(card);
     }
 
     @Override
