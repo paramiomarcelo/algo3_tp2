@@ -48,29 +48,23 @@ public class PlayerSection {
 
     public List<UnitCard> clearBoardRound(){
         List<UnitCard> cards = new ArrayList<>();
-        cards.addAll(melee.clearBoardRound());
-        cards.addAll(ranged.clearBoardRound());
-        cards.addAll(siege.clearBoardRound());
+        for(Row r : rows()){
+            cards.addAll(r.clearBoardRound());
+        }
         return cards;
     }
     public void searchPairs(UnitCard card) {
         List<UnitCard> cards = new ArrayList<>();
-        cards.addAll(melee.compareCards(card));
-        cards.addAll(ranged.compareCards(card));
-        cards.addAll(siege.compareCards(card));
+        cards.add(card);
+        for(Row r : rows()){
+            cards.addAll(r.compareCards(card));
+        }
 
         if(cards.size() >= 2 ) {
             for (UnitCard c : cards) {
                 c.duplicatePoints();
             }
         }
-    }
-    public List<Row> rows(){
-        List<Row> rows = new ArrayList<>();
-        rows.add(melee);
-        rows.add(ranged);
-        rows.add(siege);
-        return rows;
     }
     public void sumBase(UnitCard card) {
         List<Row> row = rows();
@@ -82,6 +76,13 @@ public class PlayerSection {
                 }
             }
         }
+    }
+    public List<Row> rows(){
+        List<Row> rows = new ArrayList<>();
+        rows.add(melee);
+        rows.add(ranged);
+        rows.add(siege);
+        return rows;
     }
 
 
