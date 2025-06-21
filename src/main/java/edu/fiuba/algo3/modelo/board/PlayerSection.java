@@ -37,6 +37,15 @@ public class PlayerSection {
         melee.applyEffect(effect);
     }
 
+    public void applyEffectRanged(SpecialEffect effect) {
+        ranged.applyEffect(effect);
+    }
+
+    public void applyEffectSiege(SpecialEffect effect) {
+        siege.applyEffect(effect);
+    }
+
+
     public int getPoints(){
         return (melee.getPoints() + ranged.getPoints() + siege.getPoints());
     }
@@ -48,5 +57,39 @@ public class PlayerSection {
         cards.addAll(siege.clearBoardRound());
         return cards;
     }
+
+    public List<UnitCard> getCards(Section section){
+        return section.getCards(this);
+    }
+
+    public List<UnitCard> getCardsMelee(){
+        return melee.getCards();
+    }
+
+    public List<UnitCard> getCardsRanged(){
+        return ranged.getCards();
+    }
+
+    public List<UnitCard> getCardsSiege(){
+        return siege.getCards();
+    }
+
+    public void removeCard(UnitCard card){
+        Section section = card.getSection();
+        section.removeCard(this, card);
+    }
+
+    public void removeCardMelee(UnitCard card){
+        melee.removeCard(card);
+    }
+
+    public void removeCardRanged(UnitCard card){
+        ranged.removeCard(card);
+    }
+
+    public void removeCardSiege(UnitCard card){
+        siege.removeCard(card);
+    }
+
 
 }

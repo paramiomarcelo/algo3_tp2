@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 
+import java.util.List;
+
 public class Siege extends Section {
     @Override
     public String getType() { return "siege"; }
@@ -15,6 +17,16 @@ public class Siege extends Section {
 
     @Override
     public void apply(SpecialEffect effect, PlayerSection playerSection) {
-        playerSection.applyEffectMelee(effect);
+        playerSection.applyEffectSiege(effect);
+    }
+
+    @Override
+    public List<UnitCard> getCards(PlayerSection playerSection) {
+        return playerSection.getCardsSiege();
+    }
+
+    @Override
+    public void removeCard(PlayerSection playerSection, UnitCard card) {
+        playerSection.removeCardSiege(card);
     }
 }

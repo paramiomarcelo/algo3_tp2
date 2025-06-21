@@ -20,4 +20,14 @@ public class Melee extends Section {
     public void apply(SpecialEffect effect, PlayerSection playerSection) {
         playerSection.applyEffectMelee(effect);
     }
+
+    @Override
+    public List<UnitCard> getCards(PlayerSection playerSection) {
+        return playerSection.getCardsMelee();
+    }
+
+    @Override
+    public void removeCard(PlayerSection playerSection, UnitCard card) {
+        playerSection.removeCardMelee(card);
+    }
 }

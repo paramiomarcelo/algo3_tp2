@@ -9,11 +9,15 @@ public class Point {
         this.basePoints = value;
     }
 
-    public void incrementPoints(){
+    public void duplicatedPoints(){
         this.currentPoints = currentPoints*2;
     }
 
     public int getPoints(){
         return this.currentPoints;
+    }
+
+    public void modifyPoints(int points){
+        this.currentPoints = points;
     }
 }

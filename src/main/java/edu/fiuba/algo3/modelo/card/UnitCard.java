@@ -12,21 +12,21 @@ import java.util.List;
 
 public class UnitCard extends AbstractCard {
     private final Section section;
-    private List<Ability> ability;
+    private List<Ability> abilities;
     private Point points;
 
     public UnitCard(String name, String description, Point points, Section section, List<Ability> ability) {
         super(name, description);
         this.points = points;
         this.section = section;
-        this.ability = ability;
+        this.abilities = ability;
     }
 
     public UnitCard(String name, String description, Point points, Section section) {
         super(name, description);
         this.points = points;
         this.section = section;
-        this.ability = new ArrayList<>();
+        this.abilities = new ArrayList<>();
     }
 
     public void addCard(UnitCard card,PlayerSection playerSection) {
@@ -36,25 +36,32 @@ public class UnitCard extends AbstractCard {
 
     @Override
     public void play(Player player, Board board) {
-        board.addCard(player, this);
-    }
+        Player targetPlayer = player;
 
-    public Player apply(Player player){
-        if (this.ability != null){
-
+        for (Ability ability : this.abilities) {
+            targetPlayer = ability.effect(player, this, board);
         }
-        return player;
+
+        board.addCard(targetPlayer, this);
     }
 
     public int getPoints(){
         return points.getPoints();
     }
 
+    public Section getRow(){
+        return section;
+    }
+
     public void duplicatePoints() {
-        points.incrementPoints();
+        points.duplicatedPoints();
     }
 
     public Section getSection() {
         return section;
+    }
+
+    public void modifyPoints(int points) {
+        this.points.modifyPoints(points);
     }
 }

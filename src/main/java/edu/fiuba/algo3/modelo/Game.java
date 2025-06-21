@@ -39,8 +39,7 @@ public class Game {
     }
 
     public void roundCompleted(){
-        player1.clearRound();
-        player2.clearRound();
-        setPlayers(player1, player2);
+        player1.clearRound(board);
+        player2.clearRound(board);
     }
 }

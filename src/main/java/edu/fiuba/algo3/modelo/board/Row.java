@@ -42,12 +42,17 @@ public class Row  {
     }
 
     public List<UnitCard> clearBoardRound(){
-        List<UnitCard> cardsAux = new ArrayList<>();
-        for (UnitCard card: cards){
-            cardsAux.add(card);
-            cards.remove(card);
-        }
+        List<UnitCard> cardsAux = new ArrayList<>(cards);
+        cards.clear();
         return cardsAux;
+    }
+
+    public List<UnitCard> getCards(){
+        return cards;
+    }
+
+    public void removeCard(UnitCard card){
+        cards.remove(card);
     }
 
 }

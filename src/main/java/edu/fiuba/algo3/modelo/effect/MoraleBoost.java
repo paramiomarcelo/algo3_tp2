@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.effect;
 
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
@@ -7,8 +8,8 @@ import edu.fiuba.algo3.modelo.section.Section;
 
 public class MoraleBoost extends SpecialEffect  {
 
-    public MoraleBoost(Section section, Player player) {
-        super(section, player);
+    public MoraleBoost(Section section) {
+        super(section);
     }
 
     @Override
@@ -17,8 +18,8 @@ public class MoraleBoost extends SpecialEffect  {
     }
 
     @Override
-    public Section getSection() {
-        return this.section;
+    public void apply(Board board, Player player) {
+        board.getPlayerSection(player).applyEffect(this);
     }
 
 }

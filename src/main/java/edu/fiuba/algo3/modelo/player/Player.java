@@ -13,7 +13,7 @@ public class Player {
     private String name;
     private Deck deck;
     private List<AbstractCard> hand;
-    private List<AbstractCard> discardPile;
+    private List<UnitCard> discardPile;
 
     private List<UnitCard> unitsDiscarded;
     private Integer indexSelectCards;
@@ -59,14 +59,12 @@ public class Player {
         }
     }
 
-    public void clearRound(){
-        List<UnitCard> cards = Board.getInstance().clearBoardRound(this);
-        for (UnitCard card : cards){
-            this.discardPile.add(card);
-        }
+    public void clearRound(Board board){
+        List<UnitCard> cards = board.clearBoardRound(this);
+        this.discardPile.addAll(cards);
     }
 
-    public List<AbstractCard> getDiscardPile() {
+    public List<UnitCard> getDiscardPile() {
         return discardPile;
     }
 
@@ -75,4 +73,10 @@ public class Player {
         return board.getPoints(this);
     }
 
+    public void selectCard(Integer index) {
+        indexSelectCards = index;
+    }
+    public Integer indexSelectCards() {
+        return indexSelectCards;
+    }
 }

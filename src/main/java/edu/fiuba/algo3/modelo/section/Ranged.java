@@ -19,6 +19,16 @@ public class Ranged extends Section {
 
     @Override
     public void apply(SpecialEffect effect, PlayerSection playerSection) {
-        playerSection.applyEffectMelee(effect);
+        playerSection.applyEffectRanged(effect);
+    }
+
+    @Override
+    public List<UnitCard> getCards(PlayerSection playerSection) {
+        return playerSection.getCardsRanged();
+    }
+
+    @Override
+    public void removeCard(PlayerSection playerSection, UnitCard card) {
+        playerSection.removeCardRanged(card);
     }
 }

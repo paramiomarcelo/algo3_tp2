@@ -41,8 +41,7 @@ public class Board  {
     }
 
     public void receiveEffect(SpecialEffect effect, Player player) {
-        PlayerSection playerSection = playerSections.get(player);
-        playerSection.applyEffect(effect);
+        effect.apply(this, player);
     }
 
     public int getPoints(Player player) {
@@ -55,5 +54,22 @@ public class Board  {
         return playerSection.clearBoardRound();
     }
 
+    public Player otherPlayer(Player player) {
+        return playerSections.keySet().stream().filter(p -> !p.equals(player)).findFirst().orElseThrow(() -> new IllegalStateException("need 2 players to play"));
+    }
+
+    public List<UnitCard> getCardsRow(Player player, Section section) {
+        PlayerSection playerSection = playerSections.get(player);
+        return playerSection.getCards(section);
+    }
+
+    public PlayerSection getPlayerSection(Player player) {
+        return playerSections.get(player);
+    }
+
+    public void removeCard(Player player, UnitCard card) {
+        PlayerSection playerSection = playerSections.get(player);
+        playerSection.removeCard(card);
+    }
 }
 
