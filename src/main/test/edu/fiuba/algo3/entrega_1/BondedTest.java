@@ -33,8 +33,8 @@ public class BondedTest {
 
     @BeforeEach
     void setUp() {
-        List<Ability> bonded = List.of(new Bonded());
-        List<Ability> medic = List.of(new Medic());
+        Ability bonded = new Bonded();
+        Ability medic = new Medic();
         card0 = new UnitCard("Cow", "Vaca", new Point(1), new Ranged());
         card1 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), new Siege(), bonded);
         card3 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), new Siege(), bonded);

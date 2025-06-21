@@ -7,26 +7,23 @@ import edu.fiuba.algo3.modelo.board.PlayerSection;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UnitCard extends AbstractCard {
     private final Section section;
-    private List<Ability> abilities;
+    private Ability ability;
     private Point points;
 
-    public UnitCard(String name, String description, Point points, Section section, List<Ability> ability) {
+    public UnitCard(String name, String description, Point points, Section section, Ability ability) {
         super(name, description);
         this.points = points;
         this.section = section;
-        this.abilities = ability;
+        this.ability = ability;
     }
 
     public UnitCard(String name, String description, Point points, Section section) {
         super(name, description);
         this.points = points;
         this.section = section;
-        this.abilities = new ArrayList<>();
+        this.ability = new NullObjectAbility();
     }
 
     public void addCard(UnitCard card,PlayerSection playerSection) {
@@ -36,11 +33,7 @@ public class UnitCard extends AbstractCard {
 
     @Override
     public void play(Player player, Board board) {
-        Player targetPlayer = player;
-
-        for (Ability ability : this.abilities) {
-            targetPlayer = ability.effect(player, this, board);
-        }
+        Player targetPlayer = ability.effect(player, this, board);;
 
         board.addCard(targetPlayer, this);
     }

@@ -45,11 +45,11 @@ public class SpiesTest {
         public void setUp() {
 
             List<AbstractCard> cards1 = new ArrayList<>();
-            List<Ability> abilities = new ArrayList<>();
-            spy = new Spies();
-            abilities.add(spy);
 
-            card1 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee(), abilities);
+            spy = new Spies();
+
+
+            card1 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee(), spy);
 
 
             card2 = new UnitCard("guerrero", "guerrero", new Point(10), new Melee());
