@@ -65,8 +65,10 @@ public class UnitCard extends AbstractCard {
     public void modifyPoints(int points) {
         this.points.modifyPoints(points);
     }
+
     public void setPoints(Points points) {
         this.points = points;
+    }
 
     public boolean compareCardPoints(UnitCard card) {
         return this.points.comparePoints(card.points);

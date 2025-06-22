@@ -4,4 +4,6 @@ public interface Points {
     int getPoints();
     void modifyPoints(int points);
     void duplicatedPoints();
+    boolean comparePoints(Points points);
+    boolean equalPoints(Points points);
 }

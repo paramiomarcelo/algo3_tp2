@@ -21,11 +21,11 @@ public class Point implements Points{
         this.currentPoints = points;
     }
 
-    public boolean comparePoints(Point points) {
+    public boolean comparePoints(Points points) {
         return this.currentPoints > points.getPoints();
     }
 
-    public boolean equalPoints(Point points) {
+    public boolean equalPoints(Points points) {
         return this.currentPoints == points.getPoints();
     }
 }

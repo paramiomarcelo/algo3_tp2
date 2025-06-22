@@ -13,4 +13,10 @@ public class PointLegendary implements Points{
     }
 
     public void modifyPoints(int points){}
+    public boolean comparePoints(Points points) {
+        return this.basePoints > points.getPoints();
+    }
+    public boolean equalPoints(Points points) {
+        return this.basePoints == points.getPoints();
+    }
 }
