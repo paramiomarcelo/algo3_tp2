@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class UnitCard extends AbstractCard {
     private final List<Section> section;
     private Ability ability;
-    private Point points;
+    private Points points;
 
     public UnitCard(String name, String description, Point points, List<Section> section, Ability ability) {
         super(name, description);
@@ -64,5 +64,8 @@ public class UnitCard extends AbstractCard {
 
     public void modifyPoints(int points) {
         this.points.modifyPoints(points);
+    }
+    public void setPoints(Points points) {
+        this.points = points;
     }
 }

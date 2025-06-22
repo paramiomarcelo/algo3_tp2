@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.ability.Ability;
+import edu.fiuba.algo3.modelo.ability.Legendary;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.Point;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
@@ -34,8 +36,10 @@ public class PlayerTest {
     private UnitCard card1;
     private UnitCard card2;
     private UnitCard card3;
+    private UnitCard card5;
     private SpecialCard card4;
     private MoraleBoost moraleBoost = new MoraleBoost(new Melee());
+
     @BeforeEach
     public void setUp() {
 
@@ -45,10 +49,14 @@ public class PlayerTest {
         List<Section> sectionSiege = new ArrayList<>();
         sectionSiege.add(new Melee());
 
+        Ability legendary = new Legendary();
+
         unitCard = new UnitCard("Arquero", "Unidad a distancia", new Point(5), sectionMelee);
         card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), sectionSiege);
         card2 = new UnitCard("Espadachín", "unidad cuerpo a cuerpo",new Point(6), sectionMelee);
         card3 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), sectionSiege);
+        card5 = new UnitCard("Gerardo", "barrabrava de Boca", new Point(15), sectionMelee, legendary);
+
         card4 = new SpecialCard("ejemplo", "ej", moraleBoost);
 
         List<AbstractCard> cards1 = new ArrayList<>();
@@ -56,6 +64,7 @@ public class PlayerTest {
         cards1.add(card1);
         cards1.add(card2);
         cards1.add(card3);
+        cards1.add(card5);
         cards1.add(card4);
         deck1 = new Deck(cards1);
 
@@ -78,6 +87,7 @@ public class PlayerTest {
     public void testPlayerCanPlayCard() {
         player1.playCard(unitCard);
         player1.playCard(card2);
+        player1.playCard(card5);
         player1.playCard(card4);
         //assertEquals(initialHandSize - 1, player1.getHand().size());
     }

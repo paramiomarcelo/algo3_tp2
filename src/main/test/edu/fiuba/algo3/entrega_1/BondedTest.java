@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+//import com.tngtech.archunit.core.importer.LocationResolver;
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.ability.Bonded;
@@ -32,6 +33,7 @@ public class BondedTest {
     private UnitCard card1;
     private UnitCard card2;
     private UnitCard card3;
+    private UnitCard card4;
 
     List<Section> sectionMelee = new ArrayList<>();
     List<Section> sectionRanged = new ArrayList<>();
@@ -47,10 +49,12 @@ public class BondedTest {
     void setUp() {
         Ability bonded = new Bonded();
         Ability medic = new Medic();
+
         card0 = new UnitCard("Cow", "Vaca", new Point(1), sectionRanged);
         card1 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), sectionSiege, bonded);
         card3 = new UnitCard("Catapulta", "Bounded: unidad que duplica valor", new Point(8), sectionSiege, bonded);
         card2 = new UnitCard("Medic", "medico",new Point(5), sectionSiege, medic);
+
 
         cards = new ArrayList<>();
         cards.add(card0);

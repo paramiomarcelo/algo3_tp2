@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.card;
 
-public class Point {
+public class Point implements Points{
     Integer currentPoints;
     Integer basePoints;
 
