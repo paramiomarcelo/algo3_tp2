@@ -43,6 +43,9 @@ public class Row  {
 
     public List<UnitCard> clearBoardRound(){
         List<UnitCard> cardsAux = new ArrayList<>(cards);
+        for (UnitCard card: cardsAux){
+            card.restore();
+        }
         cards.clear();
         return cardsAux;
     }

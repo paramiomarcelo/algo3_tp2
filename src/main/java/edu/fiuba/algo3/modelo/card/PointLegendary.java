@@ -6,7 +6,12 @@ public class PointLegendary implements Points{
     public PointLegendary(Integer value) {
         this.basePoints = value;
     }
+
     public void duplicatedPoints(){}
+
+    public void sumPoints() {}
+
+    public void restoredCurrentPoints() {}
 
     public int getPoints(){
         return this.basePoints;

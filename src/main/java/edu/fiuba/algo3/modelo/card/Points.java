@@ -6,4 +6,6 @@ public interface Points {
     void duplicatedPoints();
     boolean comparePoints(Points points);
     boolean equalPoints(Points points);
+    void sumPoints();
+    void restoredCurrentPoints();
 }

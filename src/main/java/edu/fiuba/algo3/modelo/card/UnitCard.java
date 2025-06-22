@@ -53,9 +53,12 @@ public class UnitCard extends AbstractCard {
         points.duplicatedPoints();
     }
 
+    public void sumOne(){ points.sumPoints();}
+
     public List<Section> getSection() {
         return this.section;
     }
+    public boolean comparedName(UnitCard card) { return card.getName().equals(name);}
 
     public void chooseSection(int index) {
         Section aux = this.section.remove(index);
@@ -77,4 +80,5 @@ public class UnitCard extends AbstractCard {
     public boolean equalPoints(UnitCard card) {
         return this.points.equalPoints(card.points);
     }
+    public void restore(){ this.points.restoredCurrentPoints();}
 }

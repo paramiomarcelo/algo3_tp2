@@ -10,7 +10,15 @@ public class Point implements Points{
     }
 
     public void duplicatedPoints(){
-        this.currentPoints = currentPoints*2;
+        this.currentPoints = basePoints*2;
+    }
+
+    public void sumPoints() {
+        currentPoints = currentPoints + 1;
+    }
+
+    public void restoredCurrentPoints() {
+        currentPoints = basePoints;
     }
 
     public int getPoints(){

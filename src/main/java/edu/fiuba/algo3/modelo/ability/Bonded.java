@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bonded implements Ability {
@@ -14,12 +15,18 @@ public class Bonded implements Ability {
 
         List<UnitCard> cards = board.getCardsRow(player, card.getRow());
 
-        for (UnitCard cardOnBoard : cards) {
-            if (cardOnBoard.getName().equals(card.getName())) {
-                cardOnBoard.duplicatePoints();
+        List<UnitCard> bonded = new ArrayList<>();
+        for (UnitCard c : cards) {
+            if (c.comparedName(card)) {
+                bonded.add(c);
             }
         }
-
+        if(bonded.size() >= 1){
+            for (UnitCard c : bonded) {
+                c.duplicatePoints();
+            }
+            card.duplicatePoints();
+        }
         return player;
     }
 

@@ -18,7 +18,15 @@ public abstract class Weather extends SpecialEffect  {
 
     @Override
     public void apply(UnitCard card) {
+        card.modifyPoints(1);
+    }
 
+    @Override
+    public void apply(Board board, Player player) {
+        super.apply(board, player);
+
+        Player opponent = board.otherPlayer(player);
+        board.getPlayerSection(opponent).applyEffect(this);
     }
 
 }
