@@ -71,5 +71,9 @@ public class Board  {
         PlayerSection playerSection = playerSections.get(player);
         playerSection.removeCard(card);
     }
+    public void actualScore(Player player) {
+        PlayerSection playerSection = playerSections.get(player);
+        playerSection.modifierScore(player);
+    }
 }
 

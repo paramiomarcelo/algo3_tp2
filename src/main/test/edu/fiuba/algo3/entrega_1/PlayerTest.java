@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.ability.Legendary;
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.Point;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
@@ -89,6 +90,8 @@ public class PlayerTest {
         player1.playCard(card2);
         player1.playCard(card5);
         player1.playCard(card4);
+        Board.getInstance().actualScore(player1);
+
         //assertEquals(initialHandSize - 1, player1.getHand().size());
     }
 

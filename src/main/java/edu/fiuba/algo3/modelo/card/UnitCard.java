@@ -20,6 +20,7 @@ public class UnitCard extends AbstractCard {
         this.points = points;
         this.section = section;
         this.ability = ability;
+
     }
 
     public UnitCard(String name, String description, Point points, List<Section> section) {

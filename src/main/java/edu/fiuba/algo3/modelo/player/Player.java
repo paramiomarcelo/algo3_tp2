@@ -14,6 +14,7 @@ public class Player {
     private Deck deck;
     private List<AbstractCard> hand;
     private List<UnitCard> discardPile;
+    private Score score;
 
     private List<UnitCard> unitsDiscarded;
     private Integer indexSelectCards;
@@ -23,6 +24,7 @@ public class Player {
         this.deck = deck;
         this.hand = new ArrayList<>();
         this.discardPile = new ArrayList<>();
+        score = new Score();
     }
 
     public void addCard(AbstractCard card){
@@ -79,4 +81,5 @@ public class Player {
     public Integer indexSelectCards() {
         return indexSelectCards;
     }
+    public Score getScore() {return score;}
 }

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.board;
 
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.effect.SpecialEffect;
+import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
 import java.util.ArrayList;
@@ -91,5 +92,9 @@ public class PlayerSection {
         siege.removeCard(card);
     }
 
-
+    public void modifierScore(Player player) {
+        player.getScore().setScoreMelee(melee.getPoints());
+        player.getScore().setScoreRanged(ranged.getPoints());
+        player.getScore().setScoreSiege(siege.getPoints());
+    }
 }
