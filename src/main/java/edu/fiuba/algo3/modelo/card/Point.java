@@ -20,4 +20,12 @@ public class Point implements Points{
     public void modifyPoints(int points){
         this.currentPoints = points;
     }
+
+    public boolean comparePoints(Point points) {
+        return this.currentPoints > points.getPoints();
+    }
+
+    public boolean equalPoints(Point points) {
+        return this.currentPoints == points.getPoints();
+    }
 }

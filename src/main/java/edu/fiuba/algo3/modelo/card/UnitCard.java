@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class UnitCard extends AbstractCard {
     private final List<Section> section;
@@ -68,5 +67,12 @@ public class UnitCard extends AbstractCard {
     }
     public void setPoints(Points points) {
         this.points = points;
+
+    public boolean compareCardPoints(UnitCard card) {
+        return this.points.comparePoints(card.points);
+    }
+
+    public boolean equalPoints(UnitCard card) {
+        return this.points.equalPoints(card.points);
     }
 }

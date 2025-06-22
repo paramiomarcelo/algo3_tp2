@@ -54,17 +54,17 @@ public class ScorchedEarthTest {
         game.setPlayers(player1, player2);
 
         player1.playCard(unitCard1); //3
-        player1.playCard(unitCard3); //10
+        player1.playCard(unitCard3); //3 + 7 = 10
 
         player2.playCard(unitCard2); //10
-        player2.playCard(unitCard4); //15
+        player2.playCard(unitCard4); //10 + 5 = 15
 
         assertEquals(10, player1.getPoints());
         assertEquals(15, player2.getPoints());
 
         player1.playCard(scorchedEarthCard);
 
-        assertEquals(3, player1.getPoints());
+        assertEquals(10, player1.getPoints());
         assertEquals(5, player2.getPoints());
     }
 }

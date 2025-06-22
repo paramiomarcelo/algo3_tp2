@@ -55,10 +55,7 @@ public class Player {
     }
 
     public void discardCard(UnitCard card) {
-        if (hand.contains(card)) {
-            hand.remove(card);
-            this.discardPile.add(card);
-        }
+        this.discardPile.add(card);
     }
 
     public void clearRound(Board board){
