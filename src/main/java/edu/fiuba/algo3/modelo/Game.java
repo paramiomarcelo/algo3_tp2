@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.board.Board;
+import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private Player player1;
@@ -42,4 +46,8 @@ public class Game {
         player1.clearRound(board);
         player2.clearRound(board);
     }
+
+
+
+
 }
