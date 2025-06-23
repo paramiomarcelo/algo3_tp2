@@ -17,7 +17,8 @@ public class PointLegendary implements Points{
         return this.basePoints;
     }
 
-    public void modifyPoints(int points){}
+    public void weatherPoints(){}
+    public void clearPoints(){}
     public boolean comparePoints(Points points) {
         return this.basePoints > points.getPoints();
     }

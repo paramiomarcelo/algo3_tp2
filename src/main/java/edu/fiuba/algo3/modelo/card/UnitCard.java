@@ -65,8 +65,8 @@ public class UnitCard extends AbstractCard {
         this.section.add(0, aux);
     }
 
-    public void modifyPoints(int points) {
-        this.points.modifyPoints(points);
+    public void weatherPoints() {
+        this.points.weatherPoints();
     }
 
     public void setPoints(Points points) {
@@ -81,4 +81,6 @@ public class UnitCard extends AbstractCard {
         return this.points.equalPoints(card.points);
     }
     public void restore(){ this.points.restoredCurrentPoints();}
+
+    public void clearPoints(){ this.points.clearPoints();}
 }

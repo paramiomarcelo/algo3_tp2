@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class ScorchedEarth extends SpecialEffect  {
 
-    public ScorchedEarth(Section section) {
+    public ScorchedEarth(List<Section> section) {
         super(section);
     }
 

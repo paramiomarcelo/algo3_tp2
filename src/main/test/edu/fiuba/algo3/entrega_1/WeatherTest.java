@@ -27,11 +27,20 @@ public class WeatherTest {
     List<Section> sectionMelee = new ArrayList<>();
     List<Section> sectionRanged = new ArrayList<>();
     List<Section> sectionSiege = new ArrayList<>();
+    List<Section> allSections = new ArrayList<>();
+    List<Section> stormSections = new ArrayList<>();
 
     {
         sectionMelee.add(new Melee());
         sectionRanged.add(new Ranged());
         sectionSiege.add(new Siege());
+
+        allSections.add(new Siege());
+        allSections.add(new Ranged());
+        allSections.add(new Melee());
+
+        stormSections.add(new Melee());
+        stormSections.add(new Ranged());
     }
 
     UnitCard unitCard1 = new UnitCard("Espadachín", "description", new Point(7), sectionMelee);
@@ -41,20 +50,19 @@ public class WeatherTest {
     UnitCard unitCard5 = new UnitCard("Catapulta", "description", new Point(4), sectionSiege);
     UnitCard unitCard6 = new UnitCard("Trebuchet", "description", new Point(4), sectionSiege);
 
-    SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new SnowEffect(new Melee()));
-    SpecialCard fogCard = new SpecialCard("Niebla", "descrition", new FogEffect(new Siege()));
-    SpecialCard torrentialRainCard = new SpecialCard("Lluvia torrencial", "descrition", new TorrentialRainEffect(new Ranged()));
-    SpecialCard stormCard = new SpecialCard("Tormenta", "descrition", new StormEffect(new Ranged()));
-    //SpecialCard clearWeatherEffectsCard = new SpecialCard("Despejar Clima", "descrition", new ClearWeatherEffect(new Melee()));
+    SpecialCard snowCard = new SpecialCard("Nieve", "descrition", new SnowEffect(sectionMelee));
+    SpecialCard fogCard = new SpecialCard("Niebla", "descrition", new FogEffect(sectionSiege));
+    SpecialCard torrentialRainCard = new SpecialCard("Lluvia torrencial", "descrition", new TorrentialRainEffect(sectionRanged));
+    SpecialCard stormCard = new SpecialCard("Tormenta", "descrition", new StormEffect(stormSections));
+    SpecialCard clearWeatherEffectsCard = new SpecialCard("Despejar Clima", "descrition", new ClearWeatherEffect(allSections));
 
     Deck deck1 = new Deck(Arrays.asList(unitCard1, unitCard3, unitCard5, snowCard, fogCard, torrentialRainCard, stormCard/*, clearWeatherEffectsCard*/));
-    Deck deck2 = new Deck(Arrays.asList(unitCard2, unitCard4, unitCard6, snowCard/*, clearWeatherEffectsCard*/));
+    Deck deck2 = new Deck(Arrays.asList(unitCard2, unitCard4, unitCard6, snowCard, clearWeatherEffectsCard));
 
     Player player1 = new Player("Jugador 1", deck1);
     Player player2 = new Player("Jugador 2", deck2);
 
     Game game = new Game();
-    Board board = Board.getInstance();
 
     @BeforeEach
     public void setBoard() {
@@ -75,7 +83,7 @@ public class WeatherTest {
     public void fogEffectSetsAllUnitPointsToOneInRangeRows() {
         player1.playCard(unitCard3);
         player2.playCard(unitCard4);
-        player1.playCard(fogCard);
+        player1.playCard(torrentialRainCard);
 
         assertEquals(1, player1.getPoints());
         assertEquals(1, player2.getPoints());
@@ -85,8 +93,8 @@ public class WeatherTest {
     public void stormEffectSetsAllUnitPointsToOneInRangeAndSiegeRows() {
         player1.playCard(unitCard3);
         player2.playCard(unitCard4);
-        player1.playCard(unitCard5);
-        player2.playCard(unitCard6);
+        player1.playCard(unitCard1);
+        player2.playCard(unitCard2);
         player1.playCard(stormCard);
 
         assertEquals(2, player1.getPoints());
@@ -104,7 +112,7 @@ public class WeatherTest {
         assertEquals(1, player2.getPoints());
     }
 
-   /* @Test
+   @Test
     public void clearWeatherEffectClearsWeatherEffects() {
         player1.playCard(unitCard1);
         player2.playCard(unitCard4);
@@ -115,7 +123,7 @@ public class WeatherTest {
 
         player2.playCard(clearWeatherEffectsCard);
 
-        assertEquals(10, player1.getPoints());
-        assertEquals(10, player2.getPoints());
-    }*/
+        assertEquals(11, player1.getPoints());
+        assertEquals(4, player2.getPoints());
+    }
 }

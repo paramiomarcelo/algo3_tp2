@@ -5,10 +5,12 @@ import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
+import java.util.List;
+
 
 public class MoraleBoost extends SpecialEffect  {
 
-    public MoraleBoost(Section section) {
+    public MoraleBoost(List<Section> section) {
         super(section);
     }
 

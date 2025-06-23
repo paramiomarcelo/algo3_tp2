@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.section.Ranged;
 import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class SpecialCardFactory extends BaseCardFactory {
@@ -26,14 +28,18 @@ public class SpecialCardFactory extends BaseCardFactory {
     }
 
     private SpecialEffect createEffect(String effectType, Map<String, Object> attributes) {
+
+        List<Section> sections = new ArrayList<>();
+
         switch (effectType) {
             case "Tierra arrasada":
-                return new ScorchedEarth(createSection((String) attributes.get("section")));
+                sections.add(createSection((String) attributes.get("section")));
+                return new ScorchedEarth(sections);
             case "Morale boost":
-                return new MoraleBoost(createSection((String) attributes.get("section")));
+                sections.add(createSection((String) attributes.get("section")));
+                return new MoraleBoost(sections);
             case "Clima":
                 // TODO: Implementar efectos de clima
-                return new MoraleBoost(createSection((String) attributes.get("section")));
                 //throw new UnsupportedOperationException("Efectos de clima no implementados aún");
             default:
                 throw new IllegalArgumentException("Tipo de efecto no soportado: " + effectType);

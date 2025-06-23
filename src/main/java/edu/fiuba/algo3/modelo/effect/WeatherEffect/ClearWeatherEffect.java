@@ -6,22 +6,24 @@ import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
+import java.util.List;
+
 public class ClearWeatherEffect extends SpecialEffect {
 
-    public ClearWeatherEffect(Section section) {
+    public ClearWeatherEffect(List<Section> section) {
         super(section);
     }
 
     @Override
     public void apply(UnitCard card) {
-        card.modifyPoints(1);
+        card.clearPoints();
     }
 
     @Override
     public void apply(Board board, Player player) {
-        super.apply(board, player); //quien la juega
+       super.apply(board, player);
 
-        Player opponent = board.otherPlayer(player);
-        board.getPlayerSection(opponent).applyEffect(this);
+       Player opponent = board.otherPlayer(player);
+       board.getPlayerSection(opponent).applyEffect(this);
     }
 }

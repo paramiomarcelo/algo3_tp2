@@ -25,8 +25,8 @@ public class Point implements Points{
         return this.currentPoints;
     }
 
-    public void modifyPoints(int points){
-        this.currentPoints = points;
+    public void weatherPoints(){
+        this.currentPoints = 1;
     }
 
     public boolean comparePoints(Points points) {
@@ -35,5 +35,9 @@ public class Point implements Points{
 
     public boolean equalPoints(Points points) {
         return this.currentPoints == points.getPoints();
+    }
+
+    public void clearPoints(){
+        this.currentPoints = this.basePoints;
     }
 }

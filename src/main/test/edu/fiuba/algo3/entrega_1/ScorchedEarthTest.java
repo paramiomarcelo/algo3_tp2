@@ -37,7 +37,7 @@ public class ScorchedEarthTest {
     SpecialCard scorchedEarthCard = new SpecialCard(
             "Tierra arrasada",
             "Destruye la carta más fuerte de cada jugador",
-            new ScorchedEarth(new Melee())
+            new ScorchedEarth(sectionMelee)
     );
 
     Deck deck1 = new Deck(Arrays.asList(unitCard1, unitCard3, scorchedEarthCard));

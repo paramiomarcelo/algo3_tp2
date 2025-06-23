@@ -6,15 +6,17 @@ import edu.fiuba.algo3.modelo.effect.SpecialEffect;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
+import java.util.List;
+
 public class StormEffect extends SpecialEffect {
 
-    public StormEffect(Section section) {
+    public StormEffect(List<Section> section) {
         super(section);
     }
 
     @Override
     public void apply(UnitCard card) {
-        card.modifyPoints(1);
+        card.weatherPoints();
     }
 
     @Override
