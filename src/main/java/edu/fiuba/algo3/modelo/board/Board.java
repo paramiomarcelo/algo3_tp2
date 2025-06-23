@@ -75,5 +75,6 @@ public class Board  {
         PlayerSection playerSection = playerSections.get(player);
         playerSection.modifierScore(player);
     }
+
 }
 

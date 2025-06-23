@@ -33,6 +33,16 @@
       <artifactId>javafx-controls</artifactId>
       <version>${javafx-version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-graphics</artifactId>
+      <version>${javafx-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-base</artifactId>
+      <version>${javafx-version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -89,12 +99,12 @@
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-	<version>${pitest-plugin-version}</version>
+        <version>${pitest-plugin-version}</version>
         <dependencies>
           <dependency>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-junit5-plugin</artifactId>
-	    <version>${pitest-junit5-plugin-version}</version>
+            <version>${pitest-junit5-plugin-version}</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -111,7 +121,7 @@
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.6</version>
         <configuration>
-          <mainClass>edu.fiuba.algo3/${main-class}</mainClass>
+          <mainClass>edu.fiuba.algo3.vistas.App</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -139,7 +149,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-version}</version>
         <configuration>
-          <argLine>${argLine} -XX:MaxPermSize=256m</argLine>
+          <argLine>-XX:MaxPermSize=256m</argLine>
         </configuration>
       </plugin>
       <plugin>
