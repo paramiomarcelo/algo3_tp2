@@ -49,6 +49,8 @@ public class GameView extends BorderPane {
 
         this.stage = stage;
         initializee();
+        GameView view = this;
+
 
         Image imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/background/Board.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -56,9 +58,17 @@ public class GameView extends BorderPane {
 
         ContenedorBoard board = new ContenedorBoard(getCArdsss());
 
-        VBox contenedor = new VBox();
-        Board a = Board.getInstance();
-        setCenter(board);
+        AddPlayers p2 = new AddPlayers(player2, () -> {
+            this.getChildren().clear();
+            setCenter(board);
+        });
+
+        AddPlayers p1 = new AddPlayers(player1, () -> {
+            this.getChildren().clear();
+            this.setCenter(p2);
+        });
+
+        setCenter(p1);
     }
     public void initializee() {
         List<Section> sectionMelee = new ArrayList<>();

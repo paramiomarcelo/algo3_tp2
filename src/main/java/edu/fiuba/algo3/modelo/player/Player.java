@@ -79,4 +79,12 @@ public class Player {
         return indexSelectCards;
     }
     public Score getScore() {return score;}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }
