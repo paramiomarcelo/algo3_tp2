@@ -77,11 +77,14 @@ class CardFactoryTest {
     @DisplayName("Should create a special card correctly")
     void shouldCreateSpecialCard() {
         
+        List<String> secciones = new ArrayList<>();
+        secciones.add("Cuerpo a Cuerpo");
+        
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("name", "Commander's Horn");
         attributes.put("description", "Doubles the strength of all cards in a specific section.");
         attributes.put("effectType", "Morale boost");
-        attributes.put("section", "Cuerpo a Cuerpo");
+        attributes.put("section", secciones);
 
         
         AbstractCard card = cardFactory.createCard("SpecialCard", attributes);
@@ -89,6 +92,29 @@ class CardFactoryTest {
         
         assertNotNull(card);
         assertEquals("Commander's Horn", card.getName());
+    }
+
+    @Test
+    @DisplayName("Should create a weather card with multiple sections")
+    void shouldCreateWeatherCardWithMultipleSections() {
+        
+        List<String> secciones = new ArrayList<>();
+        secciones.add("Cuerpo a Cuerpo");
+        secciones.add("Combate a Distancia");
+        
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("name", "Tormenta de Skellige");
+        attributes.put("description", "Establece la fuerza de todas las cartas de Combate Cuerpo a Cuerpo y Combate a Distancia en 1 para ambos jugadores.");
+        attributes.put("effectType", "Clima");
+        attributes.put("section", secciones);
+
+        
+        AbstractCard card = cardFactory.createCard("SpecialCard", attributes);
+
+        
+        assertNotNull(card);
+        assertTrue(card instanceof SpecialCard);
+        assertEquals("Tormenta de Skellige", card.getName());
     }
 
     @Test

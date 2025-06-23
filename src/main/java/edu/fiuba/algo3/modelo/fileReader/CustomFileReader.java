@@ -83,13 +83,7 @@ public class CustomFileReader {
             attributes.put("name", nombre);
             attributes.put("description", descripcion);
             attributes.put("effectType", tipo);
-            
-            // Para efectos de clima, usar la primera sección afectada como sección por defecto
-            if (afectado != null && !afectado.isEmpty()) {
-                attributes.put("section", afectado.get(0));
-            } else {
-                attributes.put("section", "Cuerpo a Cuerpo"); // Por defecto
-            }
+            attributes.put("section", afectado != null ? afectado : new ArrayList<>());
 
             cards.add(cardFactory.createCard("SpecialCard", attributes));
         }

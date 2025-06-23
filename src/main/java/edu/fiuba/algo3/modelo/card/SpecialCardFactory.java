@@ -33,14 +33,21 @@ public class SpecialCardFactory extends BaseCardFactory {
 
         switch (effectType) {
             case "Tierra arrasada":
-                sections.add(createSection((String) attributes.get("section")));
+                sections.add(new Melee());
+                sections.add(new Ranged());
+                sections.add(new Siege());
                 return new ScorchedEarth(sections);
             case "Morale boost":
-                sections.add(createSection((String) attributes.get("section")));
                 return new MoraleBoost(sections);
             case "Clima":
-                // TODO: Implementar efectos de clima
-                //throw new UnsupportedOperationException("Efectos de clima no implementados aún");
+                Object afectadoObj = attributes.get("section");
+                if (afectadoObj instanceof List) {
+                    List<String> afectadoList = (List<String>) afectadoObj;
+                    for (String seccionStr : afectadoList) {
+                        sections.add(createSection(seccionStr));
+                    }
+                }
+                return new edu.fiuba.algo3.modelo.effect.Weather(sections);
             default:
                 throw new IllegalArgumentException("Tipo de efecto no soportado: " + effectType);
         }

@@ -75,5 +75,9 @@ public class Board  {
         PlayerSection playerSection = playerSections.get(player);
         playerSection.modifierScore(player);
     }
+
+    public void reset() {
+        playerSections.clear();
+    }
 }
 

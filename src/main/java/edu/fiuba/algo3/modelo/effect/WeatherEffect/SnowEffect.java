@@ -21,7 +21,7 @@ public class SnowEffect extends SpecialEffect {
 
     @Override
     public void apply(Board board, Player player) {
-        super.apply(board, player); //quien la juega
+        super.apply(board, player);
 
         Player opponent = board.otherPlayer(player);
         board.getPlayerSection(opponent).applyEffect(this);

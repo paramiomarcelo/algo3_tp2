@@ -14,7 +14,7 @@ import edu.fiuba.algo3.modelo.section.Siege;
 import java.util.List;
 
 
-public abstract class Weather extends SpecialEffect  {
+public class Weather extends SpecialEffect  {
 
 
     public Weather(List<Section> sections) {
@@ -23,9 +23,16 @@ public abstract class Weather extends SpecialEffect  {
     }
 
     @Override
-    public abstract void apply(UnitCard card);
+    public void apply(UnitCard card){
+        card.weatherPoints();
+    }
 
     @Override
-    public abstract void apply(Board board, Player player);
+    public void apply(Board board, Player player){
+        super.apply(board, player);
+
+        Player opponent = board.otherPlayer(player);
+        board.getPlayerSection(opponent).applyEffect(this);
+    }
 
 }

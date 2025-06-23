@@ -21,9 +21,9 @@ public class ClearWeatherEffect extends SpecialEffect {
 
     @Override
     public void apply(Board board, Player player) {
-       super.apply(board, player);
+        super.apply(board, player);
 
-       Player opponent = board.otherPlayer(player);
-       board.getPlayerSection(opponent).applyEffect(this);
+        Player opponent = board.otherPlayer(player);
+        board.getPlayerSection(opponent).applyEffect(this);
     }
 }
