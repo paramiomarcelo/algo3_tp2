@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.effect.MoraleBoost;
+import edu.fiuba.algo3.modelo.fileReader.CustomFileReader;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
@@ -20,7 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +45,14 @@ public class GameView extends BorderPane {
     private UnitCard card7;
     private UnitCard card8;
     private SpecialCard card4;
-    private MoraleBoost moraleBoost = new MoraleBoost(new Melee());
+    private List<Section> sectionMelee = new ArrayList<>();
+    {
+        sectionMelee.add(new Melee());
+    }
+    private MoraleBoost moraleBoost = new MoraleBoost(sectionMelee);
 
 
-    public GameView(Stage stage) {
+    public GameView(Stage stage) throws IOException, ParseException {
         super();
 
         this.stage = stage;
@@ -79,7 +86,7 @@ public class GameView extends BorderPane {
         setCenter(p1);
 
     }
-    public void initializee() {
+    public void initializee() throws IOException, ParseException {
         List<Section> sectionMelee = new ArrayList<>();
         sectionMelee.add(new Melee());
 
@@ -102,19 +109,12 @@ public class GameView extends BorderPane {
         card7 = new UnitCard("Cerys", "unidad a distancia",new Point(3), sectionRanged);
         card8 = new UnitCard("Birna Bran", "barrabrava de Boca", new Point(15), sectionRanged);
 
-        List<AbstractCard> cards1 = new ArrayList<>();
-        cards1.add(unitCard);
-        cards1.add(card1);
-        cards1.add(card2);
-        cards1.add(card3);
-        cards1.add(card5);
-        cards1.add(card4);
-        deck1 = new Deck(cards1);
+        CustomFileReader fileReader = new CustomFileReader();
+        List<Deck> decks = fileReader.read("src/test/resources/json/gwent.json");
 
-        deck2 = new Deck(new ArrayList<>());
 
-        player1 = new Player("Jugador1", deck1);
-        player2 = new Player("Jugador2", deck2);
+        player1 = new Player("Jugador1", decks.get(0));
+        player2 = new Player("Jugador2", decks.get(1));
 
         game = new Game();
         game.setPlayers(player1, player2);
