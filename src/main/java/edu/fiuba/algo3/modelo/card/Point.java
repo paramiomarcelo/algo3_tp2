@@ -10,23 +10,23 @@ public class Point implements Points{
     }
 
     public void duplicatedPoints(){
-        this.currentPoints = basePoints*2;
+        this.currentPoints = this.basePoints*2;
     }
 
     public void sumPoints() {
-        currentPoints = currentPoints + 1;
+        this.currentPoints = this.currentPoints + 1;
     }
 
     public void restoredCurrentPoints() {
-        currentPoints = basePoints;
+        this.currentPoints = this.basePoints;
     }
 
     public int getPoints(){
         return this.currentPoints;
     }
 
-    public void modifyPoints(int points){
-        this.currentPoints = points;
+    public void weatherPoints(){
+        this.currentPoints = 1;
     }
 
     public boolean comparePoints(Points points) {
@@ -35,5 +35,9 @@ public class Point implements Points{
 
     public boolean equalPoints(Points points) {
         return this.currentPoints == points.getPoints();
+    }
+
+    public void clearPoints(){
+        this.currentPoints = this.basePoints;
     }
 }

@@ -76,6 +76,10 @@ public class Board  {
         playerSection.modifierScore(player);
     }
 
+    public void reset() {
+        playerSections.clear();
+    }
+
     public List<List<UnitCard>> getsRows(Player currentPlayer) {
         List<List<UnitCard>> cards = new ArrayList<>();
         cards.add(getPlayerSection(otherPlayer(currentPlayer)).getCardsSiege());

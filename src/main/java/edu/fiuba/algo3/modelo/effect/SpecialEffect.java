@@ -5,15 +5,17 @@ import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Section;
 
+import java.util.List;
+
 public abstract class SpecialEffect {
 
-    protected final Section section;
+    protected final List<Section> section;
 
-    public SpecialEffect(Section section) {
+    public SpecialEffect(List<Section> section) {
         this.section = section;
     }
 
-    public Section getSection(){
+    public List<Section> getSection(){
         return section;
     }
 

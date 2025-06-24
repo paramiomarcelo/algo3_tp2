@@ -39,7 +39,7 @@ public class PlayerTest {
     private UnitCard card3;
     private UnitCard card5;
     private SpecialCard card4;
-    private MoraleBoost moraleBoost = new MoraleBoost(new Melee());
+    private MoraleBoost moraleBoost;
 
     @BeforeEach
     public void setUp() {
@@ -51,6 +51,8 @@ public class PlayerTest {
         sectionSiege.add(new Melee());
 
         Ability legendary = new Legendary();
+
+        moraleBoost = new MoraleBoost(sectionMelee);
 
         unitCard = new UnitCard("Arquero", "Unidad a distancia", new Point(5), sectionMelee);
         card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), sectionSiege);

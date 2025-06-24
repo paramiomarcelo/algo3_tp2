@@ -62,7 +62,7 @@ public class MoraleBoostTest {
         SpecialCard moraleCard = new SpecialCard(
                 "Inspiración",
                 "Duplica puntos de la fila",
-                new MoraleBoost(new Melee())
+                new MoraleBoost(sectionMelee)
         );
 
         player1.playCard(moraleCard);

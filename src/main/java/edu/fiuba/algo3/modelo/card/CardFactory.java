@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.card;
 
 import edu.fiuba.algo3.modelo.ability.*;
-import edu.fiuba.algo3.modelo.effect.Weather;
 
 
 import java.util.List;

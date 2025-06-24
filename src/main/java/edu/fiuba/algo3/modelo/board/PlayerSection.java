@@ -30,8 +30,10 @@ public class PlayerSection {
     }
 
     public void applyEffect(SpecialEffect effect) {
-        Section section = effect.getSection();
-        section.apply(effect, this);
+        List<Section> sections = effect.getSection();
+        for (Section section : sections) {
+            section.apply(effect, this);
+        }
     }
 
     public void applyEffectMelee(SpecialEffect effect) {

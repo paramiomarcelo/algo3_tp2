@@ -4,25 +4,31 @@ import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.board.Row;
 import edu.fiuba.algo3.modelo.card.UnitCard;
+import edu.fiuba.algo3.modelo.effect.WeatherEffect.*;
 import edu.fiuba.algo3.modelo.player.Player;
+import edu.fiuba.algo3.modelo.section.Melee;
+import edu.fiuba.algo3.modelo.section.Ranged;
 import edu.fiuba.algo3.modelo.section.Section;
+import edu.fiuba.algo3.modelo.section.Siege;
 
 import java.util.List;
 
 
-public abstract class Weather extends SpecialEffect  {
+public class Weather extends SpecialEffect  {
 
-    public Weather(Section section) {
-        super(section);
+
+    public Weather(List<Section> sections) {
+        super(sections);
+
     }
 
     @Override
-    public void apply(UnitCard card) {
-        card.modifyPoints(1);
+    public void apply(UnitCard card){
+        card.weatherPoints();
     }
 
     @Override
-    public void apply(Board board, Player player) {
+    public void apply(Board board, Player player){
         super.apply(board, player);
 
         Player opponent = board.otherPlayer(player);
