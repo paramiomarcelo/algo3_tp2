@@ -76,5 +76,15 @@ public class Board  {
         playerSection.modifierScore(player);
     }
 
+    public List<List<UnitCard>> getsRows(Player currentPlayer) {
+        List<List<UnitCard>> cards = new ArrayList<>();
+        cards.add(getPlayerSection(otherPlayer(currentPlayer)).getCardsSiege());
+        cards.add( getPlayerSection(otherPlayer(currentPlayer)).getCardsRanged());
+        cards.add(getPlayerSection(otherPlayer(currentPlayer)).getCardsMelee());
+        cards.add( getPlayerSection(currentPlayer).getCardsMelee());
+        cards.add(getPlayerSection(currentPlayer).getCardsRanged());
+        cards.add( getPlayerSection(currentPlayer).getCardsSiege());
+        return cards;
+    }
 }
 

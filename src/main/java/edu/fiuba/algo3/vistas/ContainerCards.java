@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -7,7 +8,7 @@ import javafx.scene.layout.*;
 
 public class ContainerCards extends HBox {
 
-    public ContainerCards(UnitCard card) {
+    public ContainerCards(AbstractCard card) {
         super();
         Image image;
 //        Label name = new Label(card.getName());

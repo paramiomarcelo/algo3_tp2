@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.section.Ranged;
 import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
 
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -56,10 +57,14 @@ public class GameView extends BorderPane {
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.setBackground(new Background(imagenDeFondo));
 
-        ContenedorBoard board = new ContenedorBoard(getCArdsss());
 
+        ContenedorBoard board = new ContenedorBoard(
+                Board.getInstance().getsRows(player1));
+
+        HandPlayer hand = new HandPlayer(player1.getHand(), player1, board);
         AddPlayers p2 = new AddPlayers(player2, () -> {
             this.getChildren().clear();
+            setBottom(hand);
             setCenter(board);
         });
 
@@ -67,8 +72,12 @@ public class GameView extends BorderPane {
             this.getChildren().clear();
             this.setCenter(p2);
         });
-
+        Button a1 = new Button("A1");
+        a1.setOnAction(e -> {
+            board.actualizar();
+        });
         setCenter(p1);
+
     }
     public void initializee() {
         List<Section> sectionMelee = new ArrayList<>();
@@ -89,9 +98,9 @@ public class GameView extends BorderPane {
         card5 = new UnitCard("geralt", "barrabrava de Boca", new Point(15), sectionMelee, legendary);
 
         card4 = new SpecialCard("ejemplo", "ej", moraleBoost);
-        card6 = new UnitCard("Berserker", "unidad cuerpo a cuerpo",new Point(6), sectionRanged);
-        card7 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), sectionRanged);
-        card8 = new UnitCard("geralt", "barrabrava de Boca", new Point(15), sectionRanged);
+        card6 = new UnitCard("Barclay", "unidad cuerpo a cuerpo",new Point(6), sectionRanged);
+        card7 = new UnitCard("Cerys", "unidad a distancia",new Point(3), sectionRanged);
+        card8 = new UnitCard("Birna Bran", "barrabrava de Boca", new Point(15), sectionRanged);
 
         List<AbstractCard> cards1 = new ArrayList<>();
         cards1.add(unitCard);

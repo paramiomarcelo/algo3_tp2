@@ -17,8 +17,6 @@ public class Game {
         this.board = Board.getInstance();
     }
 
-
-
     public void setPlayers(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -27,8 +25,6 @@ public class Game {
         board.addPlayer(player1);
         board.addPlayer(player2);
     }
-
-
 
     private void switchTurn() {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
@@ -47,7 +43,9 @@ public class Game {
         player2.clearRound(board);
     }
 
-
-
+    public void game(){
+        currentPlayer = player1;
+        board.otherPlayer(currentPlayer);
+    }
 
 }

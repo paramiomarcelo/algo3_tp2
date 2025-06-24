@@ -87,4 +87,8 @@ public class Player {
     public String getName() {
         return this.name;
     }
+
+    public List<AbstractCard> getHand() {
+        return hand;
+    }
 }

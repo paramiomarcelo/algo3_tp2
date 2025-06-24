@@ -10,13 +10,22 @@ import java.util.List;
 public class ContenedorBoard extends VBox {
 
     Stage stage;
+    List<List<UnitCard>> cards;
+
     public ContenedorBoard(List<List<UnitCard>> cards) {
         super();
         this.stage = stage;
 
-        for(List<UnitCard> l : cards){
-            ContenedorRows fila = new ContenedorRows(l);
-            getChildren().add(fila);
+        this.cards = cards;
+        setMaxSize(1000, 600);
+
+        actualizar();
+    }
+    public void actualizar() {
+        this.getChildren().clear();
+        for (List<UnitCard> fila : cards) {
+            ContenedorRows nuevaFila = new ContenedorRows(fila);
+            this.getChildren().add(nuevaFila);
         }
     }
 }
