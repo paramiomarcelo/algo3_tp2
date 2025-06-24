@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.ability.Ability;
 import edu.fiuba.algo3.modelo.ability.Spies;
+import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.Point;
 import edu.fiuba.algo3.modelo.card.UnitCard;
@@ -91,12 +92,14 @@ public class SpiesTest {
             player1.addCard(card8);
             player1.addCard(card9);
             player1.addCard(card10);
-
-            game.setPlayers(player1, player2);
+            
         }
 
         @Test
         public void espiaTest(){
+
+            Board.getInstance().reset();
+            game.setPlayers(player1, player2);
             int cantidadCartasInicial = 10;
             int puntajeOponenteInicial = player2.getPoints();
 

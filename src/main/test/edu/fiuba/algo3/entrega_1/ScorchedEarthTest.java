@@ -51,6 +51,7 @@ public class ScorchedEarthTest {
 
     @Test
     public void scorchedEarthBurnsStrongestCardFromEachPlayer() {
+        Board.getInstance().reset();
         game.setPlayers(player1, player2);
 
         player1.playCard(unitCard1); //3
