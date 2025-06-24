@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HandPlayer extends HBox {
 
-    public HandPlayer(List<AbstractCard> cards, Player player, ContenedorBoard board) {
+    public HandPlayer(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
         super();
 
         this.setPrefHeight(90);
@@ -19,16 +19,16 @@ public class HandPlayer extends HBox {
         this.setStyle("-fx-background-color: #735006; -fx-border-width:2 ;-fx-border-color: #E6300C;");
 
         for (AbstractCard card : cards) {
-            CardsPlay cardContenedor = new CardsPlay(card, player, board, this);
+            CardsPlay cardContenedor = new CardsPlay(card, player, board, this, playerStatusPanel, player1, player2);
             cardContenedor.setPrefSize(100,90);
             this.getChildren().add(cardContenedor);
         }
-
     }
-    public void mostrar(List<AbstractCard> cards, Player player, ContenedorBoard board) {
+
+    public void mostrar(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
         getChildren().clear();
         for (AbstractCard card : cards) {
-            CardsPlay cardContenedor = new CardsPlay(card, player, board, this);
+            CardsPlay cardContenedor = new CardsPlay(card, player, board, this, playerStatusPanel, player1, player2);
             cardContenedor.setPrefSize(100,90);
             this.getChildren().add(cardContenedor);
         }

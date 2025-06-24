@@ -30,7 +30,7 @@ public class Game {
         return  (player == player1) ? player2 : player1;
     }
     
-    private Player choosePlayer(){
+    public Player choosePlayer(){
         if (Math.random() < 0.5) {
             return player1;
         } else {

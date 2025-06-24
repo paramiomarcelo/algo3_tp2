@@ -62,11 +62,9 @@
                 "seccion": "Rango"
             },
             {
-                "nombre": "Pirata del Clan Dimun",
-                "puntos": 6,
-                "modificador": [
-                    "Quemar"
-                ],
+                "nombre": "Arquero de Infantería Negro",
+                "puntos": 10,
+                "modificador": [],
                 "seccion": "Rango"
             },
             {

@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
+
 public class GameView extends BorderPane {
 
     Stage stage;
@@ -52,6 +54,7 @@ public class GameView extends BorderPane {
     }
     private MoraleBoost moraleBoost = new MoraleBoost(sectionMelee);
 
+    private PlayerStatusPanel playerStatusPanel;
 
     public GameView(Stage stage) throws IOException, ParseException {
         super();
@@ -70,23 +73,25 @@ public class GameView extends BorderPane {
         currentPlayer = game.getCurrentPlayer();
 
 
+        playerStatusPanel = new PlayerStatusPanel(player1, player2);
         ContenedorBoard board = new ContenedorBoard(Board.getInstance().getsRows(currentPlayer));
+        HandPlayer hand = new HandPlayer(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
 
-        HandPlayer hand = new HandPlayer(currentPlayer.getHand(), currentPlayer, board);
+        Button pass = new Button("Pass");
+        Button finishTurn = new Button("End turn");
+        HBox botones = new HBox(15, pass, finishTurn);
+        botones.setAlignment(Pos.CENTER_RIGHT);
+        botones.setStyle("-fx-padding: 20 40 0 0;");
 
-
-        Button pass = new Button("Passar");
         pass.setOnAction(e -> {
             if(!Board.getInstance().otherPlayer(currentPlayer).isPass()){
                 currentPlayer = game.switchTurn(currentPlayer);
                 board.currentCards(Board.getInstance().getsRows(currentPlayer));
                 board.actualizar();
-                hand.mostrar(currentPlayer.getHand(), currentPlayer,board);
+                hand.mostrar(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
                 System.out.println("turno de jugador: " + currentPlayer.getName());
             }
-
         });
-        Button finishTurn = new Button("Finalizar Turn");
         finishTurn.setOnAction(e -> {
             if(currentPlayer.getLife() <= 0 || Board.getInstance().otherPlayer(currentPlayer).getLife() <= 0){
                 System.out.println("partida terminada");
@@ -95,10 +100,8 @@ public class GameView extends BorderPane {
             else if(Board.getInstance().otherPlayer(currentPlayer).isPass()){
                 Board.getInstance().actualScore(currentPlayer);
                 Board.getInstance().actualScore(Board.getInstance().otherPlayer(currentPlayer));
-
                 System.out.println("puntos j1:" + currentPlayer.getScore().getScoreTotal());
                 System.out.println("puntos j2:" + Board.getInstance().otherPlayer(currentPlayer).getScore().getScoreTotal());
-
                 if(currentPlayer.getScore().getScoreTotal() < Board.getInstance().otherPlayer(currentPlayer).getScore().getScoreTotal()){
                     currentPlayer.substractLife();
                 }else{
@@ -107,14 +110,15 @@ public class GameView extends BorderPane {
                 game.roundCompleted();
                 board.currentCards(Board.getInstance().getsRows(currentPlayer));
                 board.actualizar();
-                hand.mostrar(currentPlayer.getHand(), currentPlayer,board);
-
+                hand.mostrar(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
+                playerStatusPanel.update(player1, player2);
             }else {
                 currentPlayer.passTurn();
                 currentPlayer = game.switchTurn(currentPlayer);
                 board.currentCards(Board.getInstance().getsRows(currentPlayer));
                 board.actualizar();
-                hand.mostrar(currentPlayer.getHand(), currentPlayer,board);
+                hand.mostrar(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
+                playerStatusPanel.update(player1, player2);
             }
         });
 
@@ -122,8 +126,10 @@ public class GameView extends BorderPane {
             this.getChildren().clear();
             setBottom(hand);
             setCenter(board);
-            setRight(pass);
-            setLeft(finishTurn);
+            setTop(botones);
+            setLeft(playerStatusPanel);
+            setRight(null);
+            playerStatusPanel.update(player1, player2);
         });
 
         AddPlayers p1 = new AddPlayers(player1, () -> {
@@ -135,27 +141,27 @@ public class GameView extends BorderPane {
 
     }
     public void initializee() throws IOException, ParseException {
-        List<Section> sectionMelee = new ArrayList<>();
-        sectionMelee.add(new Melee());
-
-        List<Section> sectionSiege = new ArrayList<>();
-        sectionSiege.add(new Siege());
-
-        List<Section> sectionRanged = new ArrayList<>();
-        sectionRanged.add(new Ranged());
-
-        Ability legendary = new Legendary();
-
-        unitCard = new UnitCard("Katakan", "Unidad a distancia", new Point(5), sectionRanged);
-        card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), sectionSiege);
-        card2 = new UnitCard("Berserker", "unidad cuerpo a cuerpo",new Point(6), sectionMelee);
-        card3 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), sectionSiege);
-        card5 = new UnitCard("geralt", "barrabrava de Boca", new Point(15), sectionMelee, legendary);
-
-        card4 = new SpecialCard("ejemplo", "ej", moraleBoost);
-        card6 = new UnitCard("Barclay", "unidad cuerpo a cuerpo",new Point(6), sectionRanged);
-        card7 = new UnitCard("Cerys", "unidad a distancia",new Point(3), sectionRanged);
-        card8 = new UnitCard("Birna Bran", "barrabrava de Boca", new Point(15), sectionRanged);
+//        List<Section> sectionMelee = new ArrayList<>();
+//        sectionMelee.add(new Melee());
+//
+//        List<Section> sectionSiege = new ArrayList<>();
+//        sectionSiege.add(new Siege());
+//
+//        List<Section> sectionRanged = new ArrayList<>();
+//        sectionRanged.add(new Ranged());
+//
+//        Ability legendary = new Legendary();
+//
+//        unitCard = new UnitCard("Katakan", "Unidad a distancia", new Point(5), sectionRanged);
+//        card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), sectionSiege);
+//        card2 = new UnitCard("Berserker", "unidad cuerpo a cuerpo",new Point(6), sectionMelee);
+//        card3 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), sectionSiege);
+//        card5 = new UnitCard("geralt", "barrabrava de Boca", new Point(15), sectionMelee, legendary);
+//
+//        card4 = new SpecialCard("ejemplo", "ej", moraleBoost);
+//        card6 = new UnitCard("Barclay", "unidad cuerpo a cuerpo",new Point(6), sectionRanged);
+//        card7 = new UnitCard("Cerys", "unidad a distancia",new Point(3), sectionRanged);
+//        card8 = new UnitCard("Birna Bran", "barrabrava de Boca", new Point(15), sectionRanged);
 
         CustomFileReader fileReader = new CustomFileReader();
         List<Deck> decks = fileReader.read("src/test/resources/json/gwent.json");
@@ -168,25 +174,25 @@ public class GameView extends BorderPane {
         game.setPlayers(player1, player2);
 
 
-        player1.addCard(unitCard);
-        player1.addCard(card1);
-        player1.addCard(card2);
-        player1.addCard(card3);
-
-
-        player1.playCard(card1);
-        player1.playCard(card2);
-        player1.playCard(card3);
-        player2.playCard(card4);
-        player2.playCard(card1);
-        player2.playCard(card4);
-        player1.playCard(card5);
-        player1.playCard(card6);
-        player1.playCard(card7);
-        player1.playCard(card8);
-        player2.playCard(card6);
-        player2.playCard(card7);
-        player2.playCard(card8);
+//        player1.addCard(unitCard);
+//        player1.addCard(card1);
+//        player1.addCard(card2);
+//        player1.addCard(card3);
+//
+//
+//        player1.playCard(card1);
+//        player1.playCard(card2);
+//        player1.playCard(card3);
+//        player2.playCard(card4);
+//        player2.playCard(card1);
+//        player2.playCard(card4);
+//        player1.playCard(card5);
+//        player1.playCard(card6);
+//        player1.playCard(card7);
+//        player1.playCard(card8);
+//        player2.playCard(card6);
+//        player2.playCard(card7);
+//        player2.playCard(card8);
 
     }
     public List<List<UnitCard>> getCArdsss(){
