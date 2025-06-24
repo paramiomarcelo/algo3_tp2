@@ -19,11 +19,18 @@ public class HandPlayer extends HBox {
         this.setStyle("-fx-background-color: #735006; -fx-border-width:2 ;-fx-border-color: #E6300C;");
 
         for (AbstractCard card : cards) {
-            CardsPlay cardContenedor = new CardsPlay(card, player, board);
+            CardsPlay cardContenedor = new CardsPlay(card, player, board, this);
             cardContenedor.setPrefSize(100,90);
             this.getChildren().add(cardContenedor);
         }
 
-
+    }
+    public void mostrar(List<AbstractCard> cards, Player player, ContenedorBoard board) {
+        getChildren().clear();
+        for (AbstractCard card : cards) {
+            CardsPlay cardContenedor = new CardsPlay(card, player, board, this);
+            cardContenedor.setPrefSize(100,90);
+            this.getChildren().add(cardContenedor);
+        }
     }
 }

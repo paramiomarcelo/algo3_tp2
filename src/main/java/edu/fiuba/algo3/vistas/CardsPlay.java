@@ -14,7 +14,7 @@ public class CardsPlay extends Button {
 
     AbstractCard card;
 
-    public CardsPlay(AbstractCard card, Player player, ContenedorBoard board) {
+    public CardsPlay(AbstractCard card, Player player, ContenedorBoard board, HandPlayer hand) {
         this.card = card;
         this.setPrefSize(100, 90);
         this.setStyle("-fx-background-color: transparent; -fx-border-color: black;");
@@ -24,9 +24,10 @@ public class CardsPlay extends Button {
 
 
         this.setOnAction(e -> {
-            board.actualizar();
             System.out.println("Se seleccionó la carta: " + card.getName());
             player.playCard(card);
+            board.actualizar();
+            hand.mostrar(player.getHand(),player,board);
 
     });
 

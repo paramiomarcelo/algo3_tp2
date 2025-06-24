@@ -21,6 +21,9 @@ public class ContenedorBoard extends VBox {
 
         actualizar();
     }
+    public void currentCards(List<List<UnitCard>> cards) {
+        this.cards = cards;
+    }
     public void actualizar() {
         this.getChildren().clear();
         for (List<UnitCard> fila : cards) {

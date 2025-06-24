@@ -26,8 +26,8 @@ public class Game {
 
 
 
-    private void switchTurn() {
-        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+    public Player switchTurn(Player player) {
+        return  (player == player1) ? player2 : player1;
     }
 
     public Player getCurrentPlayer() {
@@ -41,6 +41,8 @@ public class Game {
     public void roundCompleted(){
         player1.clearRound(board);
         player2.clearRound(board);
+        player1.resetTurn();
+        player2.resetTurn();
     }
 
 

@@ -15,6 +15,8 @@ public class Player {
     private List<AbstractCard> hand;
     private List<UnitCard> discardPile;
     private Score score;
+    private boolean pass;
+    private int life;
 
     private List<UnitCard> unitsDiscarded;
     private Integer indexSelectCards;
@@ -25,6 +27,8 @@ public class Player {
         this.hand = new ArrayList<>();
         this.discardPile = new ArrayList<>();
         score = new Score();
+        pass = false;
+        life = 2;
     }
 
     public void addCard(AbstractCard card){
@@ -90,5 +94,20 @@ public class Player {
 
     public List<AbstractCard> getHand() {
         return hand;
+    }
+    public void passTurn(){
+        pass = true;
+    }
+    public void resetTurn(){
+        pass = false;
+    }
+    public boolean isPass() {
+        return pass;
+    }
+    public void substractLife(){
+        life = life - 1;
+    }
+    public int getLife() {
+        return life;
     }
 }

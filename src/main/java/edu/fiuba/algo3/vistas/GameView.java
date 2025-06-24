@@ -33,6 +33,7 @@ public class GameView extends BorderPane {
     private Game game;
     private Player player1;
     private Player player2;
+    private Player currentPlayer;
     private Deck deck1;
     private Deck deck2;
     private UnitCard unitCard;
@@ -64,25 +65,72 @@ public class GameView extends BorderPane {
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.setBackground(new Background(imagenDeFondo));
 
+        player1.distributeCards(10);
+        player2.distributeCards(10);
+        currentPlayer = game.getCurrentPlayer();
 
-        ContenedorBoard board = new ContenedorBoard(
-                Board.getInstance().getsRows(player1));
 
-        HandPlayer hand = new HandPlayer(player1.getHand(), player1, board);
+        ContenedorBoard board = new ContenedorBoard(Board.getInstance().getsRows(currentPlayer));
+
+        HandPlayer hand = new HandPlayer(currentPlayer.getHand(), currentPlayer, board);
+
+
+        Button pass = new Button("Passar");
+        pass.setOnAction(e -> {
+            if(!Board.getInstance().otherPlayer(currentPlayer).isPass()){
+                currentPlayer = game.switchTurn(currentPlayer);
+                board.currentCards(Board.getInstance().getsRows(currentPlayer));
+                board.actualizar();
+                hand.mostrar(currentPlayer.getHand(), currentPlayer,board);
+                System.out.println("turno de jugador: " + currentPlayer.getName());
+            }
+
+        });
+        Button finishTurn = new Button("Finalizar Turn");
+        finishTurn.setOnAction(e -> {
+            if(currentPlayer.getLife() <= 0 || Board.getInstance().otherPlayer(currentPlayer).getLife() <= 0){
+                System.out.println("partida terminada");
+                stage.close();
+            }
+            else if(Board.getInstance().otherPlayer(currentPlayer).isPass()){
+                Board.getInstance().actualScore(currentPlayer);
+                Board.getInstance().actualScore(Board.getInstance().otherPlayer(currentPlayer));
+
+                System.out.println("puntos j1:" + currentPlayer.getScore().getScoreTotal());
+                System.out.println("puntos j2:" + Board.getInstance().otherPlayer(currentPlayer).getScore().getScoreTotal());
+
+                if(currentPlayer.getScore().getScoreTotal() < Board.getInstance().otherPlayer(currentPlayer).getScore().getScoreTotal()){
+                    currentPlayer.substractLife();
+                }else{
+                    Board.getInstance().otherPlayer(currentPlayer).substractLife();
+                }
+                game.roundCompleted();
+                board.currentCards(Board.getInstance().getsRows(currentPlayer));
+                board.actualizar();
+                hand.mostrar(currentPlayer.getHand(), currentPlayer,board);
+
+            }else {
+                currentPlayer.passTurn();
+                currentPlayer = game.switchTurn(currentPlayer);
+                board.currentCards(Board.getInstance().getsRows(currentPlayer));
+                board.actualizar();
+                hand.mostrar(currentPlayer.getHand(), currentPlayer,board);
+            }
+        });
+
         AddPlayers p2 = new AddPlayers(player2, () -> {
             this.getChildren().clear();
             setBottom(hand);
             setCenter(board);
+            setRight(pass);
+            setLeft(finishTurn);
         });
 
         AddPlayers p1 = new AddPlayers(player1, () -> {
             this.getChildren().clear();
             this.setCenter(p2);
         });
-        Button a1 = new Button("A1");
-        a1.setOnAction(e -> {
-            board.actualizar();
-        });
+
         setCenter(p1);
 
     }
