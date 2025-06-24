@@ -29,6 +29,14 @@ public class Game {
     public Player switchTurn(Player player) {
         return  (player == player1) ? player2 : player1;
     }
+    
+    private Player choosePlayer(){
+        if (Math.random() < 0.5) {
+            return player1;
+        } else {
+            return player2;
+        }
+    }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
