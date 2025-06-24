@@ -16,7 +16,7 @@ public class HandPlayer extends HBox {
         this.setPrefHeight(90);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(5);
-        this.setStyle("-fx-background-color: #735006; -fx-border-width:2 ;-fx-border-color: #E6300C;");
+        this.setStyle("-fx-background-color: rgba(40, 40, 40, 0.4);" + "-fx-border-color: #a48f5f;");
 
         for (AbstractCard card : cards) {
             CardsPlay cardContenedor = new CardsPlay(card, player, board, this, playerStatusPanel, player1, player2);

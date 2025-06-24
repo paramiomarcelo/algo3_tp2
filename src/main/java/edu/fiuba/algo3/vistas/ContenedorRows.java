@@ -13,7 +13,14 @@ public class ContenedorRows extends HBox {
         this.setPrefHeight(90);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(5);
-        this.setStyle("-fx-background-color: #735006; -fx-border-width:2 ;-fx-border-color: #E6A00C;");
+        this.setStyle(
+                "-fx-background-color: rgba(160, 110, 60, 0.2);" +
+                        "-fx-border-color: #b8860b;" +
+                        "-fx-border-width: 2;" +
+                        "-fx-border-radius: 8;" +
+                        "-fx-background-radius: 8;" +
+                        "-fx-effect: dropshadow(gaussian, black, 5, 0.5, 0, 2);"
+        );
 
         for (UnitCard card : cards) {
             ContainerCards cardContenedor = new ContainerCards(card);
