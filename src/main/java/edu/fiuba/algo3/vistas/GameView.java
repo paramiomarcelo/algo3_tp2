@@ -71,7 +71,77 @@ public class GameView extends BorderPane {
         HandPlayer hand = new HandPlayer(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
 
         Button pass = new Button("Pass");
+        pass.setStyle("-fx-background-color: linear-gradient(#2a2a2a, #1a1a1a);" +
+                "-fx-background-radius: 5;" +
+                "-fx-border-color: #b8860b;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-radius: 5;" +
+                "-fx-text-fill: #f0e6d2;" +
+                "-fx-font-size: 14px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-padding: 8 15 8 15;" +
+                "-fx-cursor: hand;");
+
+        pass.setOnMouseEntered(e -> pass.setStyle(
+                "-fx-background-color: linear-gradient(#3a3a3a, #222);" +
+                        "-fx-background-radius: 5;" +
+                        "-fx-border-color: #d4af37;" +
+                        "-fx-border-width: 2;" +
+                        "-fx-border-radius: 5;" +
+                        "-fx-text-fill: #ffffff;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 8 15 8 15;" +
+                        "-fx-cursor: hand;"
+        ));
+        pass.setOnMouseExited(e -> pass.setStyle(
+                "-fx-background-color: linear-gradient(#2a2a2a, #1a1a1a);" +
+                        "-fx-background-radius: 5;" +
+                        "-fx-border-color: #b8860b;" +
+                        "-fx-border-width: 2;" +
+                        "-fx-border-radius: 5;" +
+                        "-fx-text-fill: #f0e6d2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 8 15 8 15;" +
+                        "-fx-cursor: hand;"
+        ));
         Button finishTurn = new Button("End turn");
+        finishTurn.setStyle("-fx-background-color: linear-gradient(#2a2a2a, #1a1a1a);" +
+                "-fx-background-radius: 5;" +
+                "-fx-border-color: #b8860b;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-radius: 5;" +
+                "-fx-text-fill: #f0e6d2;" +
+                "-fx-font-size: 14px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-padding: 8 15 8 15;" +
+                "-fx-cursor: hand;");
+
+        finishTurn.setOnMouseEntered(e -> finishTurn.setStyle(
+                "-fx-background-color: linear-gradient(#3a3a3a, #222);" +
+                        "-fx-background-radius: 5;" +
+                        "-fx-border-color: #d4af37;" +
+                        "-fx-border-width: 2;" +
+                        "-fx-border-radius: 5;" +
+                        "-fx-text-fill: #ffffff;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 8 15 8 15;" +
+                        "-fx-cursor: hand;"
+        ));
+        finishTurn.setOnMouseExited(e -> finishTurn.setStyle(
+                "-fx-background-color: linear-gradient(#2a2a2a, #1a1a1a);" +
+                        "-fx-background-radius: 5;" +
+                        "-fx-border-color: #b8860b;" +
+                        "-fx-border-width: 2;" +
+                        "-fx-border-radius: 5;" +
+                        "-fx-text-fill: #f0e6d2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 8 15 8 15;" +
+                        "-fx-cursor: hand;"
+        ));
         HBox botones = new HBox(15, pass, finishTurn);
         botones.setAlignment(Pos.CENTER_RIGHT);
         botones.setStyle("-fx-padding: 20 40 0 0;");
