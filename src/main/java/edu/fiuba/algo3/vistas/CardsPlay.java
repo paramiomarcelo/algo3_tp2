@@ -13,10 +13,12 @@ import javafx.scene.layout.*;
 public class CardsPlay extends Button {
 
     AbstractCard card;
+    ContenedorBoard contenedorBoard;
 
     public CardsPlay(AbstractCard card, Player player, ContenedorBoard board, HandPlayer hand, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
         this.card = card;
         this.setPrefSize(100, 90);
+        this.contenedorBoard = contenedorBoard;
         this.setStyle(
                 "-fx-background-color: transparent;" +
                         "-fx-border-color: transparent;" +
@@ -62,5 +64,29 @@ public class CardsPlay extends Button {
 
     public AbstractCard getCard() {
         return card;
+    }
+
+    public CardsPlay(AbstractCard card, Player player) {
+
+        this.setPrefSize(100, 90);
+        this.setStyle(
+                "-fx-background-color: transparent;" +
+                        "-fx-border-color: transparent;" +
+                        "-fx-padding: 0;" +
+                        "-fx-focus-color: transparent;" +
+                        "-fx-faint-focus-color: transparent;"
+        );
+        Image image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/cards/" + card.getName() + ".png");
+        ImageView imageView = new ImageView(image);
+        this.setGraphic(imageView);
+
+        this.setOnAction(e -> {
+            System.out.println("Se seleccionó la carta: " + card.getName());
+            player.playCard(card);
+            OptionPlayer.getInstance().getChildren().clear();
+            getChildren().clear();
+            contenedorBoard.actualizar();
+        });
+
     }
 }

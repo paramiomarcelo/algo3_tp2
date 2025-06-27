@@ -17,17 +17,23 @@ import edu.fiuba.algo3.modelo.section.Ranged;
 import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
 
+
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.json.simple.parser.ParseException;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.geometry.Pos;
+
+import javax.print.attribute.standard.Media;
 
 public class GameView extends BorderPane {
 
@@ -38,23 +44,10 @@ public class GameView extends BorderPane {
     private Player currentPlayer;
     private Deck deck1;
     private Deck deck2;
-    private UnitCard unitCard;
-
-    private UnitCard card1;
-    private UnitCard card2;
-    private UnitCard card3;
-    private UnitCard card5;
-    private UnitCard card6;
-    private UnitCard card7;
-    private UnitCard card8;
-    private SpecialCard card4;
-    private List<Section> sectionMelee = new ArrayList<>();
-    {
-        sectionMelee.add(new Melee());
-    }
-    private MoraleBoost moraleBoost = new MoraleBoost(sectionMelee);
 
     private PlayerStatusPanel playerStatusPanel;
+    OptionPlayer optionPlayer = OptionPlayer.getInstance();
+
 
     public GameView(Stage stage) throws IOException, ParseException {
         super();
@@ -95,9 +88,23 @@ public class GameView extends BorderPane {
         finishTurn.setOnAction(e -> {
             if(currentPlayer.getLife() <= 0 || Board.getInstance().otherPlayer(currentPlayer).getLife() <= 0){
                 System.out.println("partida terminada");
+                System.out.println("Ganador: " + currentPlayer.getName());
+                Label ganador = new Label("Ganador: " + currentPlayer.getName());
+                getChildren().add(ganador);
                 stage.close();
-            }
-            else if(Board.getInstance().otherPlayer(currentPlayer).isPass()){
+            }else if (Board.getInstance().otherPlayer(currentPlayer).getLife() <= 0) {
+                System.out.println("partida terminada");
+                System.out.println("Ganador: " + Board.getInstance().otherPlayer(currentPlayer).getName());
+                Label ganador = new Label("Ganador: " + Board.getInstance().otherPlayer(currentPlayer).getName());
+                ganador.setStyle(
+                        "-fx-font-weight: bold;"
+                        + "-fx-text-fill: white;"
+                        + "-fx-background-color: #fff;"
+                );
+                getChildren().add(ganador);
+                stage.close();
+
+            } else if(Board.getInstance().otherPlayer(currentPlayer).isPass()){
                 Board.getInstance().actualScore(currentPlayer);
                 Board.getInstance().actualScore(Board.getInstance().otherPlayer(currentPlayer));
                 System.out.println("puntos j1:" + currentPlayer.getScore().getScoreTotal());
@@ -122,13 +129,14 @@ public class GameView extends BorderPane {
             }
         });
 
+
         AddPlayers p2 = new AddPlayers(player2, () -> {
             this.getChildren().clear();
             setBottom(hand);
             setCenter(board);
             setTop(botones);
             setLeft(playerStatusPanel);
-            setRight(null);
+            setRight(optionPlayer);
             playerStatusPanel.update(player1, player2);
         });
 
@@ -141,27 +149,6 @@ public class GameView extends BorderPane {
 
     }
     public void initializee() throws IOException, ParseException {
-//        List<Section> sectionMelee = new ArrayList<>();
-//        sectionMelee.add(new Melee());
-//
-//        List<Section> sectionSiege = new ArrayList<>();
-//        sectionSiege.add(new Siege());
-//
-//        List<Section> sectionRanged = new ArrayList<>();
-//        sectionRanged.add(new Ranged());
-//
-//        Ability legendary = new Legendary();
-//
-//        unitCard = new UnitCard("Katakan", "Unidad a distancia", new Point(5), sectionRanged);
-//        card1 = new UnitCard("Catapulta", "unidad de asedio", new Point(4), sectionSiege);
-//        card2 = new UnitCard("Berserker", "unidad cuerpo a cuerpo",new Point(6), sectionMelee);
-//        card3 = new UnitCard("Ballesta", "unidad a distancia",new Point(3), sectionSiege);
-//        card5 = new UnitCard("geralt", "barrabrava de Boca", new Point(15), sectionMelee, legendary);
-//
-//        card4 = new SpecialCard("ejemplo", "ej", moraleBoost);
-//        card6 = new UnitCard("Barclay", "unidad cuerpo a cuerpo",new Point(6), sectionRanged);
-//        card7 = new UnitCard("Cerys", "unidad a distancia",new Point(3), sectionRanged);
-//        card8 = new UnitCard("Birna Bran", "barrabrava de Boca", new Point(15), sectionRanged);
 
         CustomFileReader fileReader = new CustomFileReader();
         List<Deck> decks = fileReader.read("src/test/resources/json/gwent.json");
@@ -172,27 +159,6 @@ public class GameView extends BorderPane {
 
         game = new Game();
         game.setPlayers(player1, player2);
-
-
-//        player1.addCard(unitCard);
-//        player1.addCard(card1);
-//        player1.addCard(card2);
-//        player1.addCard(card3);
-//
-//
-//        player1.playCard(card1);
-//        player1.playCard(card2);
-//        player1.playCard(card3);
-//        player2.playCard(card4);
-//        player2.playCard(card1);
-//        player2.playCard(card4);
-//        player1.playCard(card5);
-//        player1.playCard(card6);
-//        player1.playCard(card7);
-//        player1.playCard(card8);
-//        player2.playCard(card6);
-//        player2.playCard(card7);
-//        player2.playCard(card8);
 
     }
     public List<List<UnitCard>> getCArdsss(){

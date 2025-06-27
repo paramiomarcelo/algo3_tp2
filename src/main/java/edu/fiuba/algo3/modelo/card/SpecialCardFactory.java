@@ -3,6 +3,10 @@ package edu.fiuba.algo3.modelo.card;
 import edu.fiuba.algo3.modelo.effect.MoraleBoost;
 import edu.fiuba.algo3.modelo.effect.ScorchedEarth;
 import edu.fiuba.algo3.modelo.effect.SpecialEffect;
+import edu.fiuba.algo3.modelo.effect.WeatherEffect.ClearWeatherEffect;
+import edu.fiuba.algo3.modelo.effect.WeatherEffect.SnowEffect;
+import edu.fiuba.algo3.modelo.effect.WeatherEffect.StormEffect;
+import edu.fiuba.algo3.modelo.effect.WeatherEffect.TorrentialRainEffect;
 import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
 import edu.fiuba.algo3.modelo.section.Section;
@@ -23,11 +27,11 @@ public class SpecialCardFactory extends BaseCardFactory {
         return new SpecialCard(
                 (String) attributes.get("name"),
                 (String) attributes.get("description"),
-                createEffect((String) attributes.get("effectType"), attributes)
+                createEffect((String) attributes.get("name"),(String) attributes.get("effectType"), attributes)
         );
     }
 
-    private SpecialEffect createEffect(String effectType, Map<String, Object> attributes) {
+    private SpecialEffect createEffect(String name,String effectType, Map<String, Object> attributes) {
 
         List<Section> sections = new ArrayList<>();
 
@@ -40,16 +44,49 @@ public class SpecialCardFactory extends BaseCardFactory {
             case "Morale boost":
                 return new MoraleBoost(sections);
             case "Clima":
-                Object afectadoObj = attributes.get("section");
+                return this.createWeather(name,attributes);
+            default:
+                throw new IllegalArgumentException("Tipo de efecto no soportado: " + effectType);
+        }
+    }
+    private SpecialEffect createWeather(String name, Map<String, Object> attributes) {
+        Object afectadoObj = attributes.get("section");
+        List<Section> sections = new ArrayList<>();
+        switch (name) {
+            case "Tiempo despejado":
                 if (afectadoObj instanceof List) {
                     List<String> afectadoList = (List<String>) afectadoObj;
                     for (String seccionStr : afectadoList) {
                         sections.add(createSection(seccionStr));
                     }
                 }
-                return new edu.fiuba.algo3.modelo.effect.Weather(sections);
+                return new ClearWeatherEffect(sections);
+            case "Escarcha mordaz":
+                if (afectadoObj instanceof List) {
+                    List<String> afectadoList = (List<String>) afectadoObj;
+                    for (String seccionStr : afectadoList) {
+                        sections.add(createSection(seccionStr));
+                    }
+                }
+                return new SnowEffect(sections);
+            case "Lluvia torrencial":
+                if (afectadoObj instanceof List) {
+                    List<String> afectadoList = (List<String>) afectadoObj;
+                    for (String seccionStr : afectadoList) {
+                        sections.add(createSection(seccionStr));
+                    }
+                }
+                return new TorrentialRainEffect(sections);
+            case "Tormeta de Skellige":
+                if (afectadoObj instanceof List) {
+                    List<String> afectadoList = (List<String>) afectadoObj;
+                    for (String seccionStr : afectadoList) {
+                        sections.add(createSection(seccionStr));
+                    }
+                }
+                return new StormEffect(sections);
             default:
-                throw new IllegalArgumentException("Tipo de efecto no soportado: " + effectType);
+                throw new IllegalArgumentException("Tipo de efecto no soportado: " + name);
         }
     }
 
