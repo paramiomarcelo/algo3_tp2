@@ -42,6 +42,9 @@ public class Player {
             this.addCard(this.deck.randomCard());
         }
     }
+    public void addUnitCard(){
+        this.addCard(this.deck.randomCard());
+    }
 
     public void playCard(AbstractCard card) {
         removeCardFromHand(card);
