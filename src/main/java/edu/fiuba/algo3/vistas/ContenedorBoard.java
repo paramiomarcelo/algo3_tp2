@@ -26,9 +26,12 @@ public class ContenedorBoard extends VBox {
     }
     public void actualizar() {
         this.getChildren().clear();
-        for (List<UnitCard> fila : cards) {
-            ContenedorRows nuevaFila = new ContenedorRows(fila);
-            this.getChildren().add(nuevaFila);
-        }
+        this.getChildren().add(new ContenedorRows(cards.get(0), "siege"));
+        this.getChildren().add(new ContenedorRows(cards.get(1), "ranged"));
+        this.getChildren().add(new ContenedorRows(cards.get(2), "melee"));
+        this.getChildren().add(new ContenedorRows(cards.get(3), "melee"));
+        this.getChildren().add(new ContenedorRows(cards.get(4), "ranged"));
+        this.getChildren().add(new ContenedorRows(cards.get(5), "siege"));
+
     }
 }

@@ -35,20 +35,25 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, ParseException {
+        MusicPlayer.playMusic();
+    stage.setTitle("FrulandiaCompany");
 
-        stage.setTitle("FrulandiaCompany");
+    GameView game = new GameView(stage);
 
-        GameView game = new GameView(stage);
+    // Creamos la pantalla de bienvenida
+    GeneralScreen pantallaGeneral = new GeneralScreen(null); // Inicialmente sin contenido
 
-        Scene root = new Scene(new VBox());
+    // Creamos la pantalla de bienvenida y le pasamos la referencia a pantallaGeneral y a game
+    Welcome contenedorBienvenidos = new Welcome(pantallaGeneral, game);
 
-        Welcome contenedorBienvenidos = new Welcome(root, game);
+    // Ahora sí, ponemos la bienvenida como contenido inicial
+    pantallaGeneral.setContenido(contenedorBienvenidos);
 
-        root.setRoot(contenedorBienvenidos);
+    Scene scene = new Scene(pantallaGeneral);
 
-        stage.setScene(root);
-        stage.setMaximized(true);
-        stage.show();
+    stage.setScene(scene);
+    stage.setMaximized(true);
+    stage.show();
     }
 
     public static void main(String[] args) {

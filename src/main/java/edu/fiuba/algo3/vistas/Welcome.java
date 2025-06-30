@@ -12,7 +12,7 @@ public class Welcome extends VBox {
 
     Stage stage;
 
-    public Welcome(Scene root, GameView game) {
+    public Welcome(GeneralScreen root, GameView game) {
         super();
         this.stage = stage;
         this.setAlignment(Pos.CENTER);
@@ -25,7 +25,7 @@ public class Welcome extends VBox {
 
         WelcomeOptions opcionesBienvenida = new WelcomeOptions(()->
         {
-            root.setRoot(game);
+            root.setContenido(game);
         });
 
         opcionesBienvenida.setAlignment(Pos.CENTER);

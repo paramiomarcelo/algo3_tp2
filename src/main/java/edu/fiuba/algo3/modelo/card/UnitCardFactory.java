@@ -18,7 +18,7 @@ public class UnitCardFactory extends BaseCardFactory {
     }
 
     private UnitCard createUnitCard(Map<String, Object> attributes) {
-        Ability ability = null;
+        Ability ability = new NullObjectAbility();
         List<String> abilityTypes = (List<String>) attributes.get("abilityType");
         if (abilityTypes != null && !abilityTypes.isEmpty()) {
             for (String abilityType : abilityTypes) {
