@@ -29,7 +29,7 @@ public class CardsPlay extends Button {
         Image image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/cards/" + card.getName() + ".png");
         ImageView imageView = new ImageView(image);
         this.setGraphic(imageView);
-
+        
 
         this.setOnAction(e -> {
             System.out.println("Se seleccionó la carta: " + card.getName());

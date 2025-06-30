@@ -9,7 +9,7 @@ import javafx.scene.layout.*;
 import java.util.List;
 
 public class ContenedorRows extends StackPane {
-    public ContenedorRows(List<UnitCard> cards, String tipoFila) {
+    public ContenedorRows(List<UnitCard> cards, String tipoFila,String borderColor) {
         super();
         this.setPrefHeight(90);
 
@@ -23,7 +23,8 @@ public class ContenedorRows extends StackPane {
                 "-fx-border-width: 2;" +
                 "-fx-border-radius: 8;" +
                 "-fx-background-radius: 8;" +
-                "-fx-effect: dropshadow(gaussian, black, 5, 0.5, 0, 2);"
+                "-fx-effect: dropshadow(gaussian, black, 5, 0.5, 0, 2);" +
+                "-fx-border-color: " + borderColor + ";"
         );
 
         String iconPath = "file:src/main/java/edu/fiuba/algo3/vistas/cards/" + tipoFila + ".png";

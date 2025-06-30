@@ -67,7 +67,7 @@ public class GameView extends BorderPane {
 
 
         playerStatusPanel = new PlayerStatusPanel(player1, player2);
-        ContenedorBoard board = new ContenedorBoard(Board.getInstance().getsRows(currentPlayer));
+        ContenedorBoard board = new ContenedorBoard(Board.getInstance().getsRows(currentPlayer), currentPlayer, player1, player2);
         HandPlayer hand = new HandPlayer(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
 
         Button pass = new Button("Pass");
@@ -150,6 +150,7 @@ public class GameView extends BorderPane {
             if(!Board.getInstance().otherPlayer(currentPlayer).isPass()){
                 currentPlayer = game.switchTurn(currentPlayer);
                 board.currentCards(Board.getInstance().getsRows(currentPlayer));
+                board.setJugadorActivo(currentPlayer);
                 board.actualizar();
                 hand.mostrar(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
                 System.out.println("turno de jugador: " + currentPlayer.getName());
@@ -186,6 +187,7 @@ public class GameView extends BorderPane {
                 }
                 game.roundCompleted();
                 board.currentCards(Board.getInstance().getsRows(currentPlayer));
+                board.setJugadorActivo(currentPlayer);
                 board.actualizar();
                 hand.mostrar(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
                 playerStatusPanel.update(player1, player2);
@@ -193,6 +195,7 @@ public class GameView extends BorderPane {
                 currentPlayer.passTurn();
                 currentPlayer = game.switchTurn(currentPlayer);
                 board.currentCards(Board.getInstance().getsRows(currentPlayer));
+                board.setJugadorActivo(currentPlayer);
                 board.actualizar();
                 hand.mostrar(currentPlayer.getHand(), currentPlayer, board, playerStatusPanel, player1, player2);
                 playerStatusPanel.update(player1, player2);
@@ -218,14 +221,15 @@ public class GameView extends BorderPane {
         setCenter(p1);
 
     }
+
     public void initializee() throws IOException, ParseException {
 
         CustomFileReader fileReader = new CustomFileReader();
         List<Deck> decks = fileReader.read("src/test/resources/json/gwent.json");
 
 
-        player1 = new Player("Jugador1", decks.get(0));
-        player2 = new Player("Jugador2", decks.get(1));
+        player1 = new Player("Jugador 1", decks.get(0));
+        player2 = new Player("Jugador 2", decks.get(1));
 
         game = new Game();
         game.setPlayers(player1, player2);

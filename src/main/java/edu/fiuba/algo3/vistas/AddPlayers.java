@@ -13,7 +13,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AddPlayers extends StackPane {
-
     public AddPlayers(Player player, Runnable onAccept) {
         super();
         this.setPrefSize(400, 200);
@@ -25,7 +24,7 @@ public class AddPlayers extends StackPane {
         VBox contenido = new VBox(10);
         contenido.setAlignment(Pos.CENTER);
 
-        Label nameLabel = new Label("Nombre del Jugador:");
+        Label nameLabel = new Label("Nombre del " + player.getName() + ":");
         nameLabel.setStyle(
                 "-fx-text-fill: #f0e6d2;" +
                         "-fx-font-size: 16px;" +
