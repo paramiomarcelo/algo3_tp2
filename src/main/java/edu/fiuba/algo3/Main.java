@@ -1,7 +1,6 @@
 package edu.fiuba.algo3;
 
 
-import edu.fiuba.algo3.modelo.fileReader.CustomFileReader;
 import edu.fiuba.algo3.vistas.App;
 import org.json.simple.parser.ParseException;
 

@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.effect.MoraleBoost;
-import edu.fiuba.algo3.modelo.fileReader.CustomFileReader;
+import edu.fiuba.algo3.repositorios.CustomFileReader;
 import edu.fiuba.algo3.modelo.player.Player;
 import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;

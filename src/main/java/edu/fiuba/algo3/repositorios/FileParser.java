@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.fileReader;
+package edu.fiuba.algo3.repositorios;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,4 +20,4 @@ public class FileParser {
             }
         }
 
-}
+} 

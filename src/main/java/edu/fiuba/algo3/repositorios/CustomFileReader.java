@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.fileReader;
+package edu.fiuba.algo3.repositorios;
 
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.CardFactory;
@@ -89,4 +89,4 @@ public class CustomFileReader {
         }
         return cards;
     }
-}
+} 

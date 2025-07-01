@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.card.SpecialCard;
 import edu.fiuba.algo3.modelo.deck.Deck;
-import edu.fiuba.algo3.modelo.fileReader.CustomFileReader;
+import edu.fiuba.algo3.repositorios.CustomFileReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
