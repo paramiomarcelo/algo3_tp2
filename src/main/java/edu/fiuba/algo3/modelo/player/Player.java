@@ -13,7 +13,7 @@ public class Player {
     private String name;
     private Deck deck;
     private List<AbstractCard> hand;
-    private List<UnitCard> discardPile;
+    private List<AbstractCard> discardPile;
     private Score score;
     private boolean pass;
     private int life;
@@ -52,6 +52,11 @@ public class Player {
         card.play(this, board);
     }
 
+    public void playCard(AbstractCard card, int parameter) {
+        removeCardFromHand(card);
+        Board board = Board.getInstance();
+        card.play(this, board, parameter);
+    }
 
     public boolean hasNumberOfCards(int number){
         return number == hand.size();
@@ -61,7 +66,7 @@ public class Player {
         hand.remove(card);
     }
 
-    public void discardCard(UnitCard card) {
+    public void discardCard(AbstractCard card) {
         this.discardPile.add(card);
     }
 
@@ -70,7 +75,7 @@ public class Player {
         this.discardPile.addAll(cards);
     }
 
-    public List<UnitCard> getDiscardPile() {
+    public List<AbstractCard> getDiscardPile() {
         return discardPile;
     }
 

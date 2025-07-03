@@ -13,7 +13,6 @@ public class ContenedorRows extends StackPane {
         super();
         this.setPrefHeight(90);
 
-        // Fondo con icono decorativo alineado a la derecha
         HBox fondo = new HBox();
         fondo.setPrefHeight(90);
         fondo.setAlignment(Pos.CENTER_RIGHT);
@@ -33,7 +32,6 @@ public class ContenedorRows extends StackPane {
         icono.setFitHeight(32);
         fondo.getChildren().add(icono);
 
-        // Capa superior: las cartas, centradas
         HBox cartasBox = new HBox(5);
         cartasBox.setAlignment(Pos.CENTER);
         cartasBox.setPrefHeight(90);

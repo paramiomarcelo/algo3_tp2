@@ -40,13 +40,10 @@ public class App extends Application {
 
     GameView game = new GameView(stage);
 
-    // Creamos la pantalla de bienvenida
-    GeneralScreen pantallaGeneral = new GeneralScreen(null); // Inicialmente sin contenido
+    GeneralScreen pantallaGeneral = new GeneralScreen(null);
 
-    // Creamos la pantalla de bienvenida y le pasamos la referencia a pantallaGeneral y a game
     Welcome contenedorBienvenidos = new Welcome(pantallaGeneral, game);
 
-    // Ahora sí, ponemos la bienvenida como contenido inicial
     pantallaGeneral.setContenido(contenedorBienvenidos);
 
     Scene scene = new Scene(pantallaGeneral);

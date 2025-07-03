@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 public class Spies implements Ability {
     @Override
-    public Player effect(Player player, UnitCard card,  Board board) {
+    public Player effect(Player player, UnitCard card, Board board, int parameter) {
         player.distributeCards(2);
         return board.otherPlayer(player);
     }

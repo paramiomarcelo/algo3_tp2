@@ -2,8 +2,13 @@ package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -30,21 +35,57 @@ public class OptionPlayer extends VBox {
             this.getChildren().add(cardContenedor);
         }
     }
-    public void modifierAgil(UnitCard card) {
-        Button opt1 = new Button("melee");
-        Button opt2 = new Button("ranged");
-        getChildren().clear();
+    public void modifierAgil(UnitCard card, Runnable onMelee, Runnable onRanged) {
+        Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.setTitle("Agile card options");
+        
+        Label label = new Label("Choose a row to play the card");
+        Button meleeBtn = new Button("Melee");
+        Button rangedBtn = new Button("Ranged");
+        label.setStyle("-fx-text-fill: #f0e6d2; -fx-effect: dropshadow(gaussian, black, 2, 0.5, 0, 1); -fx-font-size: 20px; -fx-font-weight: bold;");
 
-        opt1.setOnAction(e-> {
-            card.chooseSection(1);
-            getChildren().clear();
+        meleeBtn.setStyle("-fx-background-color: linear-gradient(#2a2a2a, #1a1a1a);" +
+                "-fx-background-radius: 8;" +
+                "-fx-border-color: #b8860b;" +
+                "-fx-border-width: 3;" +
+                "-fx-border-radius: 8;" +
+                "-fx-text-fill: #f0e6d2;" +
+                "-fx-font-size: 16px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-padding: 12 25 12 25;" +
+                "-fx-cursor: hand;" +
+                "-fx-effect: dropshadow(gaussian, black, 3, 0.5, 0, 2);");
+        
+        rangedBtn.setStyle("-fx-background-color: linear-gradient(#2a2a2a, #1a1a1a);" +
+                "-fx-background-radius: 8;" +
+                "-fx-border-color: #b8860b;" +
+                "-fx-border-width: 3;" +
+                "-fx-border-radius: 8;" +
+                "-fx-text-fill: #f0e6d2;" +
+                "-fx-font-size: 16px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-padding: 12 25 12 25;" +
+                "-fx-cursor: hand;" +
+                "-fx-effect: dropshadow(gaussian, black, 3, 0.5, 0, 2);");
+                
+        meleeBtn.setOnAction(e -> {
+            card.chooseSection(0); // melee
+            popup.close();
+            if (onMelee != null) onMelee.run();
+        });
+        rangedBtn.setOnAction(e -> {
+            card.chooseSection(1); // ranged
+            popup.close();
+            if (onRanged != null) onRanged.run();
         });
 
-        opt2.setOnAction(e-> {
-            card.chooseSection(2);
-            getChildren().clear();
-        });
+        HBox botones = new HBox(20, meleeBtn, rangedBtn);
+        VBox root = new VBox(20, label, botones);
+        root.setStyle("-fx-padding: 30; -fx-alignment: center; -fx-background-color: #222;");
 
-        getChildren().addAll(opt1, opt2);
+        popup.setScene(new Scene(root));
+        popup.setResizable(false);
+        popup.showAndWait();
     }
 }

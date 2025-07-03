@@ -24,15 +24,14 @@ public class AddPlayers extends StackPane {
         VBox contenido = new VBox(10);
         contenido.setAlignment(Pos.CENTER);
 
-        Label nameLabel = new Label("Nombre del " + player.getName() + ":");
+        Label nameLabel = new Label("Insert the name of the " + player.getName() + ":");
         nameLabel.setStyle(
                 "-fx-text-fill: #f0e6d2;" +
-                        "-fx-font-size: 16px;" +
+                        "-fx-font-size: 18px;" +
                         "-fx-font-weight: bold;" +
                         "-fx-font-family: 'Georgia';" +
                         "-fx-effect: dropshadow(gaussian, black, 2, 0.5, 0, 1);"
         );
-        nameLabel.setStyle("-fx-color-label-visible: white; -fx-text-fill: white;");
 
         TextField nameField = new TextField();
         nameField.setStyle(
@@ -68,15 +67,15 @@ public class AddPlayers extends StackPane {
             if (!name.isEmpty()) {
                 player.setName(name);
                 onAccept.run();
-                System.out.println("El nombre del Jugador es: " + name);
+                System.out.println("The name of the player is: " + name);
             }
             else  {
                 Stage popup = new Stage();
                 popup.initModality(Modality.APPLICATION_MODAL);
                 popup.initOwner(this.getScene().getWindow());
-                popup.setTitle("Atencion");
+                popup.setTitle("Attention");
 
-                Label mensaje = new Label("Ingresa un nombre de jugador");
+                Label mensaje = new Label("Enter the name of the player");
                 mensaje.setStyle(
                         "-fx-text-fill: #f0e6d2;" +
                                 "-fx-font-size: 14px;" +
@@ -110,12 +109,10 @@ public class AddPlayers extends StackPane {
                                 "-fx-background-radius: 6;"
                 );
 
-                // 3) Armo la escena y muestro
                 Scene scenePopup = new Scene(box);
                 popup.setScene(scenePopup);
                 popup.showAndWait();
 
-                // Dejo el foco en el campo
                 nameField.requestFocus();
                 return;
             }

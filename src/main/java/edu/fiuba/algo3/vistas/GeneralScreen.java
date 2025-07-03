@@ -5,13 +5,13 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class GeneralScreen extends VBox {
-    private final MenuOpciones menuOpciones;
+    private final MenuOptions menuOptions;
     private Node contenidoActual;
 
     public GeneralScreen(Node contenidoInicial) {
         super();
-        this.menuOpciones = new MenuOpciones();
-        this.getChildren().add(menuOpciones);
+        this.menuOptions = new MenuOptions();
+        this.getChildren().add(menuOptions);
         if (contenidoInicial != null) {
             setContenido(contenidoInicial);
         }

@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.modelo.ability.Agile;
 import edu.fiuba.algo3.modelo.board.Board;
 import edu.fiuba.algo3.modelo.card.AbstractCard;
 import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
+import edu.fiuba.algo3.modelo.ability.Medic;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -14,11 +16,13 @@ public class CardsPlay extends Button {
 
     AbstractCard card;
     ContenedorBoard contenedorBoard;
+    GameView gameView;
 
-    public CardsPlay(AbstractCard card, Player player, ContenedorBoard board, HandPlayer hand, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
+    public CardsPlay(AbstractCard card, Player player, ContenedorBoard board, HandPlayer hand, PlayerStatusPanel playerStatusPanel, Player player1, Player player2, GameView gameView) {
         this.card = card;
         this.setPrefSize(100, 90);
         this.contenedorBoard = contenedorBoard;
+        this.gameView = gameView;
         this.setStyle(
                 "-fx-background-color: transparent;" +
                         "-fx-border-color: transparent;" +
@@ -33,10 +37,18 @@ public class CardsPlay extends Button {
 
         this.setOnAction(e -> {
             System.out.println("Se seleccionó la carta: " + card.getName());
-            player.playCard(card);
-            board.actualizar();
-            hand.mostrar(player.getHand(), player, board, playerStatusPanel, player1, player2);
-            playerStatusPanel.update(player1, player2);
+            if (card instanceof UnitCard && ((UnitCard) card).getAbility() instanceof Medic) {
+                gameView.playMedicCard((UnitCard) card, player, board, hand, playerStatusPanel, player1, player2);
+            } else if (card instanceof UnitCard && ((UnitCard) card).getAbility() instanceof Agile) {
+                hand.setDisable(true);
+                gameView.playAgileCard((UnitCard) card, player, board, hand, playerStatusPanel, player1, player2);
+            } 
+            else {
+                player.playCard(card);
+                board.actualizar();
+                hand.mostrar(player.getHand(), player, board, playerStatusPanel, player1, player2, gameView);
+                playerStatusPanel.update(player1, player2);
+            }
         });
         this.setOnMouseEntered(e -> {
             this.setStyle(

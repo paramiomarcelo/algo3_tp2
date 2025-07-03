@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HandPlayer extends HBox {
 
-    public HandPlayer(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
+    public HandPlayer(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2, GameView gameView) {
         super();
 
         this.setPrefHeight(90);
@@ -19,27 +19,18 @@ public class HandPlayer extends HBox {
         this.setStyle("-fx-background-color: rgba(40, 40, 40, 0.4);" + "-fx-border-color: #a48f5f;");
 
         for (AbstractCard card : cards) {
-            CardsDiscardPlay cardContenedor = new CardsDiscardPlay(card, player, board, this, playerStatusPanel, player1, player2);
+            CardsPlay cardContenedor = new CardsPlay(card, player, board, this, playerStatusPanel, player1, player2, gameView);
             cardContenedor.setPrefSize(100,90);
             this.getChildren().add(cardContenedor);
         }
     }
-    public void mostrar(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
+    public void mostrar(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2, GameView gameView) {
         getChildren().clear();
         for (AbstractCard card : cards) {
-            CardsPlay cardContenedor = new CardsPlay(card, player, board, this, playerStatusPanel, player1, player2);
+            CardsPlay cardContenedor = new CardsPlay(card, player, board, this, playerStatusPanel, player1, player2, gameView);
             cardContenedor.setPrefSize(100,90);
             this.getChildren().add(cardContenedor);
         }
     }
 
-    public void mostrarDiscardHand(List<AbstractCard> cards, Player player, ContenedorBoard board, PlayerStatusPanel playerStatusPanel, Player player1, Player player2) {
-        getChildren().clear();
-        for (AbstractCard card : cards) {
-            CardsDiscardPlay cardContenedor = new CardsDiscardPlay(card, player, board, this, playerStatusPanel, player1, player2);
-            cardContenedor.setPrefSize(100,90);
-            this.getChildren().add(cardContenedor);
-        }
-
-    }
 }

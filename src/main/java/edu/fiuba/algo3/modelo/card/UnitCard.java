@@ -37,7 +37,13 @@ public class UnitCard extends AbstractCard {
 
     @Override
     public void play(Player player, Board board) {
-        Player targetPlayer = ability.effect(player, this, board);;
+        Player targetPlayer = ability.effect(player, this, board, 0);
+        board.addCard(targetPlayer, this);
+    }
+
+    @Override
+    public void play(Player player, Board board, int parameter) {
+        Player targetPlayer = ability.effect(player, this, board, parameter);
         board.addCard(targetPlayer, this);
     }
 
@@ -83,4 +89,8 @@ public class UnitCard extends AbstractCard {
     public void restore(){ this.points.restoredCurrentPoints();}
 
     public void clearPoints(){ this.points.clearPoints();}
+
+    public Ability getAbility() {
+        return this.ability;
+    }
 }

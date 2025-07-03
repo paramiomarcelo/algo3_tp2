@@ -6,9 +6,9 @@ import edu.fiuba.algo3.modelo.player.Player;
 
 public class SumBaseValue implements Ability {
 
-
-    public Player effect(Player player, UnitCard card, Board board) {
-
+    @Override
+    public Player effect(Player player, UnitCard card, Board board, int parameter) {
+        // Ignora el parámetro, usa la lógica original
         for(UnitCard c : board.getCardsRow(player,card.getRow())) {
             card.sumOne();
         }

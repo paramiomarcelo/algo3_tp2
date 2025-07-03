@@ -104,9 +104,7 @@ public class AgileTest {
     public void agileTestAddMelee(){
 
         Board board = Board.getInstance();
-        System.setIn(new ByteArrayInputStream("1\n".getBytes()));
-
-        player1.playCard(card1);
+        player1.playCard(card1, 0);
         List<UnitCard> cardsInRow = board.getCardsRow(player1, new Melee());
 
         assertEquals(cardsInRow.get(0), card1);
@@ -116,9 +114,7 @@ public class AgileTest {
     public void agileTestAddRanged(){
 
         Board board = Board.getInstance();
-        System.setIn(new ByteArrayInputStream("2\n".getBytes()));
-
-        player1.playCard(card1);
+        player1.playCard(card1, 1);
         List<UnitCard> cardsInRow = board.getCardsRow(player1, new Ranged());
 
         assertEquals(cardsInRow.get(0), card1);

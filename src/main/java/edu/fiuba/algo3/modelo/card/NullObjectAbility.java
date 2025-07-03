@@ -8,7 +8,7 @@ public class NullObjectAbility implements Ability {
 
 
     @Override
-    public Player effect(Player player, UnitCard card, Board board) {
+    public Player effect(Player player, UnitCard card, Board board, int parameter) {
         return player;
     }
 }

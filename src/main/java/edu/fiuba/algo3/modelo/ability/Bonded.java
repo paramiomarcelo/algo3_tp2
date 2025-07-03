@@ -11,8 +11,8 @@ import java.util.List;
 public class Bonded implements Ability {
 
     @Override
-    public Player effect(Player player, UnitCard card, Board board) {
-
+    public Player effect(Player player, UnitCard card, Board board, int parameter) {
+        // Ignora el parámetro, usa la lógica original
         List<UnitCard> cards = board.getCardsRow(player, card.getRow());
 
         List<UnitCard> bonded = new ArrayList<>();
