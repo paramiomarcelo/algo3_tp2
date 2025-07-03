@@ -13,6 +13,8 @@ import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Section;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -108,6 +110,25 @@ public class SpiesTest {
 
             assertTrue(player1.hasNumberOfCards(cantidadCartasInicial + 1));
             assertEquals(puntajeOponenteInicial+10, player2.getPoints());
+        }
+
+        @Test
+        public void testSpiesCardCallsDistributeCardsWithMockito() {
+            
+            Player mockPlayer = Mockito.mock(Player.class);
+            Board mockBoard = Mockito.mock(Board.class);
+            Player mockOtherPlayer = Mockito.mock(Player.class);
+            
+            
+            Mockito.when(mockBoard.otherPlayer(mockPlayer)).thenReturn(mockOtherPlayer);
+            
+            Spies spiesAbility = new Spies();
+            
+            Player result = spiesAbility.effect(mockPlayer, card1, mockBoard, 0);
+            
+            Mockito.verify(mockPlayer).distributeCards(2);
+            
+            assertEquals(mockOtherPlayer, result);
         }
 
     }

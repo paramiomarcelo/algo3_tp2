@@ -120,6 +120,84 @@ public class AgileTest {
         assertEquals(cardsInRow.get(0), card1);
     }
 
+    @Test
+    public void testAgileEffectWithValidMeleeIndex() {
+        List<Section> sections = new ArrayList<>();
+        sections.add(new Melee());
+        sections.add(new Ranged());
+        
+        UnitCard agileCard = new UnitCard("Test Agile", "Test Description", new Point(5), sections, agile);
+        Player player = new Player("Test Player", new Deck(new ArrayList<>()));
+        Board board = Board.getInstance();
+        
+
+        Player result = agile.effect(player, agileCard, board, 0);
+        
+
+        assertEquals(player, result);
+
+        assertEquals(new Melee().getClass(), agileCard.getRow().getClass());
+    }
+
+    @Test
+    public void testAgileEffectWithValidRangedIndex() {
+
+        List<Section> sections = new ArrayList<>();
+        sections.add(new Melee());
+        sections.add(new Ranged());
+        
+        UnitCard agileCard = new UnitCard("Test Agile", "Test Description", new Point(5), sections, agile);
+        Player player = new Player("Test Player", new Deck(new ArrayList<>()));
+        Board board = Board.getInstance();
+        
+
+        Player result = agile.effect(player, agileCard, board, 1);
+        
+
+        assertEquals(player, result);
+
+        assertEquals(new Ranged().getClass(), agileCard.getRow().getClass());
+    }
+
+    @Test
+    public void testAgileEffectWithInvalidIndex() {
+
+        List<Section> sections = new ArrayList<>();
+        sections.add(new Melee());
+        sections.add(new Ranged());
+        
+        UnitCard agileCard = new UnitCard("Test Agile", "Test Description", new Point(5), sections, agile);
+        Player player = new Player("Test Player", new Deck(new ArrayList<>()));
+        Board board = Board.getInstance();
+        
+
+        Player result = agile.effect(player, agileCard, board, 5);
+        
+
+        assertEquals(player, result);
+
+        assertEquals(new Melee().getClass(), agileCard.getRow().getClass());
+    }
+
+    @Test
+    public void testAgileEffectWithNegativeIndex() {
+
+        List<Section> sections = new ArrayList<>();
+        sections.add(new Melee());
+        sections.add(new Ranged());
+        
+        UnitCard agileCard = new UnitCard("Test Agile", "Test Description", new Point(5), sections, agile);
+        Player player = new Player("Test Player", new Deck(new ArrayList<>()));
+        Board board = Board.getInstance();
+        
+
+        Player result = agile.effect(player, agileCard, board, -1);
+        
+
+        assertEquals(player, result);
+
+        assertEquals(new Melee().getClass(), agileCard.getRow().getClass());
+    }
 }
 
 

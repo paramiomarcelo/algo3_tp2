@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.section.Melee;
 import edu.fiuba.algo3.modelo.section.Ranged;
 import edu.fiuba.algo3.modelo.section.Section;
 import edu.fiuba.algo3.modelo.section.Siege;
+import edu.fiuba.algo3.modelo.player.Score;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -84,17 +85,6 @@ public class PlayerTest {
         player1.addCard(card1);
         player1.addCard(card2);
         player1.addCard(card3);
-    }
-
-    @Test
-    public void testPlayerCanPlayCard() {
-        player1.playCard(unitCard);
-        player1.playCard(card2);
-        player1.playCard(card5);
-        player1.playCard(card4);
-        Board.getInstance().actualScore(player1);
-
-        //assertEquals(initialHandSize - 1, player1.getHand().size());
     }
 
     @Test
@@ -238,4 +228,62 @@ public class PlayerTest {
 
 
     }*/
+
+    @Test
+    public void testPlayerCreation() {
+        // Assert
+        assertEquals("Jugador1", player1.getName());
+        assertEquals(2, player1.getLife());
+        assertFalse(player1.isPass());
+        assertEquals(4, player1.getHand().size());
+        assertEquals(0, player1.getDiscardPile().size());
+    }
+
+    @Test
+    public void testAddCard() {
+        // Arrange
+        List<Section> sectionMelee = new ArrayList<>();
+        sectionMelee.add(new Melee());
+        UnitCard newCard = new UnitCard("Nueva Carta", "Descripción", new Point(8), sectionMelee);
+        
+        // Act
+        player1.addCard(newCard);
+        
+        // Assert
+        assertEquals(5, player1.getHand().size());
+        assertTrue(player1.getHand().contains(newCard));
+    }
+
+    @Test
+    public void testRemoveCardFromHand() {
+        // Act
+        player1.removeCardFromHand(card1);
+        
+        // Assert
+        assertEquals(3, player1.getHand().size());
+        assertFalse(player1.getHand().contains(card1));
+        assertTrue(player1.getHand().contains(card2));
+    }
+
+    @Test
+    public void testSelectCard() {
+        // Act
+        player1.selectCard(3);
+        
+        // Assert
+        assertEquals(Integer.valueOf(3), player1.indexSelectCards());
+    }
+
+    @Test
+    public void testSubstractLife() {
+        // Arrange
+        assertEquals(2, player1.getLife());
+        
+        // Act
+        player1.substractLife();
+        
+        // Assert
+        assertEquals(1, player1.getLife());
+    }
+
 }

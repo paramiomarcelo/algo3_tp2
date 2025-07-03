@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class CustomFileReader {
 
-    private final FileParser parser = new FileParser();
     private final CardFactory cardFactory = CardFactory.getInstance();
 
     public List<Deck> read(String path) throws IOException, ParseException {

@@ -8,9 +8,8 @@ public class SumBaseValue implements Ability {
 
     @Override
     public Player effect(Player player, UnitCard card, Board board, int parameter) {
-        // Ignora el parámetro, usa la lógica original
         for(UnitCard c : board.getCardsRow(player,card.getRow())) {
-            card.sumOne();
+            c.sumOne();
         }
         return player;
     }

@@ -5,5 +5,5 @@ import edu.fiuba.algo3.modelo.card.UnitCard;
 import edu.fiuba.algo3.modelo.player.Player;
 
 public interface Ability {
-    public Player effect(Player player, UnitCard card, Board board, int parameter);
+    Player effect(Player player, UnitCard card, Board board, int parameter);
 }

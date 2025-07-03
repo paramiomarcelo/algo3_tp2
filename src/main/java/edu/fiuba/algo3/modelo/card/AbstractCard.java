@@ -14,10 +14,9 @@ public abstract class AbstractCard {
     public String getName() { return name;}
 
     public abstract void play(Player player, Board board);
-    
-    // Método sobrecargado para cartas que necesitan parámetros específicos
+
     public void play(Player player, Board board, int parameter) {
-        // Por defecto, llama al método original
+
         play(player, board);
     }
 }
