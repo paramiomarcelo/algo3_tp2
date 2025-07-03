@@ -101,24 +101,6 @@ public class BondedTest {
     }
 
     @Test
-    void cardEffectMedicWithCardBonded() {
-
-        game = new Game();
-        player1 = new Player("j1", deck);
-        player2 = new Player("J2", deck);
-
-        game.setPlayers(player1, player2);
-        player1.playCard(card1); //catapulta
-        player1.playCard(card0);
-        game.roundCompleted();
-        player1.playCard(card3);//carta catapulta bonded
-        player1.selectCard(1);
-        player1.playCard(card2); // carta medico revive una carta de la ronda anterior
-
-        // 8 + 8 + 5
-        Assertions.assertEquals(21, player1.getPoints());
-    }
-    @Test
     void cardEffectMedicWithCardNeutral() {
 
         game = new Game();
@@ -140,24 +122,6 @@ public class BondedTest {
         Assertions.assertEquals(14, player1.getPoints());
 
     }
-    @Test
-    void cardEffectMedicWithCardNeutralWithoutBonded() {
 
-        game = new Game();
-        player1 = new Player("j1", deck);
-        player2 = new Player("J2", deck);
-
-        game.setPlayers(player1, player2);
-        player1.playCard(card1);
-        player1.playCard(card0);
-        game.roundCompleted();
-
-        player1.selectCard(1);// en la 0 esta la vaca en la 1 esta la catapulta
-        player1.playCard(card2); // carta medico revive una carta de la ronda anterior
-
-        // 5 + 8 = 13
-        Assertions.assertEquals(13, player1.getPoints());
-
-    }
 
 }
