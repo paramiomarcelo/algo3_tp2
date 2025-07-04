@@ -10,8 +10,6 @@ import java.util.List;
 
 public class Melee extends Section {
     @Override
-    public String getType() { return "melee"; }
-    @Override
     public void addCardToSection(UnitCard card, PlayerSection playerSection) {
         playerSection.addCardToMelee(card);
     }

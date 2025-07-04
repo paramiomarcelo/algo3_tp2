@@ -11,8 +11,6 @@ import java.util.Objects;
 
 public class Ranged extends Section {
     @Override
-    public String getType() { return "ranged"; }
-    @Override
     public void addCardToSection(UnitCard card, PlayerSection playerSection) {
         playerSection.addCardToRanged(card);
     }

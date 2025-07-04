@@ -9,8 +9,6 @@ import java.util.List;
 
 public class Siege extends Section {
     @Override
-    public String getType() { return "siege"; }
-    @Override
     public void addCardToSection(UnitCard card, PlayerSection playerSection) {
         playerSection.addCardToSiege(card);
     }

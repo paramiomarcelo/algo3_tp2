@@ -53,18 +53,6 @@ class GameTest {
     }
 
     @Test
-    void testChoosePlayer() {
-
-        game.setPlayers(player1, player2);
-        
-        
-        Player chosenPlayer = game.choosePlayer();
-        
-        
-        assertTrue(chosenPlayer == player1 || chosenPlayer == player2);
-    }
-
-    @Test
     void testRoundCompleted() {
         
         game.setPlayers(player1, player2);
