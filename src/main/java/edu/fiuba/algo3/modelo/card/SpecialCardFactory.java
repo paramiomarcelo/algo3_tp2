@@ -42,6 +42,7 @@ public class SpecialCardFactory extends BaseCardFactory {
                 sections.add(new Siege());
                 return new ScorchedEarth(sections);
             case "Morale boost":
+                sections.add(new Melee());
                 return new MoraleBoost(sections);
             case "Clima":
                 return this.createWeather(name,attributes);
