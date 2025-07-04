@@ -46,7 +46,10 @@ public class MusicPlayer {
         
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setVolume(volume);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setOnEndOfMedia(() -> {
+            currentTrackIndex = (currentTrackIndex + 1) % musicFiles.size();
+            loadAndPlayCurrentTrack();
+        });
         mediaPlayer.play();
     }
 
