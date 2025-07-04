@@ -62,6 +62,7 @@ public class GameView extends BorderPane {
 
         this.stage = stage;
         initializee();
+        this.currentRound = 1;
         GameView view = this;
 
         Image imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/background/Board.png");
@@ -207,6 +208,7 @@ public class GameView extends BorderPane {
                     () -> {
                         stage.close();
                         try {
+                            game.reset();
                             new App().start(new Stage());
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -233,6 +235,7 @@ public class GameView extends BorderPane {
                     () -> {
                         stage.close();
                         try {
+                            game.reset();
                             new App().start(new Stage());
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -270,6 +273,7 @@ public class GameView extends BorderPane {
                             () -> {
                                 stage.close();
                                 try {
+                                    game.reset();
                                     new App().start(new Stage());
                                 } catch (Exception ex) {
                                     ex.printStackTrace();

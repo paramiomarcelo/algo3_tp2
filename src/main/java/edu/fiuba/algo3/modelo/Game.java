@@ -45,6 +45,17 @@ public class Game {
         player2.resetTurn();
     }
 
+    public void reset() {
+        if (player1 != null) {
+            player1.reset();
+        }
+        if (player2 != null) {
+            player2.reset();
+        }
+        board.reset();
+        this.currentPlayer = player1;
+    }
+
 
 
 

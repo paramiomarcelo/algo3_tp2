@@ -118,4 +118,14 @@ public class Player {
     public int getLife() {
         return life;
     }
+    
+    public void reset() {
+        this.hand.clear();
+        this.discardPile.clear();
+        this.score = new Score();
+        this.pass = false;
+        this.life = 2;
+        this.unitsDiscarded = new ArrayList<>();
+        this.indexSelectCards = null;
+    }
 }
