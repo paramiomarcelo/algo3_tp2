@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.board.Board;
+import edu.fiuba.algo3.modelo.deck.Deck;
 import edu.fiuba.algo3.modelo.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -86,5 +87,54 @@ class GameTest {
         
         
         assertNotNull(board);
+    }
+
+    @Test
+    void testPlayerResetRealInstance() {
+        Deck deck = new Deck(new java.util.ArrayList<>());
+        Player realPlayer = new Player("RealPlayer", deck);
+        realPlayer.substractLife();
+        realPlayer.passTurn();
+        realPlayer.getHand().add(null); 
+        realPlayer.getDiscardPile().add(null);
+        assertEquals(1, realPlayer.getLife());
+        assertTrue(realPlayer.isPass());
+        assertFalse(realPlayer.getHand().isEmpty());
+        assertFalse(realPlayer.getDiscardPile().isEmpty());
+
+        realPlayer.reset();
+        assertEquals(2, realPlayer.getLife());
+        assertFalse(realPlayer.isPass());
+        assertTrue(realPlayer.getHand().isEmpty());
+        assertTrue(realPlayer.getDiscardPile().isEmpty());
+        assertEquals(0, realPlayer.getScore().getScoreTotal());
+    }
+
+    @Test
+    void testGameResetRealInstance() {
+        Deck deck1 = new Deck(new java.util.ArrayList<>());
+        Deck deck2 = new Deck(new java.util.ArrayList<>());
+        Player realPlayer1 = new Player("Real1", deck1);
+        Player realPlayer2 = new Player("Real2", deck2);
+        Game realGame = new Game();
+        realGame.setPlayers(realPlayer1, realPlayer2);
+        realPlayer1.substractLife();
+        realPlayer2.substractLife();
+        realPlayer1.passTurn();
+        realPlayer2.passTurn();
+        realPlayer1.getHand().add(null);
+        realPlayer2.getHand().add(null);
+        Board.getInstance().addPlayer(new Player("Extra", new Deck(new java.util.ArrayList<>())));
+
+        realGame.reset();
+        assertEquals(2, realPlayer1.getLife());
+        assertEquals(2, realPlayer2.getLife());
+        assertFalse(realPlayer1.isPass());
+        assertFalse(realPlayer2.isPass());
+        assertTrue(realPlayer1.getHand().isEmpty());
+        assertTrue(realPlayer2.getHand().isEmpty());
+        assertEquals(0, realPlayer1.getScore().getScoreTotal());
+        assertEquals(0, realPlayer2.getScore().getScoreTotal());
+        assertNull(Board.getInstance().getPlayerSection(new Player("Extra", new Deck(new java.util.ArrayList<>()))));
     }
 } 
