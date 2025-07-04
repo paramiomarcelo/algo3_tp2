@@ -17,4 +17,9 @@ public class SpecialCard extends AbstractCard {
         board.receiveEffect(effect, player);
     }
 
+    @Override
+    public void play(Player player, Board board, int parameter) {
+        board.receiveEffect(effect, player);
+    }
+
 }

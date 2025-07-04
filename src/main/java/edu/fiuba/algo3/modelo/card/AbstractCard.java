@@ -15,8 +15,5 @@ public abstract class AbstractCard {
 
     public abstract void play(Player player, Board board);
 
-    public void play(Player player, Board board, int parameter) {
-
-        play(player, board);
-    }
+    public abstract void play(Player player, Board board, int parameter);
 }

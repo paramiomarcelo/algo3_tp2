@@ -231,7 +231,7 @@ public class PlayerTest {
 
     @Test
     public void testPlayerCreation() {
-        // Assert
+
         assertEquals("Jugador1", player1.getName());
         assertEquals(2, player1.getLife());
         assertFalse(player1.isPass());
@@ -241,25 +241,25 @@ public class PlayerTest {
 
     @Test
     public void testAddCard() {
-        // Arrange
+
         List<Section> sectionMelee = new ArrayList<>();
         sectionMelee.add(new Melee());
         UnitCard newCard = new UnitCard("Nueva Carta", "Descripción", new Point(8), sectionMelee);
         
-        // Act
+
         player1.addCard(newCard);
         
-        // Assert
+
         assertEquals(5, player1.getHand().size());
         assertTrue(player1.getHand().contains(newCard));
     }
 
     @Test
     public void testRemoveCardFromHand() {
-        // Act
+
         player1.removeCardFromHand(card1);
         
-        // Assert
+
         assertEquals(3, player1.getHand().size());
         assertFalse(player1.getHand().contains(card1));
         assertTrue(player1.getHand().contains(card2));
@@ -267,22 +267,20 @@ public class PlayerTest {
 
     @Test
     public void testSelectCard() {
-        // Act
+
         player1.selectCard(3);
         
-        // Assert
+        
         assertEquals(Integer.valueOf(3), player1.indexSelectCards());
     }
 
     @Test
     public void testSubstractLife() {
-        // Arrange
+
         assertEquals(2, player1.getLife());
         
-        // Act
         player1.substractLife();
         
-        // Assert
         assertEquals(1, player1.getLife());
     }
 
